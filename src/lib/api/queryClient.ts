@@ -9,10 +9,11 @@ export const queryClient = new QueryClient({
   },
 })
 
+// Define generic query keys here or split them into feature domains
 export const queryKeys = {
-  products: {
-    all: () => ['products'] as const,
-    list: (p: unknown) => ['products', 'list', p] as const,
-    detail: (id: string) => ['products', 'detail', id] as const,
-  },
+  // Example:
+  // users: {
+  //   all: () => ['users'] as const,
+  //   detail: (id: string) => ['users', id] as const,
+  // },
 }
