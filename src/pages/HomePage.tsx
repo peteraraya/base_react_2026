@@ -8,6 +8,8 @@ import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
 import { EducationSection } from '@/components/cv/EducationSection';
+import { LanguagesSection } from '@/components/cv/LanguagesSection';
+import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
 
 export function HomePage() {
   const { i18n } = useTranslation();
@@ -45,6 +47,10 @@ export function HomePage() {
         />
       </FadeIn>
 
+      <FadeIn delay={0.45}>
+        <ShowcaseSection lang={currentLang} />
+      </FadeIn>
+
       <FadeIn delay={0.5}>
         <SkillsSection 
           skills={data.skills} 
@@ -58,6 +64,15 @@ export function HomePage() {
             title={currentLang === 'es' ? 'Educación' : 'Education'} 
           />
         </FadeIn>
+
+        {data.languages && (
+          <FadeIn delay={0.7}>
+            <LanguagesSection 
+              languages={data.languages} 
+              title={currentLang === 'es' ? 'Idiomas' : 'Languages'} 
+            />
+          </FadeIn>
+        )}
       </main>
     </div>
   );
