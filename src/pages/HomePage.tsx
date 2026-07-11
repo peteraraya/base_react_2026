@@ -10,6 +10,7 @@ import { SkillsSection } from '@/components/cv/SkillsSection';
 import { EducationSection } from '@/components/cv/EducationSection';
 import { LanguagesSection } from '@/components/cv/LanguagesSection';
 import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
+import { BestPracticesSection } from '@/components/cv/BestPracticesSection';
 
 export function HomePage() {
   const { i18n } = useTranslation();
@@ -50,6 +51,15 @@ export function HomePage() {
       <FadeIn delay={0.45}>
         <ShowcaseSection lang={currentLang} />
       </FadeIn>
+
+      {data.bestPractices && (
+        <FadeIn delay={0.48}>
+          <BestPracticesSection 
+            practices={data.bestPractices} 
+            title={currentLang === 'es' ? 'Buenas Prácticas de Desarrollo' : 'Development Best Practices'} 
+          />
+        </FadeIn>
+      )}
 
       <FadeIn delay={0.5}>
         <SkillsSection 
