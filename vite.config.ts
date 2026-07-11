@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  base: '/base_react_2026/',
+  base: '/',
   plugins: [
     react() as any
   ],
