@@ -1,27 +1,18 @@
 import axios, { type AxiosRequestConfig } from 'axios'
-import { useAuthStore } from '@/stores/authStore'
 
 export const apiClient = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-apiClient.interceptors.request.use((config) => {
-  const token = useAuthStore.getState().token
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
-  return config
-})
-
+// Add simple response interceptor for global error handling if needed
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      useAuthStore.getState().logout()
-    }
+    // Handle global errors here (e.g., logging, toast notifications)
+    console.error('API Error:', error)
     return Promise.reject(error)
   }
 )
