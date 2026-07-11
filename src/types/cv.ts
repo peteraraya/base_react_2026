@@ -32,6 +32,12 @@ export interface Language {
   level: string;
 }
 
+export interface BestPractice {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
 export interface CVData {
   name: string;
   role: string;
@@ -43,4 +49,5 @@ export interface CVData {
   skills: Record<string, string>;
   education: Education[];
   languages?: Language[];
+  bestPractices?: BestPractice[];
 }

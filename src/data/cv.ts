@@ -112,6 +112,28 @@ export const cvData: Record<'es' | 'en', CVData> = {
     languages: [
       { name: "Español", level: "Nativo" },
       { name: "Inglés", level: "Lectura técnica fluida, nivel básico" }
+    ],
+    bestPractices: [
+      {
+        title: "Clean Code & SOLID",
+        description: "Desarrollo de código legible, mantenible y escalable. Fuerte enfoque en la refactorización continua, DRY y separación de responsabilidades.",
+        icon: "code"
+      },
+      {
+        title: "Testing Integral",
+        description: "Creación de software resiliente mediante pruebas unitarias (Vitest/Jest), de integración (MSW) y E2E (Playwright) para prevenir regresiones.",
+        icon: "test"
+      },
+      {
+        title: "Arquitectura Front/Back",
+        description: "Diseño de soluciones modulares, uso de arquitecturas Serverless (Atlassian Forge) y principios de Clean Architecture cuando el dominio lo requiere.",
+        icon: "architecture"
+      },
+      {
+        title: "CI/CD & Calidad de Código",
+        description: "Automatización de despliegues, uso riguroso de linters (ESLint), formateadores (Prettier), y revisiones de código exhaustivas mediante PRs.",
+        icon: "cicd"
+      }
     ]
   },
   en: {
@@ -225,6 +247,28 @@ export const cvData: Record<'es' | 'en', CVData> = {
     languages: [
       { name: "Spanish", level: "Native" },
       { name: "English", level: "Fluent technical reading, basic level" }
+    ],
+    bestPractices: [
+      {
+        title: "Clean Code & SOLID",
+        description: "Development of readable, maintainable, and scalable code. Strong focus on continuous refactoring, DRY, and separation of concerns.",
+        icon: "code"
+      },
+      {
+        title: "Comprehensive Testing",
+        description: "Building resilient software through unit tests (Vitest/Jest), integration (MSW), and E2E (Playwright) to prevent regressions.",
+        icon: "test"
+      },
+      {
+        title: "Front/Back Architecture",
+        description: "Design of modular solutions, use of Serverless architectures (Atlassian Forge), and Clean Architecture principles when domain requires it.",
+        icon: "architecture"
+      },
+      {
+        title: "CI/CD & Code Quality",
+        description: "Deployment automation, rigorous use of linters (ESLint), formatters (Prettier), and thorough code reviews through PRs.",
+        icon: "cicd"
+      }
     ]
   }
 };
