@@ -27,6 +27,11 @@ export interface Education {
   status: string;
 }
 
+export interface Language {
+  name: string;
+  level: string;
+}
+
 export interface CVData {
   name: string;
   role: string;
@@ -37,4 +42,5 @@ export interface CVData {
   projects: Project[];
   skills: Record<string, string>;
   education: Education[];
+  languages?: Language[];
 }
