@@ -44,9 +44,9 @@ export function ShowcaseSection({ lang }: { lang: 'es' | 'en' }) {
   
   return (
     <section className="space-y-6 pb-12" aria-labelledby="showcase-heading">
-      <header className="flex items-center gap-2 border-b border-gray-200 pb-2">
-        <MonitorPlay className="w-6 h-6 text-blue-600" aria-hidden="true" />
-        <h2 id="showcase-heading" className="text-2xl font-bold text-gray-900">{title}</h2>
+      <header className="flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+        <MonitorPlay className="w-6 h-6 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+        <h2 id="showcase-heading" className="text-2xl font-bold text-gray-900 dark:text-gray-100">{title}</h2>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -56,20 +56,20 @@ export function ShowcaseSection({ lang }: { lang: 'es' | 'en' }) {
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-blue-500 hover:shadow-md transition-all duration-200"
+            className="group flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-md transition-all duration-200"
           >
             <div className="flex-shrink-0 mt-1">
               {item.icon === 'github' ? (
-                <Github className="w-8 h-8 text-gray-700 group-hover:text-blue-600 transition-colors" />
+                <Github className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
               ) : (
-                <ExternalLink className="w-8 h-8 text-gray-700 group-hover:text-blue-600 transition-colors" />
+                <ExternalLink className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
               )}
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {item.title}
               </h3>
-              <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{item.description}</p>
             </div>
           </a>
         ))}

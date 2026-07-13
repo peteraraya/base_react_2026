@@ -11,7 +11,15 @@ export const cvData: Record<'es' | 'en', CVData> = {
       linkedin: "linkedin.com/in/pedro-araya-galvez",
       github: "github.com/peteraraya"
     },
-    summary: "Full Stack Developer con más de 8 años de experiencia end-to-end, especializado en React, TypeScript, Node.js y arquitecturas serverless (Atlassian Forge), con experiencia adicional en Angular y NestJS a través de proyectos de consultoría externa. Historial consistente entregando valor medible: reducción de tiempos de entrega, resolución de vulnerabilidades críticas de seguridad (RBAC, MFA, RLS) y modernización de stacks legacy (PHP, XML) hacia arquitecturas actuales. Reconocido por mi perseverancia técnica, capacidad de adaptación rápida a nuevos stacks y dedicación a la calidad de código y testing (Vitest, Jest, Playwright, MSW).\n\nCon más de 5 años trabajando en equipos distribuidos y comunicación asíncrona —incluyendo colaboración simultánea con múltiples clientes externos— he demostrado autonomía real: lideré procesos completos sin supervisión directa, cumpliendo plazos y estándares de calidad de forma sostenida. Busco un rol remoto senior donde aportar impacto medible desde el primer sprint.",
+    summary: "Full Stack Developer con más de 8 años de experiencia end-to-end, especializado en React, TypeScript, Node.js y arquitecturas serverless (Atlassian Forge), con experiencia adicional en Angular, NestJS y WordPress/PHP a través de proyectos de consultoría externa y desarrollo de productos propios. Historial consistente entregando valor medible: reducción de tiempos de entrega, resolución de vulnerabilidades críticas de seguridad (RBAC, MFA, RLS) y modernización de stacks legacy (PHP, XML, WordPress) hacia arquitecturas actuales. Reconocido por mi perseverancia técnica, capacidad de adaptación rápida a nuevos stacks y dedicación a la calidad de código y testing (Vitest, Jest, Playwright, MSW).\n\nCon más de 5 años trabajando en equipos distribuidos y comunicación asíncrona —incluyendo colaboración simultánea con múltiples clientes externos— he demostrado autonomía real: lideré procesos completos sin supervisión directa, cumpliendo plazos y estándares de calidad de forma sostenida. Busco un rol remoto senior donde aportar impacto medible desde el primer sprint.",
+    aboutMe: {
+      description: "¡Hola! Soy un entusiasta de la tecnología, estudiante autodidacta y fiel creyente del aprendizaje continuo (gran parte de mi conocimiento lo debo a la inmersión en cursos de Udemy). Me apasiona estar siempre al día con las últimas tendencias tech, probar nuevas herramientas y explorar cómo evoluciona el desarrollo de software.\n\nSoy una persona muy disciplinada, un valor que me define tanto frente a la pantalla resolviendo problemas técnicos, como en mi tiempo libre. Busco siempre combinar mi energía, constancia y curiosidad para seguir creciendo y crear soluciones innovadoras.",
+      highlights: [
+        { text: "Estudiante autodidacta", icon: "learn" },
+        { text: "Apasionado por nuevas tecnologías", icon: "tech" },
+        { text: "Entrenamiento de fuerza", icon: "gym" }
+      ]
+    },
     experience: [
       {
         company: "Ticblue",
@@ -40,6 +48,15 @@ export const cvData: Record<'es' | 'en', CVData> = {
             achievements: [
               "Diseñé e implementé un sistema RBAC para permisos diferenciados de médicos, pacientes y administradores en una plataforma con más de 33.000 consultas y 11.000 pacientes atendidos.",
               "Integré autenticación multifactor (MFA) y resolví problemas recurrentes de gestión de sesión, mejorando la estabilidad del sistema."
+            ]
+          },
+          {
+            name: "Proyecto RedBlu - Base de la Plataforma de Teleconsulta + E-commerce",
+            achievements: [
+              "Desarrollé RedBlu, la aplicación base sobre la que posteriormente se construyó y escaló el proyecto de Teleconsulta (RGSTCS), sentando la arquitectura inicial del producto.",
+              "Diseñé e implementé el sitio de venta en WordPress con módulo de e-commerce (WooCommerce) para la comercialización de teleconsultas médicas, incluyendo catálogo de servicios, checkout y flujo de pago.",
+              "Integré el frontend de venta (WordPress/PHP) con el backend de la aplicación de teleconsultas, conectando el proceso de compra del paciente con la generación y agendamiento de la consulta médica.",
+              "Senté las bases técnicas (autenticación, estructura de datos y flujo médico-paciente) que luego fueron migradas y escaladas en el proyecto RGSTCS."
             ]
           },
           {
@@ -95,8 +112,9 @@ export const cvData: Record<'es' | 'en', CVData> = {
     ],
     skills: {
       "Frontend": "React 19, Next.js 15, Angular 2+, TypeScript (strict mode), Tailwind CSS, JavaScript ES6+, HTML5, CSS3, Highcharts, i18n",
-      "Backend": "Node.js, NestJS, PHP, REST APIs, Atlassian Forge, Arquitectura Serverless, PostgreSQL, Supabase",
+      "Backend": "Node.js, NestJS, PHP, WordPress (desarrollo a medida, WooCommerce), REST APIs, Atlassian Forge, Arquitectura Serverless, PostgreSQL, Supabase",
       "Seguridad": "RBAC, MFA, Row-Level Security (RLS), validación con Zod",
+      "E-commerce": "WooCommerce, pasarelas de pago, gestión de catálogo y checkout para venta de servicios digitales",
       "Testing & Calidad": "Jest, Vitest, MSW, Playwright, testing unitario, integración y E2E, colaboración con equipos SQA",
       "State / Data": "TanStack Query v5, TanStack Router, Zustand v5, Axios",
       "Herramientas": "Git, Jira, Conventional Commits, CI/CD, metodologías ágiles, Design Systems",
@@ -146,7 +164,15 @@ export const cvData: Record<'es' | 'en', CVData> = {
       linkedin: "linkedin.com/in/pedro-araya-galvez",
       github: "github.com/peteraraya"
     },
-    summary: "Full Stack Developer with over 8 years of end-to-end experience, specializing in React, TypeScript, Node.js, and serverless architectures (Atlassian Forge), with additional experience in Angular and NestJS through external consulting projects. Consistent track record of delivering measurable value: reducing delivery times, resolving critical security vulnerabilities (RBAC, MFA, RLS), and modernizing legacy stacks (PHP, XML) into current architectures. Recognized for my technical perseverance, quick adaptability to new stacks, and dedication to code quality and testing (Vitest, Jest, Playwright, MSW).\n\nWith over 5 years working in distributed teams and asynchronous communication —including simultaneous collaboration with multiple external clients— I have demonstrated true autonomy: I independently led complete processes without direct supervision, consistently meeting deadlines and quality standards. Seeking a senior remote role where I can make a measurable impact from the first sprint.",
+    summary: "Full Stack Developer with over 8 years of end-to-end experience, specializing in React, TypeScript, Node.js, and serverless architectures (Atlassian Forge), with additional experience in Angular, NestJS, and WordPress/PHP through external consulting projects and development of personal products. Consistent track record of delivering measurable value: reducing delivery times, resolving critical security vulnerabilities (RBAC, MFA, RLS), and modernizing legacy stacks (PHP, XML, WordPress) into current architectures. Recognized for my technical perseverance, quick adaptability to new stacks, and dedication to code quality and testing (Vitest, Jest, Playwright, MSW).\n\nWith over 5 years working in distributed teams and asynchronous communication —including simultaneous collaboration with multiple external clients— I have demonstrated true autonomy: I independently led complete processes without direct supervision, consistently meeting deadlines and quality standards. Seeking a senior remote role where I can make a measurable impact from the first sprint.",
+    aboutMe: {
+      description: "Hi! I'm a tech enthusiast, self-taught student, and a firm believer in continuous learning (much of my knowledge comes from deep diving into Udemy courses). I'm passionate about staying up-to-date with the latest tech trends, trying out new tools, and exploring how software development evolves.\n\nI am a highly disciplined person, a value that defines me both in front of the screen solving technical problems and in my free time. I'm always looking to combine my energy, perseverance, and curiosity to keep growing and build innovative solutions.",
+      highlights: [
+        { text: "Self-taught student", icon: "learn" },
+        { text: "Passionate about new tech", icon: "tech" },
+        { text: "Strength training", icon: "gym" }
+      ]
+    },
     experience: [
       {
         company: "Ticblue",
@@ -175,6 +201,15 @@ export const cvData: Record<'es' | 'en', CVData> = {
             achievements: [
               "Designed and implemented an RBAC system for differentiated permissions for doctors, patients, and admins in a platform with over 33,000 consultations and 11,000 patients.",
               "Integrated multi-factor authentication (MFA) and resolved recurring session management issues, improving system stability."
+            ]
+          },
+          {
+            name: "RedBlu Project - Base of the Telehealth Platform + E-commerce",
+            achievements: [
+              "Developed RedBlu, the foundational application on which the Telehealth project (RGSTCS) was later built and scaled, laying the initial product architecture.",
+              "Designed and implemented the sales site in WordPress with an e-commerce module (WooCommerce) for the commercialization of medical teleconsultations, including service catalog, checkout, and payment flow.",
+              "Integrated the sales frontend (WordPress/PHP) with the telehealth application backend, connecting the patient's purchase process with the generation and scheduling of the medical consultation.",
+              "Laid the technical foundations (authentication, data structure, and doctor-patient flow) that were later migrated and scaled in the RGSTCS project."
             ]
           },
           {
@@ -230,8 +265,9 @@ export const cvData: Record<'es' | 'en', CVData> = {
     ],
     skills: {
       "Frontend": "React 19, Next.js 15, Angular 2+, TypeScript (strict mode), Tailwind CSS, JavaScript ES6+, HTML5, CSS3, Highcharts, i18n",
-      "Backend": "Node.js, NestJS, PHP, REST APIs, Atlassian Forge, Serverless Architecture, PostgreSQL, Supabase",
+      "Backend": "Node.js, NestJS, PHP, WordPress (custom development, WooCommerce), REST APIs, Atlassian Forge, Serverless Architecture, PostgreSQL, Supabase",
       "Security": "RBAC, MFA, Row-Level Security (RLS), Zod validation",
+      "E-commerce": "WooCommerce, payment gateways, catalog management and checkout for digital services sales",
       "Testing & Quality": "Jest, Vitest, MSW, Playwright, Unit, Integration & E2E Testing, Collaboration with SQA teams",
       "State / Data": "TanStack Query v5, TanStack Router, Zustand v5, Axios",
       "Tools": "Git, Jira, Conventional Commits, CI/CD, Agile methodologies, Design Systems",
