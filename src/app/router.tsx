@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { HomePage } from '@/pages/HomePage'
 import { AboutPage } from '@/pages/AboutPage'
 import { ContactPage } from '@/pages/ContactPage'
+import { ProjectsPage } from '@/pages/ProjectsPage'
 import { ToastContainer } from '@/components/feedback/ToastContainer'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -21,6 +22,9 @@ const RootComponent = () => {
               </Link>
               <Link to="/about" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.about')}
+              </Link>
+              <Link to="/projects" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+                {t('nav.projects')}
               </Link>
               <Link to="/contact" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.contact')}
@@ -64,9 +68,16 @@ const contactRoute = createRoute({
   component: ContactPage,
 })
 
+const projectsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/projects',
+  component: ProjectsPage,
+})
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
+  projectsRoute,
   contactRoute,
 ])
 
