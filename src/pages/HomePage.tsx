@@ -4,6 +4,7 @@ import { FadeIn } from '@/components/animations/FadeIn';
 
 import { HeroSection } from '@/components/cv/HeroSection';
 import { SummarySection } from '@/components/cv/SummarySection';
+import { AboutMeSection } from '@/components/cv/AboutMeSection';
 import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
@@ -20,7 +21,7 @@ export function HomePage() {
   return (
     <div className="relative min-h-screen">
       {/* Elemento decorativo de fondo suave */}
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-blue-50/80 to-transparent -z-10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent -z-10 pointer-events-none transition-colors duration-300" aria-hidden="true" />
       
       <main className="max-w-4xl mx-auto p-4 sm:p-8 space-y-16 relative z-0">
         <FadeIn delay={0.1}>
@@ -33,6 +34,15 @@ export function HomePage() {
           title={currentLang === 'es' ? 'Resumen Profesional' : 'Professional Summary'} 
         />
       </FadeIn>
+
+      {data.aboutMe && (
+        <FadeIn delay={0.25}>
+          <AboutMeSection 
+            data={data.aboutMe}
+            title={currentLang === 'es' ? 'Sobre mí' : 'About Me'}
+          />
+        </FadeIn>
+      )}
 
       <FadeIn delay={0.3}>
         <ExperienceSection 

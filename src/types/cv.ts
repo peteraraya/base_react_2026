@@ -38,12 +38,21 @@ export interface BestPractice {
   icon?: string;
 }
 
+export interface AboutMe {
+  description: string;
+  highlights: {
+    text: string;
+    icon: 'learn' | 'tech' | 'gym';
+  }[];
+}
+
 export interface CVData {
   name: string;
   role: string;
   location: string;
   contact: Contact;
   summary: string;
+  aboutMe?: AboutMe;
   experience: Experience[];
   projects: Project[];
   skills: Record<string, string>;
