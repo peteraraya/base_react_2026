@@ -127,6 +127,35 @@ export const cvData: Record<'es' | 'en', CVData> = {
         status: "Abierto a oportunidades remotas · Disponibilidad inmediata"
       }
     ],
+    courses: [
+      {
+        title: "Next.js 15 & React 19 - The Complete Guide",
+        platform: "Udemy",
+        instructor: "Maximilian Schwarzmüller",
+        status: "in-progress",
+        progress: 65
+      },
+      {
+        title: "Microservices Architecture with Node.js and React",
+        platform: "Udemy",
+        instructor: "Stephen Grider",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Advanced CSS and Sass: Flexbox, Grid, Animations",
+        platform: "Udemy",
+        instructor: "Jonas Schmedtmann",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React Native - The Practical Guide",
+        platform: "Udemy",
+        status: "in-progress",
+        progress: 30
+      }
+    ],
     languages: [
       { name: "Español", level: "Nativo" },
       { name: "Inglés", level: "Lectura técnica fluida, nivel básico" }
@@ -278,6 +307,35 @@ export const cvData: Record<'es' | 'en', CVData> = {
         title: "Programmer Analyst",
         institution: "Professional Institute / Technical Training Center (INACAP), 2014",
         status: "Open to remote opportunities · Immediate availability"
+      }
+    ],
+    courses: [
+      {
+        title: "Next.js 15 & React 19 - The Complete Guide",
+        platform: "Udemy",
+        instructor: "Maximilian Schwarzmüller",
+        status: "in-progress",
+        progress: 65
+      },
+      {
+        title: "Microservices Architecture with Node.js and React",
+        platform: "Udemy",
+        instructor: "Stephen Grider",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Advanced CSS and Sass: Flexbox, Grid, Animations",
+        platform: "Udemy",
+        instructor: "Jonas Schmedtmann",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React Native - The Practical Guide",
+        platform: "Udemy",
+        status: "in-progress",
+        progress: 30
       }
     ],
     languages: [

@@ -27,6 +27,15 @@ export interface Education {
   status: string;
 }
 
+export interface Course {
+  title: string;
+  platform: string;
+  instructor?: string;
+  status: 'completed' | 'in-progress';
+  progress?: number; // 0 to 100
+  link?: string;
+}
+
 export interface Language {
   name: string;
   level: string;
@@ -57,6 +66,7 @@ export interface CVData {
   projects: Project[];
   skills: Record<string, string>;
   education: Education[];
+  courses?: Course[];
   languages?: Language[];
   bestPractices?: BestPractice[];
 }

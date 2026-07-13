@@ -9,6 +9,7 @@ import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
 import { EducationSection } from '@/components/cv/EducationSection';
+import { CoursesSection } from '@/components/cv/CoursesSection';
 import { LanguagesSection } from '@/components/cv/LanguagesSection';
 import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
 import { BestPracticesSection } from '@/components/cv/BestPracticesSection';
@@ -84,6 +85,15 @@ export function HomePage() {
             title={currentLang === 'es' ? 'Educación' : 'Education'} 
           />
         </FadeIn>
+
+        {data.courses && (
+          <FadeIn delay={0.65}>
+            <CoursesSection 
+              courses={data.courses} 
+              title={currentLang === 'es' ? 'Cursos y Especialización' : 'Courses & Specialization'} 
+            />
+          </FadeIn>
+        )}
 
         {data.languages && (
           <FadeIn delay={0.7}>
