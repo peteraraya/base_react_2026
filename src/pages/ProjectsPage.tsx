@@ -95,7 +95,7 @@ export function ProjectsPage() {
       </FadeIn>
 
       {/* GitHub Calendar */}
-      {/* <FadeIn delay={0.15}>
+      <FadeIn delay={0.15}>
         <div className="mb-8 mt-12 bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col items-center overflow-x-auto transition-colors duration-300">
           <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-gray-100 w-full text-left">
             {t('projects.contributions', 'Contribuciones en GitHub')}
@@ -110,7 +110,7 @@ export function ProjectsPage() {
             />
           </div>
         </div>
-      </FadeIn> */}
+      </FadeIn>
 
       <FadeIn delay={0.2}>
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
