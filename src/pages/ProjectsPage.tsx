@@ -6,12 +6,26 @@ import { Search, Star, ExternalLink, Github as GithubIcon, Loader2, Calendar } f
 import { fetchGithubRepos } from '@/lib/api/github';
 import { useProjectFilterStore } from '@/stores/useProjectFilterStore';
 import { FadeIn } from '@/components/animations/FadeIn';
+import { PageTransition } from '@/components/animations/PageTransition';
+import { SpotlightCard } from '@/components/animations/SpotlightCard';
+import { GitHubCalendar } from 'react-github-calendar';
 
 export function ProjectsPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language === 'es' ? 'es' : 'en';
   
   // Usuario de GitHub
   const GITHUB_USERNAME = 'peteraraya';
+
+  const calendarLabels = currentLang === 'es' ? {
+    totalCount: '{{count}} contribuciones en el último año',
+    legend: {
+      less: 'Menos',
+      more: 'Más',
+    },
+    months: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+  } : undefined;
   
   const { data: repos, isLoading, isError } = useQuery({
     queryKey: ['github-repos', GITHUB_USERNAME],
@@ -67,6 +81,7 @@ export function ProjectsPage() {
   }, [repos, searchQuery, selectedLanguage, sortBy]);
 
   return (
+    <PageTransition>
     <div className="max-w-6xl mx-auto p-4 sm:p-8 space-y-8">
       <FadeIn delay={0.1}>
         <div className="mb-8">
@@ -78,6 +93,24 @@ export function ProjectsPage() {
           </p>
         </div>
       </FadeIn>
+
+      {/* GitHub Calendar */}
+      {/* <FadeIn delay={0.15}>
+        <div className="mb-8 mt-12 bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col items-center overflow-x-auto transition-colors duration-300">
+          <h2 className="text-xl font-bold mb-6 text-gray-900 dark:text-gray-100 w-full text-left">
+            {t('projects.contributions', 'Contribuciones en GitHub')}
+          </h2>
+          <div className="w-full flex justify-center text-gray-800 dark:text-gray-200">
+            <GitHubCalendar 
+              username={GITHUB_USERNAME} 
+              fontSize={14}
+              blockMargin={5}
+              blockSize={14}
+              labels={calendarLabels}
+            />
+          </div>
+        </div>
+      </FadeIn> */}
 
       <FadeIn delay={0.2}>
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
@@ -168,9 +201,11 @@ export function ProjectsPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group flex flex-col bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:shadow-xl hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 h-full"
+                className="h-full"
               >
-                <div className="flex justify-between items-start mb-4">
+              <SpotlightCard className="group hover:shadow-xl hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 h-full">
+                <div className="flex flex-col p-6 h-full">
+                  <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
                     {repo.name}
                   </h3>
@@ -208,6 +243,8 @@ export function ProjectsPage() {
                     {new Date(repo.updated_at).toLocaleDateString()}
                   </span>
                 </div>
+                </div>
+              </SpotlightCard>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -226,5 +263,6 @@ export function ProjectsPage() {
         </motion.div>
       )}
     </div>
+    </PageTransition>
   );
 }

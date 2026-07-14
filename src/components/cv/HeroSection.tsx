@@ -3,7 +3,7 @@ import { CVData } from '@/types/cv';
 
 export function HeroSection({ data }: { data: CVData }) {
   return (
-    <section className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 text-center sm:text-left">
+    <section className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 text-left">
       <div className="w-32 h-32 sm:w-40 sm:h-40 shrink-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors duration-300">
         <img src="/img/pedroaraya.png" alt={data.name} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=Pedro+Araya&size=160&background=random'; }} />
       </div>
@@ -12,7 +12,7 @@ export function HeroSection({ data }: { data: CVData }) {
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white tracking-tight transition-colors duration-300">{data.name}</h1>
         <p className="text-xl sm:text-2xl text-blue-600 dark:text-blue-400 font-medium transition-colors duration-300">{data.role}</p>
         
-        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mt-4">
+        <div className="flex flex-wrap items-center justify-start gap-3 mt-4">
           <div className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400 px-1 transition-colors duration-300">
             <MapPin className="w-4 h-4" aria-hidden="true" />
             <span className="font-medium">{data.location}</span>
@@ -38,7 +38,7 @@ export function HeroSection({ data }: { data: CVData }) {
         </div>
 
         {/* Call to Action Principal */}
-        <div className="pt-4 flex justify-center sm:justify-start">
+        <div className="pt-4 flex justify-start">
           <a 
             href="/CV_Pedro_Araya_2026.pdf" 
             download="CV_Pedro_Araya.pdf" 

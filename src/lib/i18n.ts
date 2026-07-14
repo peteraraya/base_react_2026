@@ -10,6 +10,7 @@ const resources = {
       "nav.about": "About",
       "nav.contact": "Contact",
       "nav.projects": "Projects",
+      "nav.courses": "Courses",
       "footer.rights": "Portfolio. All rights reserved.",
       // HomePage
       "home.title": "Welcome to Your Portfolio",
@@ -20,6 +21,13 @@ const resources = {
       // ContactPage
       "contact.title": "Let's Connect",
       "contact.description": "Feel free to reach out for collaborations or just a friendly hello!",
+      "contact.form.name": "Name",
+      "contact.form.email": "Email",
+      "contact.form.message": "Message",
+      "contact.form.send": "Send Message",
+      "contact.form.sending": "Sending...",
+      "contact.form.success": "Message sent successfully!",
+      "contact.form.error": "There was an error sending the message. Please try again.",
       // ProjectsPage
       "projects.title": "Projects Gallery",
       "projects.description": "Explore my repositories in real time connected with GitHub API. Filter by tech or search a specific project.",
@@ -29,7 +37,11 @@ const resources = {
       "projects.sortStars": "Stars",
       "projects.sortName": "Name",
       "projects.all": "All",
-      "projects.noResults": "No projects match the search criteria."
+      "projects.noResults": "No projects match the search criteria.",
+      "projects.contributions": "GitHub Contributions",
+      // CoursesPage
+      "courses.title": "My Courses",
+      "courses.description": "Courses I've completed or am currently taking to improve my skills."
     }
   },
   es: {
@@ -39,6 +51,7 @@ const resources = {
       "nav.about": "Acerca de",
       "nav.contact": "Contacto",
       "nav.projects": "Proyectos",
+      "nav.courses": "Cursos",
       "footer.rights": "Portafolio. Todos los derechos reservados.",
       // HomePage
       "home.title": "Bienvenido a tu Portafolio",
@@ -49,6 +62,13 @@ const resources = {
       // ContactPage
       "contact.title": "Hablemos",
       "contact.description": "¡No dudes en escribirme para colaboraciones, oportunidades laborales o simplemente para saludar!",
+      "contact.form.name": "Nombre",
+      "contact.form.email": "Correo Electrónico",
+      "contact.form.message": "Mensaje",
+      "contact.form.send": "Enviar Mensaje",
+      "contact.form.sending": "Enviando...",
+      "contact.form.success": "¡Mensaje enviado con éxito!",
+      "contact.form.error": "Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.",
       // ProjectsPage
       "projects.title": "Galería de Proyectos",
       "projects.description": "Explora mis repositorios en tiempo real conectados con la API de GitHub. Filtra por tecnología o busca un proyecto específico.",
@@ -58,7 +78,11 @@ const resources = {
       "projects.sortStars": "Estrellas",
       "projects.sortName": "Nombre",
       "projects.all": "Todos",
-      "projects.noResults": "No se encontraron proyectos que coincidan con la búsqueda."
+      "projects.noResults": "No se encontraron proyectos que coincidan con la búsqueda.",
+      "projects.contributions": "Contribuciones en GitHub",
+      // CoursesPage
+      "courses.title": "Mis Cursos",
+      "courses.description": "Cursos que he completado o que estoy tomando actualmente para mejorar mis habilidades."
     }
   }
 };
