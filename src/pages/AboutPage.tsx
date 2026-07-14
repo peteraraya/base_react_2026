@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { cvData } from '@/data/cv';
 import { AboutMeSection } from '@/components/cv/AboutMeSection';
 import { FadeIn } from '@/components/animations/FadeIn';
+import { PageTransition } from '@/components/animations/PageTransition';
 
 export function AboutPage() {
   const { t, i18n } = useTranslation();
@@ -9,6 +10,7 @@ export function AboutPage() {
   const data = cvData[currentLang];
 
   return (
+    <PageTransition>
     <div className="max-w-4xl mx-auto p-4 sm:p-8 space-y-8">
       <FadeIn delay={0.1}>
         <div className="mb-8">
@@ -28,5 +30,6 @@ export function AboutPage() {
         </FadeIn>
       )}
     </div>
+    </PageTransition>
   )
 }

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { cvData } from '@/data/cv';
 import { FadeIn } from '@/components/animations/FadeIn';
+import { PageTransition } from '@/components/animations/PageTransition';
 
 import { HeroSection } from '@/components/cv/HeroSection';
 import { SummarySection } from '@/components/cv/SummarySection';
@@ -9,6 +10,7 @@ import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
 import { EducationSection } from '@/components/cv/EducationSection';
+import { CoursesSection } from '@/components/cv/CoursesSection';
 import { LanguagesSection } from '@/components/cv/LanguagesSection';
 import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
 import { BestPracticesSection } from '@/components/cv/BestPracticesSection';
@@ -19,11 +21,12 @@ export function HomePage() {
   const data = cvData[currentLang];
 
   return (
-    <div className="relative min-h-screen">
+    <PageTransition>
+    <div className="relative min-h-screen print:min-h-0">
       {/* Elemento decorativo de fondo suave */}
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent -z-10 pointer-events-none transition-colors duration-300" aria-hidden="true" />
+      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent -z-10 pointer-events-none transition-colors duration-300 print:hidden" aria-hidden="true" />
       
-      <main className="max-w-4xl mx-auto p-4 sm:p-8 space-y-16 relative z-0">
+      <main className="max-w-4xl mx-auto p-4 sm:p-8 space-y-16 relative z-0 print:p-0 print:space-y-8">
         <FadeIn delay={0.1}>
         <HeroSection data={data} />
       </FadeIn>
@@ -85,6 +88,15 @@ export function HomePage() {
           />
         </FadeIn>
 
+        {data.courses && (
+          <FadeIn delay={0.65}>
+            <CoursesSection 
+              courses={data.courses} 
+              title={currentLang === 'es' ? 'Cursos y Especialización' : 'Courses & Specialization'} 
+            />
+          </FadeIn>
+        )}
+
         {data.languages && (
           <FadeIn delay={0.7}>
             <LanguagesSection 
@@ -95,5 +107,6 @@ export function HomePage() {
         )}
       </main>
     </div>
+    </PageTransition>
   );
 }

@@ -127,6 +127,190 @@ export const cvData: Record<'es' | 'en', CVData> = {
         status: "Abierto a oportunidades remotas · Disponibilidad inmediata"
       }
     ],
+    courses: [
+      {
+        title: "React: De cero a experto",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React Pro: Lleva tus bases al siguiente nivel",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React: Aplicaciones en tiempo real con socket-io",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Angular: De cero a experto",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "REDUX en Angular con NGRX: Desde las bases hasta la práctica",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Angular: Aplicaciones en tiempo real con sockets y rest",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "(Legacy) Angular Avanzado - MEAN",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Angular: De cero a experto creando aplicaciones (Legacy)",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "JavaScript Moderno: Guía para dominar el lenguaje",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "TypeScript: tu completa guía y manual de mano.",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "ReactiveX - RxJs: De cero hasta los detalles",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "PWA - Aplicaciones Web Progresivas: De cero a experto",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "GIT+GitHub: Todo un sistema de control de versiones de cero",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Visual Studio Code: Mejora tu velocidad para codificar",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React Native CLI: Aplicaciones para IOS y Android - 2025",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 3
+      },
+      {
+        title: "Node: De cero a experto - 2022",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 61
+      },
+      {
+        title: "Spring Framework & Spring Boot desde cero a experto",
+        platform: "Udemy",
+        instructor: "Andrés Guzmán",
+        status: "in-progress",
+        progress: 2
+      },
+      {
+        title: "NodeJS: De cero a experto",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 7
+      },
+      {
+        title: "React: De cero a experto",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 14
+      },
+      {
+        title: "Docker - Guía práctica de uso para desarrolladores",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 14
+      },
+      {
+        title: "Next.js: El framework de React para producción",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 13
+      },
+      {
+        title: "Universidad Spring - Spring Framework y Spring Boot!",
+        platform: "Udemy",
+        instructor: "Global Mentoring Ing. Ubaldo Acosta",
+        status: "in-progress",
+        progress: 1
+      },
+      {
+        title: "React PRO: Lleva tus bases al siguiente nivel",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 86
+      },
+      {
+        title: "Universidad Java - Cero a Experto - Actualizado (+155 hrs)",
+        platform: "Udemy",
+        instructor: "Global Mentoring Ing. Ubaldo Acosta",
+        status: "in-progress",
+        progress: 1
+      },
+      {
+        title: "Angular y Java EE - Conviértete en Java Full Stack Developer",
+        platform: "Udemy",
+        instructor: "Global Mentoring Ing. Ubaldo Acosta",
+        status: "in-progress",
+        progress: 2
+      },
+      {
+        title: "Principios SOLID y Clean Code",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 37
+      }
+    ],
     languages: [
       { name: "Español", level: "Nativo" },
       { name: "Inglés", level: "Lectura técnica fluida, nivel básico" }
@@ -278,6 +462,190 @@ export const cvData: Record<'es' | 'en', CVData> = {
         title: "Programmer Analyst",
         institution: "Professional Institute / Technical Training Center (INACAP), 2014",
         status: "Open to remote opportunities · Immediate availability"
+      }
+    ],
+    courses: [
+      {
+        title: "React: From Zero to Expert",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React Pro: Take Your Foundations to the Next Level",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React: Real-Time Applications with Socket-io",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Angular: From Zero to Expert",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "REDUX in Angular with NGRX: From Basics to Practice",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Angular: Real-Time Applications with Sockets and REST",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "(Legacy) Advanced Angular - MEAN",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Angular: From Zero to Expert Creating Applications (Legacy)",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Modern JavaScript: A Guide to Mastering the Language",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "TypeScript: Your Complete Guide and Handbook",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "ReactiveX - RxJs: From Zero to Details",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "PWA - Progressive Web Apps: From Zero to Expert",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "GIT+GitHub: A Complete Version Control System from Scratch",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "Visual Studio Code: Improve Your Coding Speed",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "completed",
+        progress: 100
+      },
+      {
+        title: "React Native CLI: iOS and Android Applications - 2025",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 3
+      },
+      {
+        title: "Node: From Zero to Expert - 2022",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 61
+      },
+      {
+        title: "Spring Framework & Spring Boot from Zero to Expert",
+        platform: "Udemy",
+        instructor: "Andrés Guzmán",
+        status: "in-progress",
+        progress: 2
+      },
+      {
+        title: "NodeJS: From Zero to Expert",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 7
+      },
+      {
+        title: "React: From Zero to Expert",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 14
+      },
+      {
+        title: "Docker - Practical Guide for Developers",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 14
+      },
+      {
+        title: "Next.js: The React Framework for Production",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 13
+      },
+      {
+        title: "Spring University - Spring Framework and Spring Boot!",
+        platform: "Udemy",
+        instructor: "Global Mentoring Ing. Ubaldo Acosta",
+        status: "in-progress",
+        progress: 1
+      },
+      {
+        title: "React PRO: Take Your Foundations to the Next Level",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 86
+      },
+      {
+        title: "Java University - Zero to Expert - Updated (+155 hrs)",
+        platform: "Udemy",
+        instructor: "Global Mentoring Ing. Ubaldo Acosta",
+        status: "in-progress",
+        progress: 1
+      },
+      {
+        title: "Angular and Java EE - Become a Java Full Stack Developer",
+        platform: "Udemy",
+        instructor: "Global Mentoring Ing. Ubaldo Acosta",
+        status: "in-progress",
+        progress: 2
+      },
+      {
+        title: "SOLID Principles and Clean Code",
+        platform: "Udemy",
+        instructor: "Fernando Herrera",
+        status: "in-progress",
+        progress: 37
       }
     ],
     languages: [
