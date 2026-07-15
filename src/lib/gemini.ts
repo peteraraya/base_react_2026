@@ -7,6 +7,8 @@ const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export async function analyzeJobDescriptionWithAI(text: string, lang: 'es' | 'en'): Promise<JobAnalysis> {
+  console.log("Diagnóstico - API_KEY recibida en build:", API_KEY ? `Sí (${API_KEY.length} caracteres)` : "No / Vacía");
+  
   if (!API_KEY) {
     throw new Error('No API key provided');
   }
