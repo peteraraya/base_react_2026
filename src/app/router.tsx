@@ -178,6 +178,7 @@ const routeTree = rootRoute.addChildren([
 export const router = createRouter({ 
   routeTree,
   defaultNotFoundComponent: NotFoundPage,
+  basepath: import.meta.env.BASE_URL,
 })
 
 declare module '@tanstack/react-router' {
