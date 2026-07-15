@@ -180,68 +180,68 @@ export function CaseStudiesSection() {
               <motion.div
                 layoutId={`card-container-${selectedStudy.id}`}
                 transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                className="w-full max-w-4xl bg-white dark:bg-[#0a0a0a] rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl overflow-hidden pointer-events-auto border border-gray-200/50 dark:border-white/10 max-h-[90vh] flex flex-col relative"
+                className="w-full max-w-3xl bg-white dark:bg-[#0a0a0a] rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl overflow-hidden pointer-events-auto border border-gray-200/50 dark:border-white/10 max-h-[90vh] flex flex-col relative"
               >
                 {/* Background glow in modal */}
-                <div className={`absolute top-0 left-0 w-full h-64 bg-gradient-to-b ${selectedStudy.gradient} opacity-50`} />
+                <div className={`absolute top-0 left-0 w-full h-48 bg-gradient-to-b ${selectedStudy.gradient} opacity-50`} />
 
-                <div className="p-6 sm:p-10 relative z-10 flex justify-between items-start">
+                <div className="p-6 sm:p-8 relative z-10 flex justify-between items-start">
                   <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100/80 dark:bg-white/10 border border-gray-200/50 dark:border-white/5 mb-6 backdrop-blur-sm">
-                      <Building className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100/80 dark:bg-white/10 border border-gray-200/50 dark:border-white/5 mb-4 backdrop-blur-sm">
+                      <Building className="w-3.5 h-3.5 text-gray-600 dark:text-gray-300" />
                       <span className="text-xs font-semibold tracking-wide uppercase text-gray-600 dark:text-gray-300">
                         {selectedStudy.company}
                       </span>
                     </div>
                     <motion.h3 
                       layoutId={`title-${selectedStudy.id}`}
-                      className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight"
+                      className="text-2xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight"
                     >
                       {selectedStudy.title}
                     </motion.h3>
                   </div>
                   <button
                     onClick={() => setSelectedId(null)}
-                    className="p-3 bg-gray-100/50 dark:bg-white/5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors backdrop-blur-sm"
+                    className="p-2.5 bg-gray-100/50 dark:bg-white/5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors backdrop-blur-sm"
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5" />
                   </button>
                 </div>
                 
-                <div className="px-6 pb-6 sm:px-10 sm:pb-10 overflow-y-auto relative z-10 flex-1">
+                <div className="px-6 pb-6 sm:px-8 sm:pb-8 overflow-y-auto relative z-10 flex-1">
                   
                   {/* Expanded Metrics Section - Stripe Style */}
-                  <div className="flex flex-wrap md:flex-nowrap gap-8 md:gap-16 py-8 border-y border-gray-100 dark:border-white/10 mb-10">
+                  <div className="flex flex-wrap md:flex-nowrap gap-6 md:gap-12 py-6 border-y border-gray-100 dark:border-white/10 mb-8">
                     {selectedStudy.metrics.map((metric, idx) => (
                       <div key={idx} className="flex flex-col">
-                        <div className="text-5xl font-extrabold tracking-tighter text-gray-900 dark:text-white mb-2">
+                        <div className="text-3xl sm:text-4xl font-extrabold tracking-tighter text-gray-900 dark:text-white mb-1">
                           {metric.value}
                         </div>
-                        <div className="text-sm font-semibold tracking-wide uppercase text-gray-500 dark:text-gray-400">
+                        <div className="text-xs font-semibold tracking-wide uppercase text-gray-500 dark:text-gray-400">
                           {metric.label}
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div className="md:col-span-2 space-y-6">
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="md:col-span-2 space-y-5">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                         {currentLang === 'es' ? 'Impacto y Desarrollo' : 'Impact & Development'}
                       </h4>
-                      <div className="space-y-6">
+                      <div className="space-y-4">
                         {selectedStudy.achievements.map((achievement, idx) => (
                           <motion.div 
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 * idx, duration: 0.5 }}
                             key={idx} 
-                            className="flex items-start gap-4"
+                            className="flex items-start gap-3"
                           >
-                            <div className="mt-1 w-6 h-6 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center shrink-0">
-                              <div className="w-2 h-2 rounded-full bg-blue-500" />
+                            <div className="mt-1 w-5 h-5 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center shrink-0">
+                              <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                             </div>
-                            <span className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
+                            <span className="text-base text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
                               {achievement}
                             </span>
                           </motion.div>
