@@ -42,9 +42,12 @@ jobs:
           SECRET_WEB3: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
 
       - name: Inject Secrets into .env
+        env:
+          SECRET_GEMINI: ${{ secrets.VITE_GEMINI_API_KEY }}
+          SECRET_WEB3: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
         run: |
-          echo "VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }}" >> .env
-          echo "VITE_WEB3FORMS_ACCESS_KEY=${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}" >> .env
+          echo "VITE_GEMINI_API_KEY=$SECRET_GEMINI" >> .env
+          echo "VITE_WEB3FORMS_ACCESS_KEY=$SECRET_WEB3" >> .env
           echo "VITE_BASE_PATH=/base_react_2026/" >> .env
 
       - name: Build
