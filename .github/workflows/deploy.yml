@@ -37,6 +37,8 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: /base_react_2026/
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
           
       - name: Generate 404 fallback for SPA
         run: cp ./dist/index.html ./dist/404.html
