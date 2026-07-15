@@ -5,6 +5,7 @@ import { PageTransition } from '@/components/animations/PageTransition';
 import { SpotlightCard } from '@/components/animations/SpotlightCard';
 import { Sparkles, CheckCircle2, AlertTriangle, ChevronRight, FileSearch, Target } from 'lucide-react';
 import { analyzeJobDescription, JobAnalysis } from '@/lib/analyzer';
+import { analyzeJobDescriptionWithAI } from '@/lib/gemini';
 
 export function JobAnalyzerPage() {
   const { t, i18n } = useTranslation();
@@ -13,18 +14,26 @@ export function JobAnalyzerPage() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<JobAnalysis | null>(null);
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!jobDescription.trim()) return;
     
     setIsAnalyzing(true);
     setResult(null);
 
-    // Usamos el motor heurístico frontend para analizar el texto
-    setTimeout(() => {
-      const analysis = analyzeJobDescription(jobDescription, currentLang);
-      setResult(analysis);
+    try {
+      // Intentamos usar la IA primero (si hay API Key configurada)
+      const aiAnalysis = await analyzeJobDescriptionWithAI(jobDescription, currentLang);
+      console.log('✨ Análisis generado exitosamente con Google Gemini AI');
+      setResult(aiAnalysis);
+    } catch (error) {
+      console.warn("⚠️ AI Analysis failed or not configured. Falling back to internal logic:", error);
+      // Fallback a lógica interna
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulamos carga para la experiencia de usuario
+      const fallbackAnalysis = analyzeJobDescription(jobDescription, currentLang);
+      setResult(fallbackAnalysis);
+    } finally {
       setIsAnalyzing(false);
-    }, 1500); // Simulamos 1.5s de carga para la experiencia de usuario
+    }
   };
 
   return (
@@ -160,7 +169,7 @@ export function JobAnalyzerPage() {
                     <h3 className="text-lg font-bold text-green-700 dark:text-green-400 mb-4 flex items-center gap-2">
                       <CheckCircle2 className="w-5 h-5" /> {t('analyzer.matches')}
                     </h3>
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 list-none p-0 m-0">
                       {result.matches.map((m, i) => (
                         <li key={i} className="flex flex-col">
                           <span className="font-bold text-gray-900 dark:text-gray-100">{m.skill}</span>
@@ -175,7 +184,7 @@ export function JobAnalyzerPage() {
                     <h3 className="text-lg font-bold text-orange-700 dark:text-orange-400 mb-4 flex items-center gap-2">
                       <AlertTriangle className="w-5 h-5" /> {t('analyzer.gaps')}
                     </h3>
-                    <ul className="space-y-3">
+                    <ul className="space-y-3 list-none p-0 m-0">
                       {result.gaps.map((g, i) => (
                         <li key={i} className="flex items-center gap-2">
                           <span className={`w-2 h-2 rounded-full ${g.severity === 'high' ? 'bg-red-500' : 'bg-orange-400'}`} />
@@ -191,7 +200,7 @@ export function JobAnalyzerPage() {
                   <h3 className="text-lg font-bold text-purple-700 dark:text-purple-400 mb-4 flex items-center gap-2">
                     <Target className="w-5 h-5" /> {t('analyzer.strategy')}
                   </h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-3 list-none p-0 m-0">
                     {result.strategicRecommendations.map((rec, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
                         <ChevronRight className="w-5 h-5 text-purple-500 shrink-0 mt-0.5" />

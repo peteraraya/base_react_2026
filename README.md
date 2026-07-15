@@ -55,6 +55,7 @@ src/
 - **Strict Typing**: Fully configured TypeScript setup.
 - **Easy Routing**: `@tanstack/react-router` makes file-based or route-tree routing seamless.
 - **Frontend-only ready**: Comes with mock setups (`msw`) and generic stores (`zustand`) without coupling to a backend.
+- **🤖 Inteligencia Artificial**: Integración con **Google Gemini (flash-latest)** para analizar ofertas de trabajo de manera inteligente, con un sistema de respaldo (fallback) local. Para usarlo, crea un archivo `.env` con la variable `VITE_GEMINI_API_KEY`.
 
 ## 🌐 Flujo de Despliegue (Git Actions & Producción)
 

@@ -148,12 +148,19 @@ export function analyzeJobDescription(text: string, lang: 'es' | 'en'): JobAnaly
     }
   }
 
+  // Helper para buscar palabras exactas y evitar falsos positivos (ej. "go" dentro de "cargo")
+  const hasSkill = (text: string, skill: string) => {
+    const escaped = skill.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    // Para skills como c++, c#, .net es mejor usar fronteras de palabra o espacios
+    return new RegExp(`(?:^|\\s|[.,/();])${escaped}(?:\\s|[.,/();]|$)`, 'i').test(text);
+  };
+
   const matches: JobAnalysis['matches'] = [];
   const foundSkills = new Set<string>();
   
   // Buscar matches
   Object.entries(skillEvidenceMap).forEach(([skill, data]) => {
-    if (normalizedText.includes(skill)) {
+    if (hasSkill(normalizedText, skill)) {
       matches.push({
         skill: skill.charAt(0).toUpperCase() + skill.slice(1),
         evidenceInCV: data.evidence[lang]
@@ -167,7 +174,7 @@ export function analyzeJobDescription(text: string, lang: 'es' | 'en'): JobAnaly
   let gapCount = 0;
   
   commonTechStack.forEach(skill => {
-    if (normalizedText.includes(skill) && !skillEvidenceMap[skill]) {
+    if (hasSkill(normalizedText, skill) && !skillEvidenceMap[skill]) {
       gaps.push({
         skill: skill.charAt(0).toUpperCase() + skill.slice(1),
         severity: gapCount < 2 ? 'high' : 'medium'
@@ -181,8 +188,8 @@ export function analyzeJobDescription(text: string, lang: 'es' | 'en'): JobAnaly
   let score = 0;
   
   if (totalRelevantSkills === 0) {
-    // Si no hay skills técnicas detectadas, asumimos un score neutral basado en experiencia general
-    score = 65;
+    // Si no hay skills técnicas detectadas, el score es 0 para evitar falsos positivos con texto aleatorio
+    score = 0;
   } else {
     score = Math.round((matches.length / totalRelevantSkills) * 100);
     // Bonificación si pide React o Node (core skills)
@@ -194,39 +201,51 @@ export function analyzeJobDescription(text: string, lang: 'es' | 'en'): JobAnaly
   // Generar recomendaciones
   const recommendations: string[] = [];
   
-  if (foundSkills.has('react') || foundSkills.has('next')) {
-    recommendations.push(
-      lang === 'es' 
-        ? "Destaca tu proyecto 'Gym Tracker App' para demostrar dominio actual en React 19 y Next.js 15."
-        : "Highlight your 'Gym Tracker App' project to demonstrate up-to-date mastery of React 19 and Next.js 15."
-    );
-  }
-  
-  if (foundSkills.has('node') || foundSkills.has('serverless')) {
+  if (totalRelevantSkills === 0) {
     recommendations.push(
       lang === 'es'
-        ? "Menciona cómo redujiste el time-to-market un 30% usando Serverless en Atlassian Forge."
-        : "Mention how you reduced time-to-market by 30% using Serverless on Atlassian Forge."
-    );
-  }
-  
-  if (gaps.length > 0 && gaps[0]) {
-    recommendations.push(
-      lang === 'es'
-        ? `La oferta pide ${gaps[0]?.skill}. Menciona tu capacidad autodidacta (+14 cursos) para aprender nuevas herramientas rápidamente.`
-        : `The job requires ${gaps[0]?.skill}. Mention your self-taught ability (14+ courses) to learn new tools quickly.`
+        ? "No hay suficientes datos técnicos para generar una estrategia. Por favor ingresa una oferta de trabajo válida."
+        : "Not enough technical data to generate a strategy. Please enter a valid job description."
     );
   } else {
-    recommendations.push(
-      lang === 'es'
-        ? "Haces match perfecto con los requisitos técnicos. Enfócate en demostrar tus habilidades blandas y autonomía."
-        : "You are a perfect technical match. Focus on demonstrating your soft skills and autonomy."
-    );
+    if (foundSkills.has('react') || foundSkills.has('next')) {
+      recommendations.push(
+        lang === 'es' 
+          ? "Destaca tu proyecto 'Gym Tracker App' para demostrar dominio actual en React 19 y Next.js 15."
+          : "Highlight your 'Gym Tracker App' project to demonstrate up-to-date mastery of React 19 and Next.js 15."
+      );
+    }
+    
+    if (foundSkills.has('node') || foundSkills.has('serverless')) {
+      recommendations.push(
+        lang === 'es'
+          ? "Menciona cómo redujiste el time-to-market un 30% usando Serverless en Atlassian Forge."
+          : "Mention how you reduced time-to-market by 30% using Serverless on Atlassian Forge."
+      );
+    }
+    
+    if (gaps.length > 0 && gaps[0]) {
+      recommendations.push(
+        lang === 'es'
+          ? `La oferta pide ${gaps[0]?.skill}. Menciona tu capacidad autodidacta (+14 cursos) para aprender nuevas herramientas rápidamente.`
+          : `The job requires ${gaps[0]?.skill}. Mention your self-taught ability (14+ courses) to learn new tools quickly.`
+      );
+    } else {
+      recommendations.push(
+        lang === 'es'
+          ? "Haces match perfecto con los requisitos técnicos. Enfócate en demostrar tus habilidades blandas y autonomía."
+          : "You are a perfect technical match. Focus on demonstrating your soft skills and autonomy."
+      );
+    }
   }
 
   // Generar Veredicto
   let verdict = '';
-  if (score >= 80) {
+  if (totalRelevantSkills === 0) {
+    verdict = lang === 'es'
+      ? "No se detectaron habilidades técnicas en el texto ingresado. Asegúrate de pegar una descripción de trabajo válida."
+      : "No technical skills detected in the entered text. Make sure to paste a valid job description.";
+  } else if (score >= 80) {
     verdict = lang === 'es'
       ? "Tu perfil es altamente compatible con esta oferta. Cumples con la mayoría de los requisitos técnicos clave."
       : "Your profile is highly compatible with this job. You meet most of the key technical requirements.";
