@@ -17,8 +17,9 @@ import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
 import { BestPracticesSection } from '@/components/cv/BestPracticesSection';
 import { TerminalSection } from '@/components/cv/TerminalSection';
 import { ImpactMetrics } from '@/components/cv/ImpactMetrics';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { FileText, Zap } from 'lucide-react';
+import { TableOfContents, type Section } from '@/components/navigation/TableOfContents';
 
 export function HomePage() {
   const { i18n } = useTranslation();
@@ -26,9 +27,47 @@ export function HomePage() {
   const data = cvData[currentLang];
   const [isRecruiterMode, setIsRecruiterMode] = useState(false);
 
+  const tableOfContentsSections = useMemo<Section[]>(() => {
+    const sections: Section[] = [
+      { id: 'hero', labelEs: 'Inicio', labelEn: 'Home' },
+      { id: 'impact', labelEs: 'Métricas de Impacto', labelEn: 'Impact Metrics' },
+    ];
+    
+    if (!isRecruiterMode) {
+      sections.push({ id: 'summary', labelEs: 'Resumen', labelEn: 'Summary' });
+    }
+    if (!isRecruiterMode && data.aboutMe) {
+      sections.push({ id: 'about', labelEs: 'Sobre mí', labelEn: 'About Me' });
+    }
+    if (!isRecruiterMode) {
+      sections.push({ id: 'case-studies', labelEs: 'Casos de Estudio', labelEn: 'Case Studies' });
+    }
+    sections.push({ id: 'experience', labelEs: 'Experiencia', labelEn: 'Experience' });
+    sections.push({ id: 'skills', labelEs: 'Habilidades', labelEn: 'Skills' });
+    sections.push({ id: 'projects', labelEs: 'Proyectos', labelEn: 'Projects' });
+    if (!isRecruiterMode) {
+      sections.push({ id: 'showcase', labelEs: 'Showcase', labelEn: 'Showcase' });
+    }
+    if (!isRecruiterMode && data.bestPractices) {
+      sections.push({ id: 'best-practices', labelEs: 'Buenas Prácticas', labelEn: 'Best Practices' });
+    }
+    sections.push({ id: 'education', labelEs: 'Educación', labelEn: 'Education' });
+    if (data.courses) {
+      sections.push({ id: 'courses', labelEs: 'Cursos', labelEn: 'Courses' });
+    }
+    if (data.languages) {
+      sections.push({ id: 'languages', labelEs: 'Idiomas', labelEn: 'Languages' });
+    }
+    if (!isRecruiterMode) {
+      sections.push({ id: 'terminal', labelEs: 'Terminal', labelEn: 'Terminal' });
+    }
+    return sections;
+  }, [isRecruiterMode, data]);
+
   return (
     <PageTransition>
-    <div className="relative min-h-screen print:min-h-0">
+    <div className="relative min-h-screen print:min-h-0 flex justify-center">
+      <TableOfContents sections={tableOfContentsSections} />
       
       {/* Recruiter Mode Toggle Floating */}
       <div className="fixed top-24 right-4 z-30 print:hidden">
@@ -49,17 +88,17 @@ export function HomePage() {
       {/* Elemento decorativo de fondo suave */}
       <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent -z-10 pointer-events-none transition-colors duration-300 print:hidden" aria-hidden="true" />
       
-      <main className="max-w-4xl mx-auto p-4 sm:p-8 space-y-16 relative z-0 print:p-0 print:space-y-8">
-        <FadeIn delay={0.1}>
+      <main className="max-w-4xl w-full mx-auto p-4 sm:p-8 space-y-16 relative z-0 print:p-0 print:space-y-8">
+        <FadeIn delay={0.1} id="hero">
         <HeroSection data={data} />
       </FadeIn>
 
-      <FadeIn delay={0.15}>
+      <FadeIn delay={0.15} id="impact">
         <ImpactMetrics />
       </FadeIn>
 
       {!isRecruiterMode && (
-        <FadeIn delay={0.2}>
+        <FadeIn delay={0.2} id="summary">
           <SummarySection 
             summary={data.summary} 
             title={currentLang === 'es' ? 'Resumen Profesional' : 'Professional Summary'} 
@@ -68,7 +107,7 @@ export function HomePage() {
       )}
 
       {!isRecruiterMode && data.aboutMe && (
-        <FadeIn delay={0.25}>
+        <FadeIn delay={0.25} id="about">
           <AboutMeSection 
             data={data.aboutMe}
             title={currentLang === 'es' ? 'Sobre mí' : 'About Me'}
@@ -77,26 +116,26 @@ export function HomePage() {
       )}
 
       {!isRecruiterMode && (
-        <FadeIn delay={0.28}>
+        <FadeIn delay={0.28} id="case-studies">
           <CaseStudiesSection />
         </FadeIn>
       )}
 
-      <FadeIn delay={0.3}>
+      <FadeIn delay={0.3} id="experience">
         <ExperienceSection 
           experiences={data.experience} 
           title={currentLang === 'es' ? 'Experiencia Profesional' : 'Professional Experience'} 
         />
       </FadeIn>
 
-      <FadeIn delay={0.5}>
+      <FadeIn delay={0.5} id="skills">
         <SkillsSection 
           skills={data.skills} 
           title={currentLang === 'es' ? 'Habilidades Técnicas' : 'Technical Skills'} 
         />
       </FadeIn>
 
-      <FadeIn delay={0.4}>
+      <FadeIn delay={0.4} id="projects">
         <ProjectsSection 
           projects={data.projects} 
           title={currentLang === 'es' ? 'Proyectos Destacados' : 'Featured Projects'} 
@@ -104,13 +143,13 @@ export function HomePage() {
       </FadeIn>
 
       {!isRecruiterMode && (
-        <FadeIn delay={0.45}>
+        <FadeIn delay={0.45} id="showcase">
           <ShowcaseSection lang={currentLang} />
         </FadeIn>
       )}
 
       {!isRecruiterMode && data.bestPractices && (
-        <FadeIn delay={0.48}>
+        <FadeIn delay={0.48} id="best-practices">
           <BestPracticesSection 
             practices={data.bestPractices} 
             title={currentLang === 'es' ? 'Buenas Prácticas de Desarrollo' : 'Development Best Practices'} 
@@ -118,7 +157,7 @@ export function HomePage() {
         </FadeIn>
       )}
 
-        <FadeIn delay={0.6}>
+        <FadeIn delay={0.6} id="education">
           <EducationSection 
             education={data.education} 
             title={currentLang === 'es' ? 'Educación' : 'Education'} 
@@ -126,7 +165,7 @@ export function HomePage() {
         </FadeIn>
 
         {data.courses && (
-          <FadeIn delay={0.65}>
+          <FadeIn delay={0.65} id="courses">
             <CoursesSection 
               courses={data.courses} 
               title={currentLang === 'es' ? 'Cursos y Especialización' : 'Courses & Specialization'} 
@@ -135,7 +174,7 @@ export function HomePage() {
         )}
 
         {data.languages && (
-          <FadeIn delay={0.7}>
+          <FadeIn delay={0.7} id="languages">
             <LanguagesSection 
               languages={data.languages} 
               title={currentLang === 'es' ? 'Idiomas' : 'Languages'} 
@@ -144,7 +183,7 @@ export function HomePage() {
         )}
 
         {!isRecruiterMode && (
-          <FadeIn delay={0.75}>
+          <FadeIn delay={0.75} id="terminal">
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 tracking-tight flex items-center gap-2">
                 {currentLang === 'es' ? 'Terminal Interactiva' : 'Interactive Terminal'}

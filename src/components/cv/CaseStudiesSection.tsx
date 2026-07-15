@@ -91,9 +91,9 @@ export function CaseStudiesSection() {
             {currentLang === 'es' ? 'Casos de Estudio' : 'Case Studies'}
           </span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4">
+        <h3 className="text-4xl md:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4">
           {currentLang === 'es' ? 'Trabajo destacado.' : 'Featured work.'}
-        </h2>
+        </h3>
         <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl font-medium">
           {currentLang === 'es' 
             ? 'Una mirada profunda a los proyectos de mayor impacto y complejidad arquitectónica que he diseñado y llevado a producción.' 
