@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { PageTransition } from '@/components/animations/PageTransition';
 import { SpotlightCard } from '@/components/animations/SpotlightCard';
-import { Sparkles, CheckCircle2, AlertTriangle, ChevronRight, FileSearch, Target } from 'lucide-react';
+import { Sparkles, CheckCircle2, AlertTriangle, ChevronRight, FileSearch, Target, Calendar } from 'lucide-react';
 import { analyzeJobDescription, JobAnalysis } from '@/lib/analyzer';
+import { CalendarModal } from '@/components/ui/CalendarModal';
 
 export function JobAnalyzerPage() {
   const { t, i18n } = useTranslation();
@@ -12,6 +13,7 @@ export function JobAnalyzerPage() {
   const [jobDescription, setJobDescription] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<JobAnalysis | null>(null);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const handleAnalyze = () => {
     if (!jobDescription.trim()) return;
@@ -148,6 +150,17 @@ export function JobAnalyzerPage() {
                   <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
                     {result.verdict}
                   </p>
+                  
+                  {/* CTA para agendar */}
+                  <div className="mt-6 w-full pt-6 border-t border-gray-100 dark:border-gray-800">
+                    <button
+                      onClick={() => setIsCalendarOpen(true)}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-purple-600 dark:hover:bg-purple-500 hover:text-white rounded-xl transition-all duration-300 font-bold shadow-md hover:shadow-lg active:scale-95"
+                    >
+                      <Calendar className="w-5 h-5" />
+                      <span>{currentLang === 'es' ? 'Agendar Entrevista (15 min)' : 'Schedule Interview (15 min)'}</span>
+                    </button>
+                  </div>
                 </SpotlightCard>
               </div>
 
@@ -206,6 +219,9 @@ export function JobAnalyzerPage() {
           </FadeIn>
         )}
       </div>
+
+      {/* Calendar Modal */}
+      <CalendarModal isOpen={isCalendarOpen} onClose={() => setIsCalendarOpen(false)} />
     </PageTransition>
   );
 }

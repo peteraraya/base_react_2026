@@ -1,12 +1,15 @@
-import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy, Calendar } from 'lucide-react';
 import { CVData } from '@/types/cv';
 import { useUIStore } from '@/stores/uiStore';
 import { useTranslation } from 'react-i18next';
+import { CalendarModal } from '@/components/ui/CalendarModal';
 
 export function HeroSection({ data }: { data: CVData }) {
   const addToast = useUIStore((s) => s.addToast);
   const { i18n } = useTranslation();
   const isEs = i18n.language === 'es';
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const handleCopy = (text: string, type: 'Email' | 'Teléfono') => {
     navigator.clipboard.writeText(text);
@@ -90,10 +93,18 @@ export function HeroSection({ data }: { data: CVData }) {
             <span>GitHub</span>
           </a>
 
+          <button 
+            onClick={() => setIsCalendarOpen(true)}
+            className="flex items-center gap-2 px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-all duration-300 font-bold text-sm shadow-md hover:shadow-lg active:scale-95 outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+          >
+            <Calendar className="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span>{isEs ? 'Agendar Videollamada (15 min)' : 'Schedule Call (15 min)'}</span>
+          </button>
+
           <a 
             href="/CV_Pedro_Araya_2026.pdf" 
             download="CV_Pedro_Araya_2026.pdf" 
-            className="flex items-center gap-2 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all duration-300 font-medium text-sm shadow-sm hover:shadow-md active:scale-95 outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+            className="flex items-center gap-2 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all duration-300 font-bold text-sm shadow-md hover:shadow-lg active:scale-95 outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
           >
             <Download className="w-4 h-4 shrink-0 animate-bounce" aria-hidden="true" />
             <span>{isEs ? 'Descargar CV (PDF)' : 'Download CV (PDF)'}</span>
@@ -101,6 +112,9 @@ export function HeroSection({ data }: { data: CVData }) {
         </div>
 
       </div>
+      
+      {/* Calendar Modal */}
+      <CalendarModal isOpen={isCalendarOpen} onClose={() => setIsCalendarOpen(false)} />
     </section>
   );
 }
