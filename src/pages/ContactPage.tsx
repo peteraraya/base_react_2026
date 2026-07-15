@@ -6,7 +6,6 @@ import { PageTransition } from '@/components/animations/PageTransition';
 import { SpotlightCard } from '@/components/animations/SpotlightCard';
 import { Mail, Phone, Linkedin, Github, Send, CheckCircle2, AlertCircle, Copy } from 'lucide-react';
 import { useUIStore } from '@/stores/uiStore';
-import { CalendarModal } from '@/components/ui/CalendarModal';
 
 export function ContactPage() {
   const { t, i18n } = useTranslation();
@@ -18,7 +17,6 @@ export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -147,16 +145,6 @@ export function ContactPage() {
                     : 'Open to hearing about new job opportunities (remote roles). If my profile fits what you are looking for, I would love to chat!'}
                 </p>
               </div>
-              
-              {/* HOTFIX: Botón de calendario oculto temporalmente
-              <button 
-                onClick={() => setIsCalendarOpen(true)}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl transition-all duration-300 font-bold shadow-md hover:shadow-lg active:scale-95 outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
-              >
-                <Calendar className="w-5 h-5" />
-                <span>{currentLang === 'es' ? 'Agendar videollamada (15 min)' : 'Schedule a call (15 min)'}</span>
-              </button>
-              */}
             </SpotlightCard>
 
             <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-2">
@@ -277,9 +265,6 @@ export function ContactPage() {
         </div>
       </FadeIn>
     </div>
-
-    {/* Calendar Modal */}
-    <CalendarModal isOpen={isCalendarOpen} onClose={() => setIsCalendarOpen(false)} />
     </PageTransition>
   );
 }
