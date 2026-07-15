@@ -5,6 +5,7 @@ import { AboutPage } from '@/pages/AboutPage'
 import { ContactPage } from '@/pages/ContactPage'
 import { ProjectsPage } from '@/pages/ProjectsPage'
 import { CoursesPage } from '@/pages/CoursesPage'
+import { JobAnalyzerPage } from '@/pages/JobAnalyzerPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { ToastContainer } from '@/components/feedback/ToastContainer'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
@@ -76,6 +77,9 @@ const RootComponent = () => {
               </Link>
               <Link to="/courses" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.courses')}
+              </Link>
+              <Link to="/job-analyzer" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+                {t('nav.analyzer')}
               </Link>
               <Link to="/contact" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.contact')}
@@ -156,11 +160,18 @@ const coursesRoute = createRoute({
   component: CoursesPage,
 })
 
+const analyzerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/job-analyzer',
+  component: JobAnalyzerPage,
+})
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
   projectsRoute,
   coursesRoute,
+  analyzerRoute,
   contactRoute,
 ])
 

@@ -11,6 +11,7 @@ const resources = {
       "nav.contact": "Contact",
       "nav.projects": "Projects",
       "nav.courses": "Courses",
+      "nav.analyzer": "Analyzer",
       "footer.rights": "Portfolio. All rights reserved.",
       // HomePage
       "home.title": "Welcome to Your Portfolio",
@@ -41,7 +42,18 @@ const resources = {
       "projects.contributions": "GitHub Contributions",
       // CoursesPage
       "courses.title": "My Courses",
-      "courses.description": "Courses I've completed or am currently taking to improve my skills."
+      "courses.description": "Courses I've completed or am currently taking to improve my skills.",
+      // AnalyzerPage
+      "analyzer.title": "Job Fit Analyzer ✨",
+      "analyzer.description": "Paste a job description to discover how well your profile matches the requirements using AI.",
+      "analyzer.paste": "Paste job requirements here...",
+      "analyzer.analyze": "Analyze Compatibility",
+      "analyzer.analyzing": "Analyzing skills and experience...",
+      "analyzer.score": "Compatibility Score",
+      "analyzer.verdict": "Veredict",
+      "analyzer.matches": "Strong Matches",
+      "analyzer.gaps": "Skill Gaps",
+      "analyzer.strategy": "Interview Strategy"
     }
   },
   es: {
@@ -52,6 +64,7 @@ const resources = {
       "nav.contact": "Contacto",
       "nav.projects": "Proyectos",
       "nav.courses": "Cursos",
+      "nav.analyzer": "Analizador",
       "footer.rights": "Portafolio. Todos los derechos reservados.",
       // HomePage
       "home.title": "Bienvenido a tu Portafolio",
@@ -82,7 +95,18 @@ const resources = {
       "projects.contributions": "Contribuciones en GitHub",
       // CoursesPage
       "courses.title": "Mis Cursos",
-      "courses.description": "Cursos que he completado o que estoy tomando actualmente para mejorar mis habilidades."
+      "courses.description": "Cursos que he completado o que estoy tomando actualmente para mejorar mis habilidades.",
+      // AnalyzerPage
+      "analyzer.title": "Analizador de Ofertas ✨",
+      "analyzer.description": "Pega una descripción de oferta laboral para descubrir tu nivel de compatibilidad usando IA.",
+      "analyzer.paste": "Pega los requisitos de la vacante aquí...",
+      "analyzer.analyze": "Analizar Compatibilidad",
+      "analyzer.analyzing": "Analizando skills y experiencia...",
+      "analyzer.score": "Nivel de Compatibilidad",
+      "analyzer.verdict": "Veredicto",
+      "analyzer.matches": "Puntos Fuertes",
+      "analyzer.gaps": "Brechas a Mejorar",
+      "analyzer.strategy": "Estrategia para Entrevista"
     }
   }
 };
