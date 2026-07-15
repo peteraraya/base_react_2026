@@ -12,6 +12,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "@tanstack/react-form": "^0.39.0",
     "@tanstack/react-query": "^5.0.0",
     "@tanstack/react-router": "^1.0.0",
