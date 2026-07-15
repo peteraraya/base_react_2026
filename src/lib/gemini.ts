@@ -3,7 +3,7 @@ import { JobAnalysis } from './analyzer';
 
 // Utiliza la variable de entorno de Vite
 // Asegúrate de agregar VITE_GEMINI_API_KEY en tu archivo .env
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || 'REPLACE_ME_GEMINI_API_KEY';
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export async function analyzeJobDescriptionWithAI(text: string, lang: 'es' | 'en'): Promise<JobAnalysis> {
