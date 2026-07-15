@@ -4,7 +4,7 @@ import { cvData } from '@/data/cv';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { PageTransition } from '@/components/animations/PageTransition';
 import { SpotlightCard } from '@/components/animations/SpotlightCard';
-import { Mail, Phone, Linkedin, Github, Send, CheckCircle2, AlertCircle, Copy, Calendar } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, Send, CheckCircle2, AlertCircle, Copy } from 'lucide-react';
 import { useUIStore } from '@/stores/uiStore';
 import { CalendarModal } from '@/components/ui/CalendarModal';
 
