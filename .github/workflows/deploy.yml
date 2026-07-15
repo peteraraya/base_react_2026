@@ -41,12 +41,6 @@ jobs:
           SECRET_GEMINI: ${{ secrets.VITE_GEMINI_API_KEY }}
           SECRET_WEB3: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
 
-      - name: Hardcode API Key into source code
-        env:
-          SECRET_GEMINI: ${{ secrets.VITE_GEMINI_API_KEY }}
-        run: |
-          node -e "const fs = require('fs'); let content = fs.readFileSync('src/lib/gemini.ts', 'utf8'); content = content.replace('REPLACE_ME_GEMINI_API_KEY', process.env.SECRET_GEMINI || ''); fs.writeFileSync('src/lib/gemini.ts', content);"
-
       - name: Inject Secrets into .env
         env:
           SECRET_GEMINI: ${{ secrets.VITE_GEMINI_API_KEY }}
