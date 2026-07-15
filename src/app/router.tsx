@@ -13,18 +13,26 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { CommandPalette } from '@/components/ui/CommandPalette'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { cvData } from '@/data/cv'
-import { motion, useScroll, useAnimationControls } from 'framer-motion'
-import { useEffect } from 'react'
-import { ArrowUp } from 'lucide-react'
+import { motion, useScroll, useAnimationControls, AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { ArrowUp, Menu, X } from 'lucide-react'
 
 const RootComponent = () => {
   const { t, i18n } = useTranslation();
   const { scrollYProgress, scrollY } = useScroll();
   const cv = cvData[i18n.language as keyof typeof cvData] || cvData.es;
   const controls = useAnimationControls();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    const handleRouteChange = () => setIsMobileMenuOpen(false);
+    window.addEventListener('popstate', handleRouteChange);
+    return () => window.removeEventListener('popstate', handleRouteChange);
+  }, []);
 
   useEffect(() => {
-    return scrollY.onChange((latest) => {
+    return scrollY.on('change', (latest) => {
       if (latest > 400) {
         controls.start({ opacity: 1, y: 0, pointerEvents: 'auto' });
       } else {
@@ -45,10 +53,11 @@ const RootComponent = () => {
         style={{ scaleX: scrollYProgress }}
       />
 
-      <header className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b dark:border-gray-800 shadow-sm sticky top-0 z-40 transition-colors duration-300 print:hidden">
-        <div className="max-w-6xl mx-auto flex flex-row items-center overflow-x-auto no-scrollbar relative">
+      <header className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b dark:border-gray-800 shadow-sm sticky top-0 z-40 transition-colors duration-300 print:hidden relative">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
           
-          <div className="flex flex-col shrink-0 px-4 py-3 sticky left-0 z-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-r border-gray-100 dark:border-gray-800 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">
+          {/* Logo / Título */}
+          <div className="flex flex-col shrink-0">
             <div className="flex items-center gap-2">
               <h1 className="font-bold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight leading-tight whitespace-nowrap">
                 {cv.name}
@@ -64,8 +73,9 @@ const RootComponent = () => {
             </p>
           </div>
           
-          <div className="flex flex-row items-center gap-4 sm:gap-6 px-4 py-3 shrink-0 ml-auto">
-            <nav className="flex flex-row items-center gap-4 sm:gap-6 text-sm sm:text-base whitespace-nowrap">
+          {/* Navegación y Herramientas (Desktop) */}
+          <div className="hidden lg:flex flex-row items-center gap-6">
+            <nav className="flex flex-row items-center gap-6 text-sm lg:text-base whitespace-nowrap">
               <Link to="/" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.home')}
               </Link>
@@ -85,11 +95,11 @@ const RootComponent = () => {
                 {t('nav.contact')}
               </Link>
             </nav>
-            <div className="flex flex-row items-center gap-2 pl-2 border-l border-gray-200 dark:border-gray-700">
+            <div className="flex flex-row items-center gap-2 pl-4 border-l border-gray-200 dark:border-gray-700">
               {/* Hint para el Command Palette */}
               <button 
                 onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
-                className="hidden md:flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors mr-2"
+                className="flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors mr-2"
                 title={i18n.language === 'es' ? 'Abrir paleta de comandos' : 'Open command palette'}
               >
                 <span className="text-[10px]">⌘</span>K
@@ -99,7 +109,65 @@ const RootComponent = () => {
             </div>
           </div>
 
+          {/* Menú y Herramientas (Mobile) */}
+          <div className="flex lg:hidden items-center gap-2">
+            <ThemeToggle />
+            <LanguageSwitcher />
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 ml-1 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
+
+        {/* Dropdown Navigation (Mobile) */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="lg:hidden overflow-hidden border-t border-gray-100 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md absolute top-full left-0 right-0 shadow-lg z-50"
+            >
+              <nav className="flex flex-col px-4 py-4 gap-3 text-base font-medium">
+                <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {t('nav.home')}
+                </Link>
+                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {t('nav.about')}
+                </Link>
+                <Link to="/projects" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {t('nav.projects')}
+                </Link>
+                <Link to="/courses" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {t('nav.courses')}
+                </Link>
+                <Link to="/job-analyzer" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {t('nav.analyzer')}
+                </Link>
+                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {t('nav.contact')}
+                </Link>
+                {/* Command palette button in mobile */}
+                <button 
+                  onClick={() => {
+                    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }));
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center justify-between px-3 py-2 mt-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors border border-gray-200 dark:border-gray-700"
+                >
+                  <span>{i18n.language === 'es' ? 'Paleta de comandos' : 'Command palette'}</span>
+                  <div className="flex items-center gap-1 text-xs font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                    <span>⌘</span>K
+                  </div>
+                </button>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
       <main className="flex-1 max-w-6xl mx-auto w-full print:max-w-none print:w-full print:m-0 print:p-0">
         <Outlet />
