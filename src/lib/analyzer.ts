@@ -122,7 +122,8 @@ export function analyzeJobDescription(text: string, lang: 'es' | 'en'): JobAnaly
   // Buscar empresa ("en [Empresa]", "at [Company]", "empresa: [Empresa]")
   const companyMatch = text.match(/(?:en la empresa|empresa:|company:|at)\s+([A-Z][a-zA-Z0-9\s]+)/i);
   if (companyMatch && companyMatch[1]) {
-    company = companyMatch[1].trim().split('\n')[0].substring(0, 30);
+    const firstLine = companyMatch[1].trim().split('\n')[0] || '';
+    company = firstLine.substring(0, 30);
   }
 
   // Buscar rol (Senior, Junior, Full Stack, Frontend, Backend)

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { PageTransition } from '@/components/animations/PageTransition';
 import { SpotlightCard } from '@/components/animations/SpotlightCard';
-import { Sparkles, CheckCircle2, AlertTriangle, ChevronRight, FileSearch, Target } from 'lucide-react';
+import { Sparkles, CheckCircle2, AlertTriangle, ChevronRight, FileSearch, Target, Calendar, X } from 'lucide-react';
 import { analyzeJobDescription, JobAnalysis } from '@/lib/analyzer';
+import Cal, { getCalApi } from "@calcom/embed-react";
 
 export function JobAnalyzerPage() {
   const { t, i18n } = useTranslation();
@@ -12,6 +13,19 @@ export function JobAnalyzerPage() {
   const [jobDescription, setJobDescription] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<JobAnalysis | null>(null);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({});
+      cal("ui", {
+        theme: "dark",
+        styles: { branding: { brandColor: "#000000" } },
+        hideEventTypeDetails: false,
+        layout: "month_view"
+      });
+    })();
+  }, []);
 
   const handleAnalyze = () => {
     if (!jobDescription.trim()) return;
@@ -148,6 +162,16 @@ export function JobAnalyzerPage() {
                   <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
                     {result.verdict}
                   </p>
+                  
+                  <div className="mt-6 w-full pt-6 border-t border-gray-100 dark:border-gray-800">
+                    <button
+                      onClick={() => setIsCalendarOpen(true)}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-purple-600 dark:hover:bg-purple-500 hover:text-white rounded-xl transition-all duration-300 font-bold shadow-md hover:shadow-lg active:scale-95"
+                    >
+                      <Calendar className="w-5 h-5" />
+                      <span>{currentLang === 'es' ? 'Agendar Entrevista (15 min)' : 'Schedule Interview (15 min)'}</span>
+                    </button>
+                  </div>
                 </SpotlightCard>
               </div>
 
@@ -205,6 +229,33 @@ export function JobAnalyzerPage() {
             </div>
           </FadeIn>
         )}
+
+        {/* Modal de Cal.com */}
+        {isCalendarOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <div className="relative w-full max-w-3xl max-h-[90vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 flex flex-col">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  {currentLang === 'es' ? 'Agendar Videollamada' : 'Schedule Video Call'}
+                </h3>
+                <button
+                  onClick={() => setIsCalendarOpen(false)}
+                  className="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="flex-1 overflow-auto w-full h-[600px]">
+                <Cal
+                  calLink="peteraraya/15min"
+                  style={{ width: "100%", height: "100%", overflow: "scroll" }}
+                  config={{ layout: 'month_view' }}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
       </div>
     </PageTransition>
   );
