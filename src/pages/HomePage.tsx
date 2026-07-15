@@ -6,6 +6,7 @@ import { PageTransition } from '@/components/animations/PageTransition';
 import { HeroSection } from '@/components/cv/HeroSection';
 import { SummarySection } from '@/components/cv/SummarySection';
 import { AboutMeSection } from '@/components/cv/AboutMeSection';
+import { CaseStudiesSection } from '@/components/cv/CaseStudiesSection';
 import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
@@ -72,6 +73,12 @@ export function HomePage() {
             data={data.aboutMe}
             title={currentLang === 'es' ? 'Sobre mí' : 'About Me'}
           />
+        </FadeIn>
+      )}
+
+      {!isRecruiterMode && (
+        <FadeIn delay={0.28}>
+          <CaseStudiesSection />
         </FadeIn>
       )}
 
