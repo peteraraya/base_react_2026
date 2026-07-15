@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy, Calendar } from 'lucide-react';
+import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy } from 'lucide-react';
 import { CVData } from '@/types/cv';
 import { useUIStore } from '@/stores/uiStore';
 import { useTranslation } from 'react-i18next';
@@ -93,6 +93,7 @@ export function HeroSection({ data }: { data: CVData }) {
             <span>GitHub</span>
           </a>
 
+          {/* HOTFIX: Oculto temporalmente
           <button 
             onClick={() => setIsCalendarOpen(true)}
             className="flex items-center gap-2 px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-all duration-300 font-bold text-sm shadow-md hover:shadow-lg active:scale-95 outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
@@ -100,6 +101,7 @@ export function HeroSection({ data }: { data: CVData }) {
             <Calendar className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span>{isEs ? 'Agendar Videollamada (15 min)' : 'Schedule Call (15 min)'}</span>
           </button>
+          */}
 
           <a 
             href="/CV_Pedro_Araya_2026.pdf" 

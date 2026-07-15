@@ -148,6 +148,7 @@ export function ContactPage() {
                 </p>
               </div>
               
+              {/* HOTFIX: Botón de calendario oculto temporalmente
               <button 
                 onClick={() => setIsCalendarOpen(true)}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl transition-all duration-300 font-bold shadow-md hover:shadow-lg active:scale-95 outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
@@ -155,6 +156,7 @@ export function ContactPage() {
                 <Calendar className="w-5 h-5" />
                 <span>{currentLang === 'es' ? 'Agendar videollamada (15 min)' : 'Schedule a call (15 min)'}</span>
               </button>
+              */}
             </SpotlightCard>
 
             <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-2">
