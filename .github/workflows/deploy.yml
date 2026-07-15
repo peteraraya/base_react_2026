@@ -33,6 +33,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Debug Secrets
+        run: |
+          echo "Longitud de GEMINI_API_KEY: ${#SECRET_GEMINI}"
+          echo "Longitud de WEB3FORMS_KEY: ${#SECRET_WEB3}"
+        env:
+          SECRET_GEMINI: ${{ secrets.VITE_GEMINI_API_KEY }}
+          SECRET_WEB3: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
+
       - name: Build
         run: npm run build
         env:
