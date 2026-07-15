@@ -27,13 +27,15 @@ export function HeroSection({ data }: { data: CVData }) {
         
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 transition-colors duration-300">
           <p className="text-xl sm:text-2xl text-blue-600 dark:text-blue-400 font-medium">{data.role}</p>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs font-bold uppercase tracking-wider w-fit">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            {isEs ? 'Disponibilidad Inmediata' : 'Immediate Availability'}
-          </div>
+          {data.availability && (
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold uppercase tracking-wider w-fit shadow-sm border border-emerald-200 dark:border-emerald-800">
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>{data.availability}</span>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400 px-1 py-1 transition-colors duration-300">

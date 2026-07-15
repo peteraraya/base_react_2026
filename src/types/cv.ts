@@ -24,7 +24,7 @@ export interface Experience {
 export interface Education {
   title: string;
   institution: string;
-  status: string;
+  status?: string;
 }
 
 export interface Course {
@@ -61,6 +61,7 @@ export interface CVData {
   location: string;
   contact: Contact;
   summary: string;
+  availability?: string;
   aboutMe?: AboutMe;
   experience: Experience[];
   projects: Project[];

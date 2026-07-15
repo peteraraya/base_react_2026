@@ -16,9 +16,11 @@ export function EducationSection({ education, title }: { education: Education[];
               <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 transition-colors duration-300">{edu.title}</h3>
               <p className="text-gray-600 dark:text-gray-400 font-medium transition-colors duration-300">{edu.institution}</p>
             </div>
-            <div className="mt-2 sm:mt-0 text-sm font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 rounded-full w-fit transition-colors duration-300">
-              {edu.status}
-            </div>
+            {edu.status && (
+              <div className="mt-2 sm:mt-0 text-sm font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 rounded-full w-fit transition-colors duration-300">
+                {edu.status}
+              </div>
+            )}
           </article>
         ))}
       </div>

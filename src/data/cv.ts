@@ -12,6 +12,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       github: "github.com/peteraraya"
     },
     summary: "Full Stack Developer con más de 8 años de experiencia end-to-end, especializado en React, TypeScript, Node.js y arquitecturas serverless (Atlassian Forge), con experiencia adicional en Angular, NestJS y WordPress/PHP a través de proyectos de consultoría externa y desarrollo de productos propios. Historial consistente entregando valor medible: reducción de tiempos de entrega, resolución de vulnerabilidades críticas de seguridad (RBAC, MFA, RLS) y modernización de stacks legacy (PHP, XML, WordPress) hacia arquitecturas actuales. Reconocido por mi perseverancia técnica, capacidad de adaptación rápida a nuevos stacks y dedicación a la calidad de código y testing (Vitest, Jest, Playwright, MSW).\n\nCon más de 5 años trabajando en equipos distribuidos y comunicación asíncrona —incluyendo colaboración simultánea con múltiples clientes externos— he demostrado autonomía real: lideré procesos completos sin supervisión directa, cumpliendo plazos y estándares de calidad de forma sostenida. Busco un rol remoto senior donde aportar impacto medible desde el primer sprint.",
+    availability: "Abierto a oportunidades remotas · Disponibilidad inmediata",
     aboutMe: {
       description: "¡Hola! Soy un entusiasta de la tecnología, estudiante autodidacta y fiel creyente del aprendizaje continuo (gran parte de mi conocimiento lo debo a la inmersión en cursos de Udemy). Me apasiona estar siempre al día con las últimas tendencias tech, probar nuevas herramientas y explorar cómo evoluciona el desarrollo de software.\n\nSoy una persona muy disciplinada, un valor que me define tanto frente a la pantalla resolviendo problemas técnicos, como en mi tiempo libre. Busco siempre combinar mi energía, constancia y curiosidad para seguir creciendo y crear soluciones innovadoras.",
       highlights: [
@@ -123,8 +124,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
     education: [
       {
         title: "Analista Programador",
-        institution: "Instituto Profesional / Centro de Formación Técnica (INACAP), 2014",
-        status: "Abierto a oportunidades remotas · Disponibilidad inmediata"
+        institution: "Instituto Profesional / Centro de Formación Técnica (INACAP), 2014"
       }
     ],
     courses: [
@@ -349,6 +349,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       github: "github.com/peteraraya"
     },
     summary: "Full Stack Developer with over 8 years of end-to-end experience, specializing in React, TypeScript, Node.js, and serverless architectures (Atlassian Forge), with additional experience in Angular, NestJS, and WordPress/PHP through external consulting projects and development of personal products. Consistent track record of delivering measurable value: reducing delivery times, resolving critical security vulnerabilities (RBAC, MFA, RLS), and modernizing legacy stacks (PHP, XML, WordPress) into current architectures. Recognized for my technical perseverance, quick adaptability to new stacks, and dedication to code quality and testing (Vitest, Jest, Playwright, MSW).\n\nWith over 5 years working in distributed teams and asynchronous communication —including simultaneous collaboration with multiple external clients— I have demonstrated true autonomy: I independently led complete processes without direct supervision, consistently meeting deadlines and quality standards. Seeking a senior remote role where I can make a measurable impact from the first sprint.",
+    availability: "Open to remote opportunities · Immediate availability",
     aboutMe: {
       description: "Hi! I'm a tech enthusiast, self-taught student, and a firm believer in continuous learning (much of my knowledge comes from deep diving into Udemy courses). I'm passionate about staying up-to-date with the latest tech trends, trying out new tools, and exploring how software development evolves.\n\nI am a highly disciplined person, a value that defines me both in front of the screen solving technical problems and in my free time. I'm always looking to combine my energy, perseverance, and curiosity to keep growing and build innovative solutions.",
       highlights: [
@@ -460,8 +461,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
     education: [
       {
         title: "Programmer Analyst",
-        institution: "Professional Institute / Technical Training Center (INACAP), 2014",
-        status: "Open to remote opportunities · Immediate availability"
+        institution: "Professional Institute / Technical Training Center (INACAP), 2014"
       }
     ],
     courses: [
