@@ -4,13 +4,15 @@ import { cvData } from '@/data/cv';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { PageTransition } from '@/components/animations/PageTransition';
 import { SpotlightCard } from '@/components/animations/SpotlightCard';
-import { Mail, Phone, Linkedin, Github, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, Send, CheckCircle2, AlertCircle, Copy } from 'lucide-react';
+import { useUIStore } from '@/stores/uiStore';
 
 export function ContactPage() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language === 'es' ? 'es' : 'en';
   const data = cvData[currentLang];
   const contact = data.contact;
+  const addToast = useUIStore((s) => s.addToast);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -59,11 +61,20 @@ export function ContactPage() {
     }
   };
 
+  const handleCopy = (text: string, title: string) => {
+    navigator.clipboard.writeText(text);
+    addToast(
+      currentLang === 'es' ? `¡${title} copiado al portapapeles!` : `${title} copied to clipboard!`,
+      'success'
+    );
+  };
+
   const contactItems = [
     {
       title: currentLang === 'es' ? 'Correo Electrónico' : 'Email',
       value: contact.email,
       href: `mailto:${contact.email}`,
+      copyValue: contact.email,
       icon: <Mail className="w-8 h-8 text-blue-500" />,
       colorClass: 'hover:border-blue-500 hover:shadow-blue-500/20'
     },
@@ -71,6 +82,7 @@ export function ContactPage() {
       title: currentLang === 'es' ? 'LinkedIn' : 'LinkedIn',
       value: 'Pedro Araya Gálvez',
       href: `https://${contact.linkedin}`,
+      target: "_blank",
       icon: <Linkedin className="w-8 h-8 text-indigo-500" />,
       colorClass: 'hover:border-indigo-500 hover:shadow-indigo-500/20'
     },
@@ -78,6 +90,7 @@ export function ContactPage() {
       title: currentLang === 'es' ? 'GitHub' : 'GitHub',
       value: 'peteraraya',
       href: `https://${contact.github}`,
+      target: "_blank",
       icon: <Github className="w-8 h-8 text-gray-700 dark:text-gray-300" />,
       colorClass: 'hover:border-gray-500 hover:shadow-gray-500/20'
     },
@@ -85,6 +98,7 @@ export function ContactPage() {
       title: currentLang === 'es' ? 'Teléfono' : 'Phone',
       value: contact.phone,
       href: `tel:${contact.phone.replace(/\s+/g, '')}`,
+      copyValue: contact.phone,
       icon: <Phone className="w-8 h-8 text-emerald-500" />,
       colorClass: 'hover:border-emerald-500 hover:shadow-emerald-500/20'
     }
@@ -112,31 +126,64 @@ export function ContactPage() {
           
           {/* Columna Izquierda: Información de contacto */}
           <div className="flex flex-col gap-6">
-            {contactItems.map((item, idx) => (
-              <a 
-                key={idx}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`block transform hover:-translate-y-1 transition-all duration-300 rounded-2xl ${item.colorClass} h-full`}
-              >
-                <SpotlightCard className="group p-6 border-2 border-transparent h-full">
-                  <div className="flex items-center w-full h-full">
-                    <div className="flex-shrink-0 w-14 h-14 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center mr-6 group-hover:scale-110 transition-transform duration-300">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400 font-medium">
-                        {item.value}
-                      </p>
-                    </div>
-                  </div>
-                </SpotlightCard>
-              </a>
-            ))}
+            
+            {/* Banner de Disponibilidad */}
+            <SpotlightCard className="p-6 border border-green-200 dark:border-green-900/50 bg-green-50/50 dark:bg-green-900/10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-lg font-bold text-green-800 dark:text-green-400 mb-2">
+                  {currentLang === 'es' ? '🚀 Disponibilidad Inmediata' : '🚀 Immediate Availability'}
+                </h3>
+                <p className="text-green-700 dark:text-green-500/80 font-medium text-sm leading-relaxed">
+                  {currentLang === 'es' 
+                    ? 'Abierto a escuchar nuevas oportunidades laborales (roles remotos). Si mi perfil se ajusta a lo que buscas, ¡me encantaría conversar!' 
+                    : 'Open to hearing about new job opportunities (remote roles). If my profile fits what you are looking for, I would love to chat!'}
+                </p>
+              </div>
+            </SpotlightCard>
+
+            <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-2">
+              {currentLang === 'es' ? 'Canales de Contacto' : 'Contact Channels'}
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {contactItems.map((item, idx) => (
+                <div key={idx} className={`relative block transform hover:-translate-y-1 transition-all duration-300 rounded-xl ${item.colorClass} w-full`}>
+                  <SpotlightCard className="group p-5 border border-gray-100 dark:border-gray-800 h-full flex flex-col justify-center items-center text-center gap-3">
+                    
+                    {item.copyValue && (
+                      <button 
+                        onClick={(e) => { e.preventDefault(); handleCopy(item.copyValue!, item.title); }}
+                        className="absolute top-3 right-3 p-2 bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
+                        title={currentLang === 'es' ? 'Copiar al portapapeles' : 'Copy to clipboard'}
+                        aria-label="Copiar"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </button>
+                    )}
+
+                    <a href={item.href} target={item.target || "_self"} rel={item.target ? "noopener noreferrer" : undefined} className="flex flex-col items-center w-full h-full outline-none focus:ring-2 focus:ring-blue-500 rounded-lg">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        {item.icon}
+                      </div>
+                      <div className="w-full overflow-hidden mt-3">
+                        <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-500 dark:text-gray-400 font-medium text-xs truncate w-full px-2">
+                          {item.value}
+                        </p>
+                      </div>
+                    </a>
+                  </SpotlightCard>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Columna Derecha: Formulario de contacto */}

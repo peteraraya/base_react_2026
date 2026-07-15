@@ -1,22 +1,38 @@
 import { useTranslation } from 'react-i18next';
-import { Languages } from 'lucide-react';
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
+  const currentLang = i18n.language === 'es' ? 'es' : 'en';
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'es' : 'en';
-    i18n.changeLanguage(newLang);
+  const setLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem('portfolio_lang', lang);
   };
 
   return (
-    <button
-      onClick={toggleLanguage}
-      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-      aria-label="Toggle language"
-    >
-      <Languages className="w-4 h-4" />
-      <span>{i18n.language.toUpperCase()}</span>
-    </button>
+    <div className="flex items-center bg-gray-100 dark:bg-gray-800 p-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-inner">
+      <button
+        onClick={() => setLanguage('es')}
+        className={`px-3 py-1 text-xs font-bold rounded-md transition-all duration-300 ${
+          currentLang === 'es'
+            ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-sm'
+            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+        }`}
+        aria-label="Cambiar a Español"
+      >
+        ES
+      </button>
+      <button
+        onClick={() => setLanguage('en')}
+        className={`px-3 py-1 text-xs font-bold rounded-md transition-all duration-300 ${
+          currentLang === 'en'
+            ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-sm'
+            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+        }`}
+        aria-label="Switch to English"
+      >
+        EN
+      </button>
+    </div>
   );
 }

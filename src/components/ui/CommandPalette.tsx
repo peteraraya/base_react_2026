@@ -13,12 +13,15 @@ export function CommandPalette() {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
-  // Escuchar por Cmd+K o Ctrl+K
+  // Escuchar por Cmd+K o Ctrl+K y Escape para cerrar
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
+      }
+      if (e.key === 'Escape') {
+        setOpen(false);
       }
     };
     document.addEventListener('keydown', down);
@@ -108,6 +111,22 @@ export function CommandPalette() {
             <Command.Item onSelect={() => runCommand(() => toggleTheme('dark'))} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
               <Moon className="w-4 h-4 mr-3" />
               {i18n.language === 'es' ? "Modo Oscuro" : "Dark Mode"}
+            </Command.Item>
+          </Command.Group>
+
+          <Command.Group heading={i18n.language === 'es' ? "Secretos 👀" : "Secrets 👀"} className="text-xs font-medium text-gray-500 mb-1 px-2 py-2 border-t border-gray-100 dark:border-gray-800 mt-2">
+            <Command.Item onSelect={() => runCommand(() => {
+              document.body.animate([
+                { transform: 'rotate(0)' },
+                { transform: 'rotate(360deg)' }
+              ], { duration: 1000, iterations: 1 });
+            })} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
+              🚀 Do a barrel roll
+            </Command.Item>
+            <Command.Item onSelect={() => runCommand(() => {
+              document.documentElement.classList.toggle('invert');
+            })} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
+              🦇 Modo Invertido
             </Command.Item>
           </Command.Group>
         </Command.List>

@@ -87,12 +87,14 @@ const resources = {
   }
 };
 
+const savedLanguage = localStorage.getItem('portfolio_lang') || 'es';
+
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "en", // default language
-    fallbackLng: "en",
+    lng: savedLanguage, // default language
+    fallbackLng: "es",
     interpolation: {
       escapeValue: false // react already safes from xss
     }

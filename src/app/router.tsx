@@ -10,13 +10,16 @@ import { ToastContainer } from '@/components/feedback/ToastContainer'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { CommandPalette } from '@/components/ui/CommandPalette'
+import { CustomCursor } from '@/components/ui/CustomCursor'
+import { cvData } from '@/data/cv'
 import { motion, useScroll, useAnimationControls } from 'framer-motion'
 import { useEffect } from 'react'
 import { ArrowUp } from 'lucide-react'
 
 const RootComponent = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { scrollYProgress, scrollY } = useScroll();
+  const cv = cvData[i18n.language as keyof typeof cvData] || cvData.es;
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -41,11 +44,27 @@ const RootComponent = () => {
         style={{ scaleX: scrollYProgress }}
       />
 
-      <header className="bg-white dark:bg-gray-900 border-b dark:border-gray-800 shadow-sm sticky top-0 z-40 transition-colors duration-300 print:hidden">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <h1 className="font-bold text-xl text-gray-800 dark:text-gray-100 tracking-tight">{t('header.portfolio')}</h1>
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full md:w-auto justify-center md:justify-end">
-            <nav className="flex flex-wrap justify-center gap-3 sm:gap-6 text-sm sm:text-base">
+      <header className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b dark:border-gray-800 shadow-sm sticky top-0 z-40 transition-colors duration-300 print:hidden">
+        <div className="max-w-6xl mx-auto flex flex-row items-center overflow-x-auto no-scrollbar relative">
+          
+          <div className="flex flex-col shrink-0 px-4 py-3 sticky left-0 z-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-r border-gray-100 dark:border-gray-800 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">
+            <div className="flex items-center gap-2">
+              <h1 className="font-bold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight leading-tight whitespace-nowrap">
+                {cv.name}
+              </h1>
+              {/* Indicador de "Disponible para trabajar" */}
+              <div className="group relative flex items-center justify-center cursor-help" title={i18n.language === 'es' ? 'Disponible para nuevas oportunidades' : 'Available for new opportunities'}>
+                <span className="absolute inline-flex h-2.5 w-2.5 animate-ping rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+              </div>
+            </div>
+            <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap">
+              {cv.role}
+            </p>
+          </div>
+          
+          <div className="flex flex-row items-center gap-4 sm:gap-6 px-4 py-3 shrink-0 ml-auto">
+            <nav className="flex flex-row items-center gap-4 sm:gap-6 text-sm sm:text-base whitespace-nowrap">
               <Link to="/" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.home')}
               </Link>
@@ -62,9 +81,20 @@ const RootComponent = () => {
                 {t('nav.contact')}
               </Link>
             </nav>
-            <ThemeToggle />
-            <LanguageSwitcher />
+            <div className="flex flex-row items-center gap-2 pl-2 border-l border-gray-200 dark:border-gray-700">
+              {/* Hint para el Command Palette */}
+              <button 
+                onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+                className="hidden md:flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors mr-2"
+                title={i18n.language === 'es' ? 'Abrir paleta de comandos' : 'Open command palette'}
+              >
+                <span className="text-[10px]">⌘</span>K
+              </button>
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
           </div>
+
         </div>
       </header>
       <main className="flex-1 max-w-6xl mx-auto w-full print:max-w-none print:w-full print:m-0 print:p-0">
@@ -87,6 +117,7 @@ const RootComponent = () => {
 
       <ToastContainer />
       <CommandPalette />
+      <CustomCursor />
     </div>
   );
 };
