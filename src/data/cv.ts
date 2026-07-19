@@ -97,7 +97,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       },
       {
         name: "Gym Tracker App",
-        period: "2024",
+        period: "2025 - presente",
         description: "Proyecto propio",
         link: "https://gym-tracker-eta-amber.vercel.app/",
         achievements: [
@@ -106,7 +106,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       },
       {
         name: "Tienda de Confecciones",
-        period: "2023",
+        period: "2025",
         description: "Proyecto propio",
         achievements: [
           "Sistema e-commerce fullstack con panel de administración, CRUD de productos y control de stock, sobre arquitectura Supabase (Auth, DB, Storage)."
@@ -114,7 +114,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       },
       {
         name: "MVP Ecosistema Atlassian",
-        period: "2024 – Presente",
+        period: "2025",
         description: "Proyecto propio",
         achievements: [
           "Diseño y desarrollo continuo de un MVP SaaS para el ecosistema Atlassian, explorando oportunidades en el Marketplace."
@@ -127,7 +127,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       "Seguridad": "RBAC, MFA, Row-Level Security (RLS), validación con Zod",
       "E-commerce": "WooCommerce, pasarelas de pago, gestión de catálogo y checkout para venta de servicios digitales",
       "Testing & Calidad": "Jest, Vitest, MSW, Playwright, testing unitario, integración y E2E, colaboración con equipos SQA",
-      "State / Data": "TanStack Query v5, TanStack Router, Zustand v5, Axios",
+      "State / Data": "TanStack Query v5, TanStack Router, Zustand v5, Axios, MapLibre (mapas interactivos)",
       "Herramientas": "Git, Jira, Conventional Commits, CI/CD, metodologías ágiles, Design Systems",
       "Blandas": "perseverancia técnica, adaptabilidad, autonomía en remoto, comunicación asíncrona efectiva"
     },
@@ -444,7 +444,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       },
       {
         name: "Gym Tracker App",
-        period: "2024",
+        period: "2025 - present",
         description: "Personal Project",
         link: "https://gym-tracker-eta-amber.vercel.app/",
         achievements: [
@@ -453,7 +453,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       },
       {
         name: "Clothing Store",
-        period: "2023",
+        period: "2025",
         description: "Personal Project",
         achievements: [
           "Fullstack e-commerce system with an admin panel, product CRUD, and stock control, built on Supabase architecture (Auth, DB, Storage)."
@@ -461,7 +461,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       },
       {
         name: "Atlassian Ecosystem MVP",
-        period: "2024 – Present",
+        period: "2025",
         description: "Personal Project",
         achievements: [
           "Continuous design and development of a SaaS MVP for the Atlassian ecosystem, exploring opportunities in the Marketplace."
@@ -474,7 +474,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
       "Security": "RBAC, MFA, Row-Level Security (RLS), Zod validation",
       "E-commerce": "WooCommerce, payment gateways, catalog management and checkout for digital services sales",
       "Testing & Quality": "Jest, Vitest, MSW, Playwright, Unit, Integration & E2E Testing, Collaboration with SQA teams",
-      "State / Data": "TanStack Query v5, TanStack Router, Zustand v5, Axios",
+      "State / Data": "TanStack Query v5, TanStack Router, Zustand v5, Axios, MapLibre (interactive maps)",
       "Tools": "Git, Jira, Conventional Commits, CI/CD, Agile methodologies, Design Systems",
       "Soft Skills": "Technical perseverance, adaptability, autonomy in remote environments, effective asynchronous communication"
     },
