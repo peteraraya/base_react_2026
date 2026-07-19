@@ -86,6 +86,16 @@ export const cvData: Record<'es' | 'en', CVData> = {
     ],
     projects: [
       {
+        name: "Centinela (Mapa de Emergencias)",
+        period: "2026",
+        description: "Proyecto propio",
+        link: "https://red-centinela.vercel.app/",
+        achievements: [
+          "Plataforma web para monitorear emergencias en Chile en tiempo real usando React 19, TypeScript, MapLibre y Zustand.",
+          "Backend en NestJS actuando como agregador y scraper de múltiples fuentes (SENAPRED, Bomberos, CONAF, SEC) unificando los datos."
+        ]
+      },
+      {
         name: "Gym Tracker App",
         period: "2024",
         description: "Proyecto propio",
@@ -422,6 +432,16 @@ export const cvData: Record<'es' | 'en', CVData> = {
       }
     ],
     projects: [
+      {
+        name: "Centinela (Emergencies Map)",
+        period: "2026",
+        description: "Personal Project",
+        link: "https://red-centinela.vercel.app/",
+        achievements: [
+          "Web platform to monitor emergencies in Chile in real-time using React 19, TypeScript, MapLibre, and Zustand.",
+          "Backend in NestJS acting as an aggregator and scraper from multiple sources (SENAPRED, Firefighters, CONAF, SEC) unifying data."
+        ]
+      },
       {
         name: "Gym Tracker App",
         period: "2024",
