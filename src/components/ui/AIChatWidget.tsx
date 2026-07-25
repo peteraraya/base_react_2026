@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MessageSquare, X, Send, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { cvData } from '@/data/cv';
 
 interface Message {
   id: string;
@@ -45,30 +46,73 @@ export function AIChatWidget() {
     setTimeout(() => {
       const lowerInput = newMsg.text.toLowerCase();
       let botResponse = '';
+      const data = cvData[currentLang];
+      
+      const isEs = currentLang === 'es';
 
-      if (currentLang === 'es') {
-        if (lowerInput.includes('react') || lowerInput.includes('frontend')) {
-          botResponse = 'Pedro tiene amplia experiencia en frontend con React (desde clases hasta Hooks y Server Components), Next.js y Angular. Ha liderado migraciones complejas hacia React.';
-        } else if (lowerInput.includes('backend') || lowerInput.includes('node')) {
-          botResponse = 'En backend domina Node.js, NestJS y PHP. Recientemente ha trabajado mucho con arquitecturas serverless en Atlassian Forge y Supabase.';
-        } else if (lowerInput.includes('experiencia') || lowerInput.includes('trabajo')) {
-          botResponse = 'Tiene más de 8 años de experiencia, destacando su rol Full Stack en Ticblue (2020-2026) donde lideró el desarrollo end-to-end de múltiples plataformas.';
-        } else if (lowerInput.includes('contacto') || lowerInput.includes('correo') || lowerInput.includes('email')) {
-          botResponse = 'Puedes escribirle a piteraraya@gmail.com o contactarlo por LinkedIn. ¡Estará feliz de hablar contigo!';
+      // Advanced CV Keyword Matching Logic
+      const hasWord = (...words: string[]) => words.some(w => lowerInput.includes(w));
+
+      if (hasWord('contacto', 'correo', 'email', 'contact', 'mail', 'phone', 'llamar')) {
+        botResponse = isEs 
+          ? `Puedes contactarlo a través de su email ${data.contact.email} o en LinkedIn (${data.contact.linkedin}). ¡Responde muy rápido!`
+          : `You can reach him via email at ${data.contact.email} or LinkedIn (${data.contact.linkedin}). He replies very quickly!`;
+      } 
+      else if (hasWord('experiencia', 'trabajo', 'experience', 'work', 'job', 'ticblue')) {
+        const ticblueExp = data.experience.find(e => e.company === 'Ticblue');
+        botResponse = isEs
+          ? `Pedro tiene más de 8 años de experiencia. Su rol más largo ha sido en Ticblue (${ticblueExp?.period}), donde diseñó arquitecturas Serverless y lideró proyectos como la Plataforma de Teleconsulta y UVLPIC.`
+          : `Pedro has over 8 years of experience. His longest role was at Ticblue (${ticblueExp?.period}), where he designed Serverless architectures and led projects like the Telehealth Platform and UVLPIC.`;
+      }
+      else if (hasWord('frontend', 'react', 'next', 'angular', 'tailwind', 'ui')) {
+        botResponse = isEs
+          ? `En Frontend es un experto. Sus tecnologías principales son: ${data.skills.Frontend}.`
+          : `He is a Frontend expert. His main technologies are: ${data.skills.Frontend}.`;
+      }
+      else if (hasWord('backend', 'node', 'express', 'nest', 'java', 'spring', 'php', 'api')) {
+        botResponse = isEs
+          ? `En Backend domina fuertemente Node.js y Java. Su stack incluye: ${data.skills.Backend}.`
+          : `In Backend he strongly masters Node.js and Java. His stack includes: ${data.skills.Backend}.`;
+      }
+      else if (hasWord('base de datos', 'database', 'sql', 'postgres', 'mongo', 'supabase')) {
+        botResponse = isEs
+          ? `Trabaja habitualmente con PostgreSQL, MongoDB y arquitecturas BaaS como Supabase, integrando Row-Level Security (RLS) para máxima seguridad.`
+          : `He regularly works with PostgreSQL, MongoDB, and BaaS architectures like Supabase, integrating Row-Level Security (RLS) for maximum security.`;
+      }
+      else if (hasWord('estudio', 'educacion', 'education', 'universidad', 'inacap', 'titulo')) {
+        const edu = data.education?.[0];
+        botResponse = isEs
+          ? `Estudió "${edu?.title || 'Informática'}" en ${edu?.institution || 'la universidad'}. Además, es un ávido estudiante autodidacta con más de 20 cursos técnicos completados.`
+          : `He studied "${edu?.title || 'Computer Science'}" at ${edu?.institution || 'university'}. He is also an avid self-taught student with over 20 completed technical courses.`;
+      }
+      else if (hasWord('proyecto', 'project', 'centinela', 'gym')) {
+        const p1 = data.projects?.[0]?.name;
+        const p2 = data.projects?.[1]?.name;
+        botResponse = isEs
+          ? `Tiene varios proyectos demostrables. Por ejemplo, "${p1}" y "${p2}". Puedes probarlos en la pestaña de Proyectos.`
+          : `He has several demonstrable projects. For example, "${p1}" and "${p2}". You can test them in the Projects tab.`;
+      }
+      else if (hasWord('ingles', 'idioma', 'english', 'language')) {
+        botResponse = isEs
+          ? `Habla Español (Nativo) y tiene un nivel de Inglés técnico que le permite leer y documentar código sin problemas.`
+          : `He speaks Spanish (Native) and has a technical English level that allows him to read and document code without issues.`;
+      }
+      else {
+        // Fallback: Dynamic generic search across the stringified CV
+        const cvString = JSON.stringify(data).toLowerCase();
+        // Remove special chars to extract pure words from input
+        const cleanWords = lowerInput.replace(/[¿?¡!.,]/g, '').split(' ').filter(w => w.length > 3);
+        
+        const foundWord = cleanWords.find(w => cvString.includes(w));
+
+        if (foundWord) {
+          botResponse = isEs
+            ? `¡Sí! Pedro tiene experiencia relacionada con "${foundWord}". Puedes encontrar más detalles sobre eso navegando por las secciones de Experiencia o Habilidades en el menú.`
+            : `Yes! Pedro has experience related to "${foundWord}". You can find more details about it by browsing the Experience or Skills sections in the menu.`;
         } else {
-          botResponse = '¡Interesante! Como soy un bot básico simulado para este portafolio, te sugiero revisar la sección de "Experiencia" o contactarlo directamente para más detalles sobre eso.';
-        }
-      } else {
-        if (lowerInput.includes('react') || lowerInput.includes('frontend')) {
-          botResponse = 'Pedro has extensive frontend experience with React, Next.js, and Angular. He has led complex migrations to React.';
-        } else if (lowerInput.includes('backend') || lowerInput.includes('node')) {
-          botResponse = 'In backend he is proficient in Node.js, NestJS, and PHP. He recently works heavily with serverless architectures on Atlassian Forge and Supabase.';
-        } else if (lowerInput.includes('experience') || lowerInput.includes('work')) {
-          botResponse = 'He has over 8 years of experience, highlighting his Full Stack role at Ticblue (2020-2026) where he led end-to-end development of multiple platforms.';
-        } else if (lowerInput.includes('contact') || lowerInput.includes('email')) {
-          botResponse = 'You can email him at piteraraya@gmail.com or connect on LinkedIn. He would be happy to chat!';
-        } else {
-          botResponse = 'Interesting! As I am a basic simulated bot for this portfolio, I suggest checking the "Experience" section or contacting him directly for more details.';
+          botResponse = isEs
+            ? 'Hmm, no encontré una respuesta directa sobre eso en mi base de datos. ¡Te sugiero contactarlo directamente a piteraraya@gmail.com!'
+            : 'Hmm, I couldn\'t find a direct answer about that in my database. I suggest contacting him directly at piteraraya@gmail.com!';
         }
       }
 

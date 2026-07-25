@@ -1,12 +1,17 @@
 import { Code } from 'lucide-react';
-
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-
 import { useTranslation } from 'react-i18next';
+import { Cloud, renderSimpleIcon, ICloud } from 'react-icon-cloud';
+import { 
+  siReact, siNextdotjs, siAngular, siTypescript, siTailwindcss, siJavascript, 
+  siHtml5, siCss, siNodedotjs, siExpress, siNestjs, siPhp, siWordpress, 
+  siPostgresql, siMongodb, siSupabase, siJest, siTestinglibrary, siGit, siJira, 
+  siDocker, siFramer, siNpm, siMui
+} from 'simple-icons';
 
 export function SkillsSection({ skills, title }: { skills: Record<string, string>; title: string }) {
-  const [viewMode, setViewMode] = useState<'matrix' | 'categories'>('matrix');
+  const [viewMode, setViewMode] = useState<'matrix' | 'categories' | 'globe'>('matrix');
   const { i18n } = useTranslation();
 
   // Hardcoded visual levels for impressive radar/matrix presentation
@@ -27,23 +32,33 @@ export function SkillsSection({ skills, title }: { skills: Record<string, string
           <h2 id="skills-heading" className="text-2xl font-bold text-gray-900 dark:text-gray-100 transition-colors duration-300">{title}</h2>
         </div>
         
-        <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg print:hidden">
+        <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg print:hidden overflow-x-auto no-scrollbar">
           <button 
             onClick={() => setViewMode('matrix')}
-            className={`px-3 py-1 text-sm font-medium rounded-md transition-all ${viewMode === 'matrix' ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+            className={`px-3 py-1 text-sm font-medium rounded-md transition-all whitespace-nowrap ${viewMode === 'matrix' ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
           >
             {i18n.language === 'es' ? 'Matriz' : 'Matrix'}
           </button>
           <button 
             onClick={() => setViewMode('categories')}
-            className={`px-3 py-1 text-sm font-medium rounded-md transition-all ${viewMode === 'categories' ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+            className={`px-3 py-1 text-sm font-medium rounded-md transition-all whitespace-nowrap ${viewMode === 'categories' ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
           >
             {i18n.language === 'es' ? 'Categorías' : 'Categories'}
+          </button>
+          <button 
+            onClick={() => setViewMode('globe')}
+            className={`px-3 py-1 text-sm font-medium rounded-md transition-all whitespace-nowrap ${viewMode === 'globe' ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+          >
+            {i18n.language === 'es' ? 'Globo 3D' : '3D Globe'}
           </button>
         </div>
       </header>
       
-      {viewMode === 'matrix' ? (
+      {viewMode === 'globe' ? (
+        <div className="flex items-center justify-center animate-in fade-in zoom-in-95 duration-700 w-full overflow-hidden bg-gray-50 dark:bg-[#111111] rounded-3xl border border-gray-200 dark:border-gray-800 shadow-inner py-8">
+          <SkillGlobe />
+        </div>
+      ) : viewMode === 'matrix' ? (
         <div className="grid sm:grid-cols-2 gap-x-12 gap-y-6 animate-in fade-in duration-500">
           {coreSkills.map((skill, idx) => (
             <div key={idx} className="flex flex-col gap-2">
@@ -85,3 +100,52 @@ export function SkillsSection({ skills, title }: { skills: Record<string, string
     </section>
   );
 }
+
+const icons = [
+  siReact, siNextdotjs, siAngular, siTypescript, siTailwindcss, siJavascript, 
+  siHtml5, siCss, siNodedotjs, siExpress, siNestjs, siPhp, siWordpress, 
+  siPostgresql, siMongodb, siSupabase, siJest, siTestinglibrary, siGit, siJira, 
+  siDocker, siFramer, siNpm, siMui
+];
+
+const SkillGlobe = () => {
+  const renderedIcons = useMemo(() => {
+    return icons.map((icon) =>
+      renderSimpleIcon({
+        icon,
+        size: 42,
+        aProps: {
+          href: undefined,
+          target: undefined,
+          rel: undefined,
+          onClick: (e: any) => e.preventDefault(),
+        },
+      })
+    );
+  }, []);
+
+  const cloudProps: Omit<ICloud, 'children'> = {
+    containerProps: {
+      style: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        paddingTop: 40,
+      },
+    },
+    options: {
+      clickToFront: 500,
+      depth: 1,
+      imageScale: 2,
+      initial: [0.1, -0.1],
+      outlineColour: '#0000',
+      reverse: true,
+      tooltip: 'native',
+      tooltipDelay: 0,
+      wheelZoom: false,
+    },
+  };
+
+  return <Cloud {...cloudProps}>{renderedIcons}</Cloud>;
+};

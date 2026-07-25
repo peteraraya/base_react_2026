@@ -9,6 +9,8 @@ import { FadeIn } from '@/components/animations/FadeIn';
 import { PageTransition } from '@/components/animations/PageTransition';
 import { SpotlightCard } from '@/components/animations/SpotlightCard';
 import { GitHubCalendar } from 'react-github-calendar';
+import { cvData } from '@/data/cv';
+import { ProjectsSection } from '@/components/cv/ProjectsSection';
 
 export function ProjectsPage() {
   const { t, i18n } = useTranslation();
@@ -83,11 +85,27 @@ export function ProjectsPage() {
   return (
     <PageTransition>
     <div className="max-w-6xl mx-auto p-4 sm:p-8 space-y-8">
-      <FadeIn delay={0.1}>
-        <div className="mb-8">
+      
+      {/* Demonstrable Projects from CV */}
+      <FadeIn delay={0.05}>
+        <div className="mb-16">
           <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
-            {t('projects.title', 'Galería de Proyectos')}
+            {currentLang === 'es' ? 'Proyectos Demostrables' : 'Demonstrable Projects'}
           </h1>
+          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mb-8">
+            {currentLang === 'es' 
+              ? 'Proyectos completos en producción, con enlaces directos para probar su funcionamiento.' 
+              : 'Complete projects in production, with direct links to test their functionality.'}
+          </p>
+          <ProjectsSection projects={cvData[currentLang].projects} title="" />
+        </div>
+      </FadeIn>
+
+      <FadeIn delay={0.1}>
+        <div className="mb-8 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+            {t('projects.title', 'Repositorios de GitHub')}
+          </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl">
             {t('projects.description', 'Explora mis repositorios en tiempo real conectados con la API de GitHub. Filtra por tecnología o busca un proyecto específico.')}
           </p>

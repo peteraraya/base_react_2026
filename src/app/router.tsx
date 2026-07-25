@@ -7,6 +7,7 @@ import { ProjectsPage } from '@/pages/ProjectsPage'
 import { CoursesPage } from '@/pages/CoursesPage'
 import { JobAnalyzerPage } from '@/pages/JobAnalyzerPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
+import { ApiDocsPage } from '@/pages/ApiDocsPage'
 import { ToastContainer } from '@/components/feedback/ToastContainer'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -20,6 +21,7 @@ import { motion, useScroll, useAnimationControls, AnimatePresence } from 'framer
 import { useEffect, useState } from 'react'
 import { ArrowUp, Menu, X } from 'lucide-react'
 import { useEasterEgg } from '@/hooks/useEasterEgg'
+import { SystemStatus } from '@/components/ui/SystemStatus'
 
 const RootComponent = () => {
   useEasterEgg();
@@ -29,6 +31,21 @@ const RootComponent = () => {
   const controls = useAnimationControls();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { toggleVsCodeMode } = useUIStore();
+
+  const [level, setLevel] = useState(1);
+  const [showLevelUp, setShowLevelUp] = useState(false);
+
+  // Gamification logic
+  useEffect(() => {
+    return scrollYProgress.on('change', (latest) => {
+      const newLevel = Math.min(99, Math.floor(latest * 100) + 1);
+      if (newLevel > level && newLevel % 25 === 0) {
+        setShowLevelUp(true);
+        setTimeout(() => setShowLevelUp(false), 2000);
+      }
+      setLevel(newLevel);
+    });
+  }, [scrollYProgress, level]);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -58,11 +75,29 @@ const RootComponent = () => {
         className="fixed inset-0 pointer-events-none z-[-1] opacity-[0.04] dark:opacity-[0.05] print:hidden"
         style={{ backgroundImage: 'url("/img/code-bg.svg")', backgroundSize: '600px' }}
       />
-      {/* Barra de Progreso de Lectura */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-blue-600 dark:bg-blue-500 origin-left z-50 print:hidden"
-        style={{ scaleX: scrollYProgress }}
-      />
+      {/* Gamified XP Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1.5 bg-gray-200 dark:bg-gray-800 z-50 print:hidden overflow-hidden">
+        <motion.div
+          className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 origin-left"
+          style={{ scaleX: scrollYProgress }}
+        />
+        <div className="absolute right-2 top-2 text-[10px] font-mono font-bold text-blue-600 dark:text-blue-400 bg-white/80 dark:bg-black/80 px-2 py-0.5 rounded shadow-sm backdrop-blur-sm">
+          Lv. {level}
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {showLevelUp && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 20, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="fixed top-12 left-1/2 -translate-x-1/2 z-[100] bg-yellow-400 text-yellow-900 font-black px-6 py-2 rounded-full shadow-2xl border-2 border-yellow-200 text-sm tracking-widest uppercase print:hidden"
+          >
+            Level Up!
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <header className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b dark:border-gray-800 shadow-sm sticky top-0 z-40 transition-colors duration-300 print:hidden relative">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
@@ -101,6 +136,9 @@ const RootComponent = () => {
               </Link>
               <Link to="/job-analyzer" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.analyzer')}
+              </Link>
+              <Link to="/api-docs" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-mono">
+                API Docs
               </Link>
               <Link to="/contact" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.contact')}
@@ -166,6 +204,9 @@ const RootComponent = () => {
                 <Link to="/job-analyzer" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   {t('nav.analyzer')}
                 </Link>
+                <Link to="/api-docs" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-mono">
+                  API Docs
+                </Link>
                 <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   {t('nav.contact')}
                 </Link>
@@ -190,8 +231,15 @@ const RootComponent = () => {
       <main className="flex-1 max-w-6xl mx-auto w-full print:max-w-none print:w-full print:m-0 print:p-0">
         <Outlet />
       </main>
-      <footer className="bg-white dark:bg-gray-900 border-t dark:border-gray-800 py-6 mt-auto text-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300 print:hidden">
-        &copy; {new Date().getFullYear()} {t('footer.rights')}
+      <footer className="bg-white dark:bg-gray-900 border-t dark:border-gray-800 py-6 mt-auto text-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300 print:hidden flex flex-col items-center justify-center gap-4">
+        <p>&copy; {new Date().getFullYear()} {t('footer.rights')}</p>
+        <div className="flex flex-col sm:flex-row items-center gap-3">
+          <div className="flex items-center gap-1.5 text-xs text-green-600 dark:text-green-500 bg-green-50 dark:bg-green-500/10 px-3 py-1 rounded-full border border-green-200 dark:border-green-500/20">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" /></svg>
+            {i18n.language === 'es' ? 'Comprometido con la Accesibilidad Web' : 'Committed to Web Accessibility'}
+          </div>
+          <SystemStatus />
+        </div>
       </footer>
 
       {/* Botón Scroll to Top flotante */}
@@ -254,12 +302,19 @@ const analyzerRoute = createRoute({
   component: JobAnalyzerPage,
 })
 
+const apiDocsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/api-docs',
+  component: ApiDocsPage,
+})
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
   projectsRoute,
   coursesRoute,
   analyzerRoute,
+  apiDocsRoute,
   contactRoute,
 ])
 

@@ -116,3 +116,81 @@
 .retro-mode svg {
   color: #000 !important;
 }
+
+/* 
+  ATS-Friendly Print Styles 
+*/
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Hide absolutely everything that is interactive or visual fluff */
+  .retro-mode,
+  button, 
+  nav, 
+  header, 
+  footer, 
+  svg,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Reset all layout containers to block to avoid weird flex/grid breaks */
+  main, section, div, article {
+    display: block !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    page-break-inside: avoid;
+  }
+
+  /* Make typography extremely plain and readable for ATS */
+  h1, h2, h3, h4, h5, h6 {
+    color: black !important;
+    page-break-after: avoid;
+    margin-top: 15px !important;
+    margin-bottom: 5px !important;
+  }
+
+  h1 { font-size: 18pt !important; }
+  h2 { font-size: 14pt !important; border-bottom: 1px solid #000 !important; padding-bottom: 2px !important; }
+  h3 { font-size: 12pt !important; }
+  
+  p, li, span {
+    color: #333 !important;
+    font-size: 10pt !important;
+  }
+
+  ul, ol {
+    margin-left: 15px !important;
+    padding-left: 15px !important;
+  }
+  
+  li {
+    margin-bottom: 3px !important;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  
+  /* Show hrefs for links in print */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+  }
+}

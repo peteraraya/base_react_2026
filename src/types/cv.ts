@@ -10,6 +10,7 @@ export interface Project {
   period?: string;
   description?: string;
   link?: string;
+  image?: string;
   achievements: string[];
 }
 
@@ -47,6 +48,21 @@ export interface BestPractice {
   icon?: string;
 }
 
+export interface Testimonial {
+  name: string;
+  role: string;
+  text: string;
+  avatar?: string;
+}
+
+export interface Article {
+  title: string;
+  date: string;
+  readTime: string;
+  url: string;
+  summary: string;
+}
+
 export interface AboutMe {
   description: string;
   highlights: {
@@ -70,4 +86,6 @@ export interface CVData {
   courses?: Course[];
   languages?: Language[];
   bestPractices?: BestPractice[];
+  testimonials?: Testimonial[];
+  articles?: Article[];
 }

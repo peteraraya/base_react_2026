@@ -7,10 +7,12 @@ import { HeroSection } from '@/components/cv/HeroSection';
 import { SummarySection } from '@/components/cv/SummarySection';
 import { AboutMeSection } from '@/components/cv/AboutMeSection';
 import { CaseStudiesSection } from '@/components/cv/CaseStudiesSection';
+import { ArchitectureDiagram } from '@/components/cv/ArchitectureDiagram';
 import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
 import { EducationSection } from '@/components/cv/EducationSection';
+import { ArticlesSection } from '@/components/cv/ArticlesSection';
 import { CoursesSection } from '@/components/cv/CoursesSection';
 import { LanguagesSection } from '@/components/cv/LanguagesSection';
 import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
@@ -44,12 +46,18 @@ export function HomePage() {
     if (!isRecruiterMode && data.aboutMe) {
       sections.push({ id: 'about', labelEs: 'Sobre mí', labelEn: 'About Me' });
     }
+    // if (!isRecruiterMode && data.testimonials) {
+    //   sections.push({ id: 'testimonials', labelEs: 'Testimonios', labelEn: 'Testimonials' });
+    // }
     if (!isRecruiterMode) {
       sections.push({ id: 'case-studies', labelEs: 'Casos de Estudio', labelEn: 'Case Studies' });
     }
     sections.push({ id: 'experience', labelEs: 'Experiencia', labelEn: 'Experience' });
     sections.push({ id: 'skills', labelEs: 'Habilidades', labelEn: 'Skills' });
     sections.push({ id: 'projects', labelEs: 'Proyectos', labelEn: 'Projects' });
+    if (!isRecruiterMode && data.articles) {
+      sections.push({ id: 'articles', labelEs: 'Artículos', labelEn: 'Articles' });
+    }
     if (!isRecruiterMode) {
       sections.push({ id: 'showcase', labelEs: 'Showcase', labelEn: 'Showcase' });
     }
@@ -133,9 +141,21 @@ export function HomePage() {
         </FadeIn>
       )}
 
+      {/* {!isRecruiterMode && data.testimonials && (
+        <FadeIn delay={0.26} id="testimonials">
+          <TestimonialsSection testimonials={data.testimonials} />
+        </FadeIn>
+      )} */}
+
       {!isRecruiterMode && (
         <FadeIn delay={0.28} id="case-studies">
           <CaseStudiesSection />
+        </FadeIn>
+      )}
+
+      {!isRecruiterMode && (
+        <FadeIn delay={0.29}>
+          <ArchitectureDiagram />
         </FadeIn>
       )}
 
@@ -165,6 +185,12 @@ export function HomePage() {
           title={currentLang === 'es' ? 'Proyectos Destacados' : 'Featured Projects'} 
         />
       </FadeIn>
+
+      {!isRecruiterMode && data.articles && (
+        <FadeIn delay={0.42} id="articles">
+          <ArticlesSection articles={data.articles} />
+        </FadeIn>
+      )}
 
       {!isRecruiterMode && (
         <FadeIn delay={0.45} id="showcase">

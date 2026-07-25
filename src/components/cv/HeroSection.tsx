@@ -2,6 +2,8 @@ import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy } from 'lucide-re
 import { CVData } from '@/types/cv';
 import { useUIStore } from '@/stores/uiStore';
 import { useTranslation } from 'react-i18next';
+import { generateVCard } from '@/lib/vcard';
+import { Contact as ContactIcon } from 'lucide-react';
 
 export function HeroSection({ data }: { data: CVData }) {
   const addToast = useUIStore((s) => s.addToast);
@@ -93,6 +95,15 @@ export function HeroSection({ data }: { data: CVData }) {
           </a>
 
  
+
+          <button 
+            onClick={() => generateVCard(data.name, data.role, data.contact)}
+            className="flex items-center gap-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-700 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 rounded-full transition-all duration-300 font-bold text-sm outline-none"
+            title={isEs ? 'Añadir a mis contactos (vCard)' : 'Add to contacts (vCard)'}
+          >
+            <ContactIcon className="w-4 h-4 shrink-0 text-purple-500" aria-hidden="true" />
+            <span>vCard</span>
+          </button>
 
           <a 
             href="/CV_Pedro_Araya_2026.pdf" 

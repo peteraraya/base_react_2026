@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { cvData } from '@/data/cv';
 import { useUIStore } from '@/stores/uiStore';
 import { X, Code, FileText, FileJson, FileCode, Terminal, LayoutTemplate, Settings, Bell, Circle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 type FileKey = 'about' | 'experience' | 'projects' | 'skills';
 

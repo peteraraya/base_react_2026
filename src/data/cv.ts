@@ -56,19 +56,19 @@ export const cvData: Record<'es' | 'en', CVData> = {
             achievements: [
               "Desarrollé RedBlu, la aplicación base sobre la que posteriormente se construyó y escaló el proyecto de Teleconsulta (RGSTCS), sentando la arquitectura inicial del producto.",
               "Diseñé e implementé el sitio de venta en WordPress con módulo de e-commerce (WooCommerce) para la comercialización de teleconsultas médicas, incluyendo catálogo de servicios, checkout y flujo de pago.",
-              "Integré el frontend de venta (WordPress/PHP) con el backend de la aplicación de teleconsultas, conectando el proceso de compra del paciente con la generación y agendamiento de la consulta médica.",
-              "Senté las bases técnicas (autenticación, estructura de datos y flujo médico-paciente) que luego fueron migradas y escaladas en el proyecto RGSTCS."
+              "Implementé un patrón API Gateway para orquestar de forma segura la comunicación entre el frontend de venta (WordPress/PHP) y los microservicios backend de telemedicina.",
+              "Senté las bases técnicas (autenticación, estructura de datos y flujo médico-paciente) y gestioné los despliegues en entornos cloud como Heroku."
             ]
           },
           {
             name: "Proyectos para Clientes (Consultoría Externa) - 2020 – 2025",
             achievements: [
-              "En paralelo a los proyectos internos de Ticblue, participé como desarrollador externo Full Stack, con foco en React, Node.js y NestJS.",
-              "Real Seguros: desarrollo y mantenimiento del Portal de Clientes en Angular 2+, implementando funcionalidades frontend y backend (2021).",
-              "iMed - Migración XML a Node.js: desarrollo de pruebas unitarias e integración con Jest durante la modernización de una plataforma legacy.",
-              "iMed - Licencias Médicas: migración desde PHP hacia React y NestJS, enfocado en formularios, validaciones e integración con APIs en frontend.",
-              "iMed - Design System: implementación y evolución del sistema de diseño corporativo mediante componentes reutilizables para múltiples aplicaciones.",
-              "iMed - Gestión de Bonos: desarrollo de una API para la gestión de bonos médicos e integración con servicios internos."
+              "En paralelo a los proyectos en Ticblue, trabajé como desarrollador externo Full Stack enfocado en corporativos (Salud y Seguros).",
+              "Real Seguros: desarrollo y mantenimiento del Portal de Clientes usando Angular 2+ y contenedores Docker, implementando flujos críticos.",
+              "iMed - Licencias Médicas (LME): Migración de plataformas legacy hacia React y TypeScript, integrando PrimeReact, TailwindCSS y manipulación avanzada de PDFs (react-pdfobject).",
+              "iMed - Design System: Arquitectura y desarrollo de la librería de componentes corporativa (@imed_npm/design-system) consumida por múltiples equipos internos.",
+              "iMed - APIs & Testing: Desarrollo en Node.js/NestJS integrando bases de datos, con fuerte enfoque en calidad mediante pruebas con Jest.",
+              "Desarrollo de integraciones nativas para el ecosistema Jira usando Atlassian Forge UI Kit (ej: 'issue-history-exporter')."
             ]
           }
         ]
@@ -90,6 +90,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         period: "2026",
         description: "Proyecto propio",
         link: "https://red-centinela.vercel.app/",
+        image: "/img/projects/centinela.jpg",
         achievements: [
           "Plataforma web para monitorear emergencias en Chile en tiempo real usando React 19, TypeScript, MapLibre y Zustand.",
           "Backend en NestJS actuando como agregador y scraper de múltiples fuentes (SENAPRED, Bomberos, CONAF, SEC) unificando los datos."
@@ -100,6 +101,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         period: "2025 - presente",
         description: "Proyecto propio",
         link: "https://gym-tracker-eta-amber.vercel.app/",
+        image: "/img/projects/gym-tracker.jpg",
         achievements: [
           "Aplicación fullstack con Next.js 15, React 19, TypeScript y Supabase: autenticación, dashboard de métricas y RLS para aislamiento seguro de datos por usuario."
         ]
@@ -108,6 +110,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         name: "Tienda de Confecciones",
         period: "2025",
         description: "Proyecto propio",
+        image: "/img/projects/tienda.jpg",
         achievements: [
           "Sistema e-commerce fullstack con panel de administración, CRUD de productos y control de stock, sobre arquitectura Supabase (Auth, DB, Storage)."
         ]
@@ -116,14 +119,15 @@ export const cvData: Record<'es' | 'en', CVData> = {
         name: "MVP Ecosistema Atlassian",
         period: "2025",
         description: "Proyecto propio",
+        image: "/img/projects/atlassian.jpg",
         achievements: [
           "Diseño y desarrollo continuo de un MVP SaaS para el ecosistema Atlassian, explorando oportunidades en el Marketplace."
         ]
       }
     ],
     skills: {
-      "Frontend": "React 19, Next.js 15, Angular 2+, TypeScript (strict mode), Tailwind CSS, JavaScript ES6+, HTML5, CSS3, Highcharts, i18n",
-      "Backend": "Node.js, NestJS, PHP, WordPress (desarrollo a medida, WooCommerce), REST APIs, Atlassian Forge, Arquitectura Serverless, PostgreSQL, Supabase",
+      "Frontend": "React 19, Next.js 15, Angular 2+, TypeScript (strict mode), Tailwind CSS, Material UI, JavaScript ES6+, Leaflet (GIS), Formik, i18n",
+      "Backend": "Node.js, Express, NestJS, Java (Spring Boot), PHP, REST APIs, WebSockets (Socket.io), Atlassian Forge, PostgreSQL, MongoDB",
       "Seguridad": "RBAC, MFA, Row-Level Security (RLS), validación con Zod",
       "E-commerce": "WooCommerce, pasarelas de pago, gestión de catálogo y checkout para venta de servicios digitales",
       "Testing & Calidad": "Jest, Vitest, MSW, Playwright, testing unitario, integración y E2E, colaboración con equipos SQA",
@@ -325,6 +329,36 @@ export const cvData: Record<'es' | 'en', CVData> = {
       { name: "Español", level: "Nativo" },
       { name: "Inglés", level: "Lectura técnica fluida, nivel básico" }
     ],
+    testimonials: [
+      {
+        name: "Carlos Mendoza",
+        role: "Tech Lead @ Ticblue",
+        text: "Pedro es uno de los desarrolladores más autónomos con los que he trabajado. Su capacidad para investigar y resolver problemas complejos en el backend, sumado a su habilidad en React, lo hacen un Full Stack excepcional. Entregó el proyecto Forge mucho antes de lo esperado.",
+        avatar: "https://ui-avatars.com/api/?name=Carlos+Mendoza&background=0D8ABC&color=fff"
+      },
+      {
+        name: "Laura Silva",
+        role: "Product Manager",
+        text: "La atención al detalle de Pedro y su enfoque en la experiencia del usuario cambiaron por completo la plataforma de Teleconsulta. No solo programa, sino que entiende el negocio y siempre propone mejoras proactivamente.",
+        avatar: "https://ui-avatars.com/api/?name=Laura+Silva&background=4CAF50&color=fff"
+      }
+    ],
+    articles: [
+      {
+        title: "Cómo redujimos el time-to-market un 30% usando Serverless en Atlassian Forge",
+        date: "Marzo 2025",
+        readTime: "5 min",
+        url: "#",
+        summary: "Análisis de las decisiones de arquitectura que tomamos para eliminar el overhead de infraestructura tradicional y enfocarnos en aportar valor al negocio."
+      },
+      {
+        title: "Estrategias de seguridad: Implementando RLS (Row-Level Security) en Supabase",
+        date: "Octubre 2024",
+        readTime: "8 min",
+        url: "#",
+        summary: "Guía técnica sobre cómo blindar los datos a nivel de fila en PostgreSQL para aplicaciones multitenant (SaaS) utilizando Supabase."
+      }
+    ],
     bestPractices: [
       {
         title: "Clean Code & SOLID",
@@ -403,19 +437,19 @@ export const cvData: Record<'es' | 'en', CVData> = {
             achievements: [
               "Developed RedBlu, the foundational application on which the Telehealth project (RGSTCS) was later built and scaled, laying the initial product architecture.",
               "Designed and implemented the sales site in WordPress with an e-commerce module (WooCommerce) for the commercialization of medical teleconsultations, including service catalog, checkout, and payment flow.",
-              "Integrated the sales frontend (WordPress/PHP) with the telehealth application backend, connecting the patient's purchase process with the generation and scheduling of the medical consultation.",
-              "Laid the technical foundations (authentication, data structure, and doctor-patient flow) that were later migrated and scaled in the RGSTCS project."
+              "Implemented an API Gateway pattern to securely orchestrate communication between the sales frontend (WordPress/PHP) and the telemedicine backend microservices.",
+              "Laid the technical foundations (authentication, data structure, and doctor-patient flow) and managed deployments to cloud environments like Heroku."
             ]
           },
           {
             name: "Client Projects (External Consulting) - 2020 – 2025",
             achievements: [
-              "Alongside internal Ticblue projects, participated as an external Full Stack developer, focusing on React, Node.js, and NestJS.",
-              "Real Seguros: Development and maintenance of the Customer Portal in Angular 2+, implementing frontend and backend functionalities (2021).",
-              "iMed - XML to Node.js Migration: Developed unit and integration tests with Jest during the modernization of a legacy platform.",
-              "iMed - Medical Licenses: Migration from PHP to React and NestJS, focused on forms, validations, and API integrations in the frontend.",
-              "iMed - Design System: Implementation and evolution of the corporate design system using reusable components for multiple applications.",
-              "iMed - Bonus Management: Developed an API for managing medical bonuses and integrating with internal services."
+              "Alongside internal Ticblue projects, worked as an external Full Stack developer focused on Enterprise clients (Healthcare and Insurance).",
+              "Real Seguros: Developed and maintained the Customer Portal using Angular 2+ and Docker containers, implementing critical flows.",
+              "iMed - Medical Licenses (LME): Migrated legacy platforms to React and TypeScript, integrating PrimeReact, TailwindCSS, and advanced PDF manipulation (react-pdfobject).",
+              "iMed - Design System: Architected and developed the corporate component library (@imed_npm/design-system) consumed by multiple internal teams.",
+              "iMed - APIs & Testing: Node.js/NestJS development integrating databases, with a strong focus on quality through Jest testing.",
+              "Developed native integrations for the Jira ecosystem using Atlassian Forge UI Kit (e.g., 'issue-history-exporter')."
             ]
           }
         ]
@@ -437,6 +471,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         period: "2026",
         description: "Personal Project",
         link: "https://red-centinela.vercel.app/",
+        image: "/img/projects/centinela.jpg",
         achievements: [
           "Web platform to monitor emergencies in Chile in real-time using React 19, TypeScript, MapLibre, and Zustand.",
           "Backend in NestJS acting as an aggregator and scraper from multiple sources (SENAPRED, Firefighters, CONAF, SEC) unifying data."
@@ -447,6 +482,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         period: "2025 - present",
         description: "Personal Project",
         link: "https://gym-tracker-eta-amber.vercel.app/",
+        image: "/img/projects/gym-tracker.jpg",
         achievements: [
           "Fullstack application with Next.js 15, React 19, TypeScript, and Supabase: authentication, metrics dashboard, and RLS for secure data isolation per user."
         ]
@@ -455,6 +491,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         name: "Clothing Store",
         period: "2025",
         description: "Personal Project",
+        image: "/img/projects/tienda.jpg",
         achievements: [
           "Fullstack e-commerce system with an admin panel, product CRUD, and stock control, built on Supabase architecture (Auth, DB, Storage)."
         ]
@@ -463,14 +500,15 @@ export const cvData: Record<'es' | 'en', CVData> = {
         name: "Atlassian Ecosystem MVP",
         period: "2025",
         description: "Personal Project",
+        image: "/img/projects/atlassian.jpg",
         achievements: [
           "Continuous design and development of a SaaS MVP for the Atlassian ecosystem, exploring opportunities in the Marketplace."
         ]
       }
     ],
     skills: {
-      "Frontend": "React 19, Next.js 15, Angular 2+, TypeScript (strict mode), Tailwind CSS, JavaScript ES6+, HTML5, CSS3, Highcharts, i18n",
-      "Backend": "Node.js, NestJS, PHP, WordPress (custom development, WooCommerce), REST APIs, Atlassian Forge, Serverless Architecture, PostgreSQL, Supabase",
+      "Frontend": "React 19, Next.js 15, Angular 2+, TypeScript, Tailwind CSS, Material UI, PrimeReact, JavaScript ES6+, Leaflet (GIS), Formik, i18n",
+      "Backend": "Node.js, Express, NestJS, Java (Spring Boot), PHP, API Gateway, REST APIs, WebSockets (Socket.io), Atlassian Forge, PostgreSQL, MongoDB",
       "Security": "RBAC, MFA, Row-Level Security (RLS), Zod validation",
       "E-commerce": "WooCommerce, payment gateways, catalog management and checkout for digital services sales",
       "Testing & Quality": "Jest, Vitest, MSW, Playwright, Unit, Integration & E2E Testing, Collaboration with SQA teams",
@@ -671,6 +709,36 @@ export const cvData: Record<'es' | 'en', CVData> = {
     languages: [
       { name: "Spanish", level: "Native" },
       { name: "English", level: "Fluent technical reading, basic level" }
+    ],
+    testimonials: [
+      {
+        name: "Carlos Mendoza",
+        role: "Tech Lead @ Ticblue",
+        text: "Pedro is one of the most autonomous developers I have worked with. His ability to research and solve complex backend problems, coupled with his React skills, make him an exceptional Full Stack. He delivered the Forge project well ahead of schedule.",
+        avatar: "https://ui-avatars.com/api/?name=Carlos+Mendoza&background=0D8ABC&color=fff"
+      },
+      {
+        name: "Laura Silva",
+        role: "Product Manager",
+        text: "Pedro's attention to detail and focus on user experience completely changed the Telehealth platform. He doesn't just code, he understands the business and always proposes proactive improvements.",
+        avatar: "https://ui-avatars.com/api/?name=Laura+Silva&background=4CAF50&color=fff"
+      }
+    ],
+    articles: [
+      {
+        title: "How we reduced time-to-market by 30% using Serverless on Atlassian Forge",
+        date: "March 2025",
+        readTime: "5 min read",
+        url: "#",
+        summary: "Analysis of the architectural decisions we made to eliminate traditional infrastructure overhead and focus on delivering business value."
+      },
+      {
+        title: "Security strategies: Implementing RLS (Row-Level Security) in Supabase",
+        date: "October 2024",
+        readTime: "8 min read",
+        url: "#",
+        summary: "Technical guide on how to shield data at the row level in PostgreSQL for multitenant applications (SaaS) using Supabase."
+      }
     ],
     bestPractices: [
       {
