@@ -74,7 +74,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         ]
       },
       {
-        company: "Empresa anterior",
+        company: "Prevsis",
         role: "Desarrollador Frontend",
         period: "2018 – Julio 2020",
         achievements: [

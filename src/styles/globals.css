@@ -27,3 +27,92 @@
     scrollbar-width: none;
   }
 }
+
+/* 
+  Windows 98 Retro Mode
+  Overrides everything visually to make it look ancient.
+*/
+.retro-mode {
+  font-family: "MS Sans Serif", Tahoma, Geneva, sans-serif !important;
+  background-color: #008080 !important;
+}
+.retro-mode body {
+  background-color: transparent !important;
+  color: #000000 !important;
+}
+
+/* Force elements to look like Win98 Windows */
+.retro-mode div, 
+.retro-mode main,
+.retro-mode section,
+.retro-mode header,
+.retro-mode footer,
+.retro-mode article {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.retro-mode header {
+  background-color: #c0c0c0 !important;
+  border-bottom: 2px solid #000 !important;
+  box-shadow: inset 1px 1px #dfdfdf, 1px 0 #000, 0 1px #000, 1px 1px #000 !important;
+}
+
+.retro-mode button, 
+.retro-mode a {
+  background-color: #c0c0c0 !important;
+  color: #000000 !important;
+  border-radius: 0 !important;
+  border: 2px solid !important;
+  border-top-color: #ffffff !important;
+  border-left-color: #ffffff !important;
+  border-right-color: #808080 !important;
+  border-bottom-color: #808080 !important;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf !important;
+  font-family: "MS Sans Serif", Tahoma, Geneva, sans-serif !important;
+  text-decoration: none !important;
+}
+
+.retro-mode button:active,
+.retro-mode a:active {
+  border-top-color: #000000 !important;
+  border-left-color: #000000 !important;
+  border-right-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  box-shadow: inset 1px 1px #808080 !important;
+  padding-top: 2px !important;
+  padding-left: 2px !important;
+}
+
+.retro-mode h1, 
+.retro-mode h2, 
+.retro-mode h3, 
+.retro-mode p, 
+.retro-mode span {
+  font-family: "MS Sans Serif", Tahoma, Geneva, sans-serif !important;
+  color: #000 !important;
+  text-shadow: none !important;
+}
+
+/* Content blocks */
+.retro-mode .bg-white, 
+.retro-mode .dark\:bg-gray-800,
+.retro-mode .dark\:bg-gray-900 {
+  background-color: #c0c0c0 !important;
+  border: 2px solid !important;
+  border-top-color: #ffffff !important;
+  border-left-color: #ffffff !important;
+  border-right-color: #808080 !important;
+  border-bottom-color: #808080 !important;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf !important;
+}
+
+.retro-mode .text-gray-500,
+.retro-mode .text-gray-400 {
+  color: #000080 !important;
+}
+
+.retro-mode svg {
+  color: #000 !important;
+}

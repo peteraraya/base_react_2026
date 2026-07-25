@@ -17,6 +17,8 @@ import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
 import { BestPracticesSection } from '@/components/cv/BestPracticesSection';
 import { TerminalSection } from '@/components/cv/TerminalSection';
 import { ImpactMetrics } from '@/components/cv/ImpactMetrics';
+import { LighthouseScore } from '@/components/cv/LighthouseScore';
+import { GitHubStats } from '@/components/cv/GitHubStats';
 import { useState, useMemo } from 'react';
 import { FileText, Zap } from 'lucide-react';
 import { TableOfContents, type Section } from '@/components/navigation/TableOfContents';
@@ -26,6 +28,9 @@ export function HomePage() {
   const currentLang = i18n.language === 'es' ? 'es' : 'en';
   const data = cvData[currentLang];
   const [isRecruiterMode, setIsRecruiterMode] = useState(false);
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const company = searchParams.get('empresa');
 
   const tableOfContentsSections = useMemo<Section[]>(() => {
     const sections: Section[] = [
@@ -89,6 +94,19 @@ export function HomePage() {
       <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent -z-10 pointer-events-none transition-colors duration-300 print:hidden" aria-hidden="true" />
       
       <main className="max-w-4xl w-full mx-auto p-4 sm:p-8 space-y-16 relative z-0 print:p-0 print:space-y-8">
+        
+        {company && (
+          <FadeIn delay={0.05}>
+            <div className="bg-blue-100 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-8 text-center animate-pulse">
+              <h2 className="text-lg md:text-xl font-bold text-blue-800 dark:text-blue-300">
+                {currentLang === 'es' 
+                  ? `👋 ¡Hola equipo de ${company}! Sería un honor aportar con mis habilidades a su equipo.`
+                  : `👋 Hello ${company} team! It would be an honor to bring my skills to your team.`}
+              </h2>
+            </div>
+          </FadeIn>
+        )}
+
         <FadeIn delay={0.1} id="hero">
         <HeroSection data={data} />
       </FadeIn>
@@ -134,6 +152,12 @@ export function HomePage() {
           title={currentLang === 'es' ? 'Habilidades Técnicas' : 'Technical Skills'} 
         />
       </FadeIn>
+
+      {!isRecruiterMode && (
+        <FadeIn delay={0.35}>
+          <GitHubStats />
+        </FadeIn>
+      )}
 
       <FadeIn delay={0.4} id="projects">
         <ProjectsSection 
@@ -192,6 +216,10 @@ export function HomePage() {
             </div>
           </FadeIn>
         )}
+
+        <FadeIn delay={0.8}>
+          <LighthouseScore />
+        </FadeIn>
       </main>
     </div>
     </PageTransition>

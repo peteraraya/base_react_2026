@@ -2,6 +2,7 @@ import { Command } from 'cmdk';
 import { useEffect, useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { useUIStore } from '@/stores/uiStore';
 import { 
   Monitor, Moon, Sun, 
   Home, User, Briefcase, BookOpen, Mail, 
@@ -127,6 +128,12 @@ export function CommandPalette() {
               document.documentElement.classList.toggle('invert');
             })} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
               🦇 Modo Invertido
+            </Command.Item>
+            <Command.Item onSelect={() => runCommand(() => {
+              const store = useUIStore.getState();
+              store.setRetroMode(!store.isRetroMode);
+            })} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
+              🕰️ Viajar al 1998 (Retro Mode)
             </Command.Item>
           </Command.Group>
         </Command.List>

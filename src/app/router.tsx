@@ -12,17 +12,23 @@ import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { CommandPalette } from '@/components/ui/CommandPalette'
 import { CustomCursor } from '@/components/ui/CustomCursor'
+import { AIChatWidget } from '@/components/ui/AIChatWidget'
+import { VSCodeMode } from '@/components/ui/VSCodeMode'
 import { cvData } from '@/data/cv'
+import { useUIStore } from '@/stores/uiStore'
 import { motion, useScroll, useAnimationControls, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { ArrowUp, Menu, X } from 'lucide-react'
+import { useEasterEgg } from '@/hooks/useEasterEgg'
 
 const RootComponent = () => {
+  useEasterEgg();
   const { t, i18n } = useTranslation();
   const { scrollYProgress, scrollY } = useScroll();
   const cv = cvData[i18n.language as keyof typeof cvData] || cvData.es;
   const controls = useAnimationControls();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { toggleVsCodeMode } = useUIStore();
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -46,7 +52,12 @@ const RootComponent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300 print:bg-white print:text-black">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300 print:bg-white print:text-black relative z-0">
+      {/* Background Code Pattern */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-[-1] opacity-[0.04] dark:opacity-[0.05] print:hidden"
+        style={{ backgroundImage: 'url("/img/code-bg.svg")', backgroundSize: '600px' }}
+      />
       {/* Barra de Progreso de Lectura */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-blue-600 dark:bg-blue-500 origin-left z-50 print:hidden"
@@ -103,6 +114,13 @@ const RootComponent = () => {
                 title={i18n.language === 'es' ? 'Abrir paleta de comandos' : 'Open command palette'}
               >
                 <span className="text-[10px]">⌘</span>K
+              </button>
+              <button 
+                onClick={toggleVsCodeMode}
+                className="flex items-center gap-1 px-2 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 rounded-md hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors mr-2 border border-blue-200 dark:border-blue-800"
+                title={i18n.language === 'es' ? 'Modo VS Code' : 'VS Code Mode'}
+              >
+                {'</>'}
               </button>
               <ThemeToggle />
               <LanguageSwitcher />
@@ -190,6 +208,8 @@ const RootComponent = () => {
       <ToastContainer />
       <CommandPalette />
       <CustomCursor />
+      <AIChatWidget />
+      <VSCodeMode />
     </div>
   );
 };
