@@ -174,13 +174,13 @@ export function CaseStudiesSection() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setSelectedId(null)}
-              className="fixed inset-0 bg-gray-900/20 dark:bg-black/40 backdrop-blur-md z-40"
+              className="fixed inset-0 bg-white/20 dark:bg-black/40 backdrop-blur-3xl z-40"
             />
             <div className="fixed inset-0 flex items-center justify-center z-50 p-4 sm:p-6 pointer-events-none">
               <motion.div
                 layoutId={`card-container-${selectedStudy.id}`}
                 transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                className="w-full max-w-3xl bg-white dark:bg-[#0a0a0a] rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl overflow-hidden pointer-events-auto border border-gray-200/50 dark:border-white/10 max-h-[90vh] flex flex-col relative"
+                className="w-full max-w-3xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl overflow-hidden pointer-events-auto border border-white/50 dark:border-white/10 max-h-[90vh] flex flex-col relative"
               >
                 {/* Background glow in modal */}
                 <div className={`absolute top-0 left-0 w-full h-48 bg-gradient-to-b ${selectedStudy.gradient} opacity-50`} />

@@ -8,6 +8,8 @@ import { CoursesPage } from '@/pages/CoursesPage'
 import { JobAnalyzerPage } from '@/pages/JobAnalyzerPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { ApiDocsPage } from '@/pages/ApiDocsPage'
+import { HireMePage } from '@/pages/HireMePage'
+import { DesignSystemPage } from '@/pages/DesignSystemPage'
 import { ToastContainer } from '@/components/feedback/ToastContainer'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -69,7 +71,7 @@ const RootComponent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300 print:bg-white print:text-black relative z-0">
+    <div className="min-h-[100dvh] bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300 print:bg-white print:text-black relative z-0">
       {/* Background Code Pattern */}
       <div 
         className="fixed inset-0 pointer-events-none z-[-1] opacity-[0.04] dark:opacity-[0.05] print:hidden"
@@ -134,11 +136,11 @@ const RootComponent = () => {
               <Link to="/courses" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.courses')}
               </Link>
-              <Link to="/job-analyzer" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
-                {t('nav.analyzer')}
-              </Link>
               <Link to="/api-docs" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-mono">
                 API Docs
+              </Link>
+              <Link to="/hire-me" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                {i18n.language === 'es' ? 'Propuesta de Valor' : 'Value Proposition'}
               </Link>
               <Link to="/contact" className="[&.active]:font-semibold [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
                 {t('nav.contact')}
@@ -201,11 +203,11 @@ const RootComponent = () => {
                 <Link to="/courses" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   {t('nav.courses')}
                 </Link>
-                <Link to="/job-analyzer" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                  {t('nav.analyzer')}
-                </Link>
                 <Link to="/api-docs" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-mono">
                   API Docs
+                </Link>
+                <Link to="/hire-me" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                  {i18n.language === 'es' ? 'Propuesta de Valor' : 'Value Proposition'}
                 </Link>
                 <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 rounded-md [&.active]:bg-blue-50 dark:[&.active]:bg-blue-900/20 [&.active]:text-blue-600 dark:[&.active]:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   {t('nav.contact')}
@@ -308,6 +310,18 @@ const apiDocsRoute = createRoute({
   component: ApiDocsPage,
 })
 
+const hireMeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/hire-me',
+  component: HireMePage,
+})
+
+const dsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/design-system',
+  component: DesignSystemPage,
+})
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
@@ -315,6 +329,8 @@ const routeTree = rootRoute.addChildren([
   coursesRoute,
   analyzerRoute,
   apiDocsRoute,
+  hireMeRoute,
+  dsRoute,
   contactRoute,
 ])
 

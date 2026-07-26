@@ -21,9 +21,11 @@ import { TerminalSection } from '@/components/cv/TerminalSection';
 import { ImpactMetrics } from '@/components/cv/ImpactMetrics';
 import { LighthouseScore } from '@/components/cv/LighthouseScore';
 import { GitHubStats } from '@/components/cv/GitHubStats';
+import { CodeReviewSection } from '@/components/cv/CodeReviewSection';
 import { useState, useMemo } from 'react';
 import { FileText, Zap } from 'lucide-react';
 import { TableOfContents, type Section } from '@/components/navigation/TableOfContents';
+import { GitHubCalendar } from 'react-github-calendar';
 
 export function HomePage() {
   const { i18n } = useTranslation();
@@ -33,6 +35,16 @@ export function HomePage() {
 
   const searchParams = new URLSearchParams(window.location.search);
   const company = searchParams.get('empresa');
+
+  const calendarLabels = currentLang === 'es' ? {
+    totalCount: '{{count}} contribuciones en el último año',
+    legend: {
+      less: 'Menos',
+      more: 'Más',
+    },
+    months: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+  } : undefined;
 
   const tableOfContentsSections = useMemo<Section[]>(() => {
     const sections: Section[] = [
@@ -179,6 +191,25 @@ export function HomePage() {
         </FadeIn>
       )}
 
+      {!isRecruiterMode && (
+        <FadeIn delay={0.38}>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col items-center overflow-x-auto transition-colors duration-300">
+            <h3 className="text-lg font-bold mb-6 text-gray-900 dark:text-gray-100 w-full text-left">
+              {currentLang === 'es' ? 'Historial de Commits' : 'Commit History'}
+            </h3>
+            <div className="w-full flex justify-center text-gray-800 dark:text-gray-200">
+              <GitHubCalendar 
+                username="peteraraya" 
+                fontSize={12}
+                blockMargin={4}
+                blockSize={12}
+                labels={calendarLabels}
+              />
+            </div>
+          </div>
+        </FadeIn>
+      )}
+
       <FadeIn delay={0.4} id="projects">
         <ProjectsSection 
           projects={data.projects} 
@@ -195,6 +226,12 @@ export function HomePage() {
       {!isRecruiterMode && (
         <FadeIn delay={0.45} id="showcase">
           <ShowcaseSection lang={currentLang} />
+        </FadeIn>
+      )}
+
+      {!isRecruiterMode && (
+        <FadeIn delay={0.46}>
+          <CodeReviewSection />
         </FadeIn>
       )}
 
