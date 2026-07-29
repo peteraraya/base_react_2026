@@ -2,6 +2,7 @@ import { Command } from 'cmdk';
 import { useEffect, useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { useUIStore } from '@/stores/uiStore';
 import { 
   Monitor, Moon, Sun, 
   Home, User, Briefcase, BookOpen, Mail, 
@@ -115,6 +116,9 @@ export function CommandPalette() {
           </Command.Group>
 
           <Command.Group heading={i18n.language === 'es' ? "Secretos 👀" : "Secrets 👀"} className="text-xs font-medium text-gray-500 mb-1 px-2 py-2 border-t border-gray-100 dark:border-gray-800 mt-2">
+            <Command.Item onSelect={() => runCommand(() => navigate({ to: '/job-analyzer' }))} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
+              🧠 {i18n.language === 'es' ? 'Analizador de Ofertas (Job Analyzer)' : 'Job Analyzer'}
+            </Command.Item>
             <Command.Item onSelect={() => runCommand(() => {
               document.body.animate([
                 { transform: 'rotate(0)' },
@@ -127,6 +131,15 @@ export function CommandPalette() {
               document.documentElement.classList.toggle('invert');
             })} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
               🦇 Modo Invertido
+            </Command.Item>
+            <Command.Item onSelect={() => runCommand(() => {
+              const store = useUIStore.getState();
+              store.setRetroMode(!store.isRetroMode);
+            })} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
+              🕰️ Viajar al 1998 (Retro Mode)
+            </Command.Item>
+            <Command.Item onSelect={() => runCommand(() => navigate({ to: '/design-system' }))} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
+              🎨 Design System (Component Library)
             </Command.Item>
           </Command.Group>
         </Command.List>

@@ -14,10 +14,10 @@ export function TerminalSection() {
     
     let newOutput = <></>;
     
-    if (cmd === 'npx pedro-araya') {
+    if (cmd === 'npx pedro-araya' || cmd === 'npx pedro-araya-cv') {
       newOutput = (
         <div className="text-green-400">
-          <p>{`> Executing npx pedro-araya...`}</p>
+          <p>{`> Executing npx pedro-araya-cv...`}</p>
           <br/>
           <p className="font-bold text-blue-400">Pedro Araya - Full Stack Developer</p>
           <p>Location: Chile</p>
@@ -36,7 +36,7 @@ export function TerminalSection() {
     } else if (cmd === '') {
       newOutput = <></>;
     } else {
-      newOutput = <p className="text-red-400">Command not found: {cmd}. Try 'npx pedro-araya'</p>;
+      newOutput = <p className="text-red-400">Command not found: {cmd}. Try 'npx pedro-araya-cv'</p>;
     }
 
     setOutput(prev => [...prev, 
@@ -48,16 +48,37 @@ export function TerminalSection() {
     setInput('');
   };
 
+  const [typedWelcome, setTypedWelcome] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+
   useEffect(() => {
     if (output.length === 0) {
-      setOutput([
-        <div key="welcome" className="mb-4">
-          <p className="text-green-400">{t('nav.home') === 'Inicio' ? "Bienvenido a la Terminal de Pedro." : "Welcome to Pedro's Terminal."}</p>
-          <p className="text-gray-400">{t('nav.home') === 'Inicio' ? "Escribe" : "Type"} <span className="text-white font-bold">npx pedro-araya</span> {t('nav.home') === 'Inicio' ? "para ver mi información, o" : "to see my card, or"} <span className="text-white font-bold">clear</span> {t('nav.home') === 'Inicio' ? "para limpiar." : "to reset."}</p>
-        </div>
-      ]);
+      const fullText = t('nav.home') === 'Inicio' ? "Bienvenido a la Terminal de Pedro." : "Welcome to Pedro's Terminal.";
+      let currentText = '';
+      let i = 0;
+      
+      const interval = setInterval(() => {
+        if (i < fullText.length) {
+          currentText += fullText.charAt(i);
+          setTypedWelcome(currentText);
+          i++;
+        } else {
+          clearInterval(interval);
+          setIsTyping(false);
+          setOutput([
+            <div key="welcome" className="mb-4">
+              <p className="text-green-400">{fullText}</p>
+              <p className="text-gray-400 mt-2 transition-opacity duration-1000">
+                {t('nav.home') === 'Inicio' ? "Escribe" : "Type"} <span className="text-white font-bold text-blue-400 bg-blue-900/30 px-1 rounded">npx pedro-araya-cv</span> {t('nav.home') === 'Inicio' ? "para ver mi información, o" : "to see my card, or"} <span className="text-white font-bold">clear</span> {t('nav.home') === 'Inicio' ? "para limpiar." : "to reset."}
+              </p>
+            </div>
+          ]);
+        }
+      }, 50);
+      
+      return () => clearInterval(interval);
     }
-  }, [output.length]);
+  }, [output.length, t]);
 
   return (
     <div className="w-full rounded-xl overflow-hidden bg-[#1e1e1e] border border-gray-800 shadow-2xl font-mono text-sm print:hidden">
@@ -75,15 +96,26 @@ export function TerminalSection() {
       </div>
       
       {/* Terminal Body */}
+      <div className="bg-[#1e1e1e] border-b border-gray-800 px-4 py-2 flex items-center justify-between text-xs text-gray-500">
+        <span className="flex items-center gap-2">🚀 Try in your real terminal: <code className="text-blue-400 select-all font-bold">npx pedro-araya-cv</code></span>
+      </div>
+      
+      {/* Terminal Body */}
       <div 
-        className="p-4 h-64 overflow-y-auto text-gray-300"
+        className="p-4 h-64 overflow-y-auto text-gray-300 relative group"
         onClick={() => inputRef.current?.focus()}
       >
-        {output.map((out, i) => (
-          <div key={i}>{out}</div>
-        ))}
+        {isTyping ? (
+          <div className="mb-4">
+            <p className="text-green-400">{typedWelcome}<span className="animate-pulse">_</span></p>
+          </div>
+        ) : (
+          output.map((out, i) => (
+            <div key={i}>{out}</div>
+          ))
+        )}
         
-        <form onSubmit={handleSubmit} className="flex items-center mt-2">
+        <form onSubmit={handleSubmit} className={`flex items-center mt-2 ${isTyping ? 'opacity-0' : 'opacity-100 transition-opacity'}`}>
           <span className="text-green-400 mr-2">$</span>
           <input
             ref={inputRef}

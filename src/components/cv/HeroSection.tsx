@@ -2,6 +2,8 @@ import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy } from 'lucide-re
 import { CVData } from '@/types/cv';
 import { useUIStore } from '@/stores/uiStore';
 import { useTranslation } from 'react-i18next';
+import { generateVCard } from '@/lib/vcard';
+import { Contact as ContactIcon } from 'lucide-react';
 
 export function HeroSection({ data }: { data: CVData }) {
   const addToast = useUIStore((s) => s.addToast);
@@ -17,8 +19,15 @@ export function HeroSection({ data }: { data: CVData }) {
   };
 
   return (
-    <section className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 text-left">
-      <div className="w-32 h-32 sm:w-40 sm:h-40 shrink-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors duration-300">
+    <section className="relative flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 text-left p-4 sm:p-8 rounded-3xl overflow-hidden mb-12">
+      {/* Background Animated Orbs for Premium SaaS look */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none print:hidden">
+        <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/20 dark:bg-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+        <div className="absolute top-10 -right-20 w-72 h-72 bg-purple-500/20 dark:bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-20 left-20 w-72 h-72 bg-emerald-500/20 dark:bg-emerald-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="w-32 h-32 sm:w-40 sm:h-40 shrink-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-colors duration-300 relative z-10">
         <img src="/img/pedroaraya.png" alt={data.name} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=Pedro+Araya&size=160&background=random'; }} />
       </div>
 
@@ -93,6 +102,15 @@ export function HeroSection({ data }: { data: CVData }) {
           </a>
 
  
+
+          <button 
+            onClick={() => generateVCard(data.name, data.role, data.contact)}
+            className="flex items-center gap-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-700 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 rounded-full transition-all duration-300 font-bold text-sm outline-none"
+            title={isEs ? 'Añadir a mis contactos (vCard)' : 'Add to contacts (vCard)'}
+          >
+            <ContactIcon className="w-4 h-4 shrink-0 text-purple-500" aria-hidden="true" />
+            <span>vCard</span>
+          </button>
 
           <a 
             href="/CV_Pedro_Araya_2026.pdf" 

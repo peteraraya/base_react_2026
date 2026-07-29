@@ -7,25 +7,44 @@ import { HeroSection } from '@/components/cv/HeroSection';
 import { SummarySection } from '@/components/cv/SummarySection';
 import { AboutMeSection } from '@/components/cv/AboutMeSection';
 import { CaseStudiesSection } from '@/components/cv/CaseStudiesSection';
+import { ArchitectureDiagram } from '@/components/cv/ArchitectureDiagram';
 import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
 import { EducationSection } from '@/components/cv/EducationSection';
+import { ArticlesSection } from '@/components/cv/ArticlesSection';
 import { CoursesSection } from '@/components/cv/CoursesSection';
 import { LanguagesSection } from '@/components/cv/LanguagesSection';
 import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
 import { BestPracticesSection } from '@/components/cv/BestPracticesSection';
 import { TerminalSection } from '@/components/cv/TerminalSection';
 import { ImpactMetrics } from '@/components/cv/ImpactMetrics';
+import { LighthouseScore } from '@/components/cv/LighthouseScore';
+import { GitHubStats } from '@/components/cv/GitHubStats';
+import { CodeReviewSection } from '@/components/cv/CodeReviewSection';
 import { useState, useMemo } from 'react';
 import { FileText, Zap } from 'lucide-react';
 import { TableOfContents, type Section } from '@/components/navigation/TableOfContents';
+import { GitHubCalendar } from 'react-github-calendar';
 
 export function HomePage() {
   const { i18n } = useTranslation();
   const currentLang = i18n.language === 'es' ? 'es' : 'en';
   const data = cvData[currentLang];
   const [isRecruiterMode, setIsRecruiterMode] = useState(false);
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const company = searchParams.get('empresa');
+
+  const calendarLabels = currentLang === 'es' ? {
+    totalCount: '{{count}} contribuciones en el último año',
+    legend: {
+      less: 'Menos',
+      more: 'Más',
+    },
+    months: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+  } : undefined;
 
   const tableOfContentsSections = useMemo<Section[]>(() => {
     const sections: Section[] = [
@@ -39,12 +58,18 @@ export function HomePage() {
     if (!isRecruiterMode && data.aboutMe) {
       sections.push({ id: 'about', labelEs: 'Sobre mí', labelEn: 'About Me' });
     }
+    // if (!isRecruiterMode && data.testimonials) {
+    //   sections.push({ id: 'testimonials', labelEs: 'Testimonios', labelEn: 'Testimonials' });
+    // }
     if (!isRecruiterMode) {
       sections.push({ id: 'case-studies', labelEs: 'Casos de Estudio', labelEn: 'Case Studies' });
     }
     sections.push({ id: 'experience', labelEs: 'Experiencia', labelEn: 'Experience' });
     sections.push({ id: 'skills', labelEs: 'Habilidades', labelEn: 'Skills' });
     sections.push({ id: 'projects', labelEs: 'Proyectos', labelEn: 'Projects' });
+    if (!isRecruiterMode && data.articles) {
+      sections.push({ id: 'articles', labelEs: 'Artículos', labelEn: 'Articles' });
+    }
     if (!isRecruiterMode) {
       sections.push({ id: 'showcase', labelEs: 'Showcase', labelEn: 'Showcase' });
     }
@@ -89,6 +114,19 @@ export function HomePage() {
       <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent -z-10 pointer-events-none transition-colors duration-300 print:hidden" aria-hidden="true" />
       
       <main className="max-w-4xl w-full mx-auto p-4 sm:p-8 space-y-16 relative z-0 print:p-0 print:space-y-8">
+        
+        {company && (
+          <FadeIn delay={0.05}>
+            <div className="bg-blue-100 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-8 text-center animate-pulse">
+              <h2 className="text-lg md:text-xl font-bold text-blue-800 dark:text-blue-300">
+                {currentLang === 'es' 
+                  ? `👋 ¡Hola equipo de ${company}! Sería un honor aportar con mis habilidades a su equipo.`
+                  : `👋 Hello ${company} team! It would be an honor to bring my skills to your team.`}
+              </h2>
+            </div>
+          </FadeIn>
+        )}
+
         <FadeIn delay={0.1} id="hero">
         <HeroSection data={data} />
       </FadeIn>
@@ -115,9 +153,21 @@ export function HomePage() {
         </FadeIn>
       )}
 
+      {/* {!isRecruiterMode && data.testimonials && (
+        <FadeIn delay={0.26} id="testimonials">
+          <TestimonialsSection testimonials={data.testimonials} />
+        </FadeIn>
+      )} */}
+
       {!isRecruiterMode && (
         <FadeIn delay={0.28} id="case-studies">
           <CaseStudiesSection />
+        </FadeIn>
+      )}
+
+      {!isRecruiterMode && (
+        <FadeIn delay={0.29}>
+          <ArchitectureDiagram />
         </FadeIn>
       )}
 
@@ -135,6 +185,31 @@ export function HomePage() {
         />
       </FadeIn>
 
+      {!isRecruiterMode && (
+        <FadeIn delay={0.35}>
+          <GitHubStats />
+        </FadeIn>
+      )}
+
+      {!isRecruiterMode && (
+        <FadeIn delay={0.38}>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col items-center overflow-x-auto transition-colors duration-300">
+            <h3 className="text-lg font-bold mb-6 text-gray-900 dark:text-gray-100 w-full text-left">
+              {currentLang === 'es' ? 'Historial de Commits' : 'Commit History'}
+            </h3>
+            <div className="w-full flex justify-center text-gray-800 dark:text-gray-200">
+              <GitHubCalendar 
+                username="peteraraya" 
+                fontSize={12}
+                blockMargin={4}
+                blockSize={12}
+                labels={calendarLabels}
+              />
+            </div>
+          </div>
+        </FadeIn>
+      )}
+
       <FadeIn delay={0.4} id="projects">
         <ProjectsSection 
           projects={data.projects} 
@@ -142,9 +217,21 @@ export function HomePage() {
         />
       </FadeIn>
 
+      {!isRecruiterMode && data.articles && (
+        <FadeIn delay={0.42} id="articles">
+          <ArticlesSection articles={data.articles} />
+        </FadeIn>
+      )}
+
       {!isRecruiterMode && (
         <FadeIn delay={0.45} id="showcase">
           <ShowcaseSection lang={currentLang} />
+        </FadeIn>
+      )}
+
+      {!isRecruiterMode && (
+        <FadeIn delay={0.46}>
+          <CodeReviewSection />
         </FadeIn>
       )}
 
@@ -192,6 +279,10 @@ export function HomePage() {
             </div>
           </FadeIn>
         )}
+
+        <FadeIn delay={0.8}>
+          <LighthouseScore />
+        </FadeIn>
       </main>
     </div>
     </PageTransition>

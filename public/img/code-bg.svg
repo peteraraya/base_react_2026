@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <style>
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 14px; fill: #888888; font-weight: 500; }
+  </style>
+  <text x="30" y="40" class="code">import React, { useState, useEffect } from 'react';</text>
+  <text x="30" y="65" class="code">import { motion, AnimatePresence } from 'framer-motion';</text>
+  <text x="30" y="105" class="code">export const App = () =&#62; {</text>
+  <text x="50" y="130" class="code">const [isReady, setIsReady] = useState(false);</text>
+  <text x="50" y="170" class="code">useEffect(() =&#62; {</text>
+  <text x="70" y="195" class="code">initSystem().then(() =&#62; setIsReady(true));</text>
+  <text x="50" y="220" class="code">}, []);</text>
+  <text x="50" y="260" class="code">return (</text>
+  <text x="70" y="285" class="code">&#60;div className="app-container"&#62;</text>
+  <text x="90" y="310" class="code">{isReady ? &#60;Dashboard /&#62; : &#60;Loader /&#62;}</text>
+  <text x="70" y="335" class="code">&#60;/div&#62;</text>
+  <text x="50" y="360" class="code">);</text>
+  <text x="30" y="385" class="code">};</text>
+  
+  <text x="450" y="80" class="code">function calculateMetrics(data: Data[]): Metrics {</text>
+  <text x="470" y="105" class="code">return data.reduce((acc, curr) =&#62; {</text>
+  <text x="490" y="130" class="code">acc.total += curr.value;</text>
+  <text x="490" y="155" class="code">acc.count += 1;</text>
+  <text x="490" y="180" class="code">return acc;</text>
+  <text x="470" y="205" class="code">}, { total: 0, count: 0 });</text>
+  <text x="450" y="230" class="code">}</text>
+
+  <text x="30" y="450" class="code">export interface UserProfile {</text>
+  <text x="50" y="475" class="code">id: string;</text>
+  <text x="50" y="500" class="code">username: string;</text>
+  <text x="50" y="525" class="code">roles: string[];</text>
+  <text x="50" y="550" class="code">isActive: boolean;</text>
+  <text x="30" y="575" class="code">}</text>
+
+  <text x="450" y="320" class="code">const fetchUserData = async (id: string) =&#62; {</text>
+  <text x="470" y="345" class="code">try {</text>
+  <text x="490" y="370" class="code">const response = await api.get(`/users/${id}`);</text>
+  <text x="490" y="395" class="code">return response.data;</text>
+  <text x="470" y="420" class="code">} catch (error) {</text>
+  <text x="490" y="445" class="code">console.error('Failed to fetch user', error);</text>
+  <text x="490" y="470" class="code">throw new Error('User not found');</text>
+  <text x="470" y="495" class="code">}</text>
+  <text x="450" y="520" class="code">};</text>
+</svg>

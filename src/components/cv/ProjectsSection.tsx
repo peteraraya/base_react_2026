@@ -12,7 +12,21 @@ export function ProjectsSection({ projects, title }: { projects: Project[]; titl
 
       <div className="grid sm:grid-cols-2 gap-6">
         {projects.map((project, idx) => (
-          <Card key={idx} className="hover:shadow-md transition-shadow flex flex-col h-full">
+          <Card key={idx} className="hover:shadow-md transition-shadow flex flex-col h-full overflow-hidden group">
+            {project.image && (
+              <div className="w-full h-48 bg-gray-200 dark:bg-gray-800 overflow-hidden shrink-0 relative">
+                <img 
+                  src={project.image} 
+                  alt={project.name} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = `https://ui-avatars.com/api/?name=${project.name.split(' ').join('+')}&background=0D8ABC&color=fff&size=400`;
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            )}
+            <div className="p-6 flex flex-col flex-1">
             <header className="flex justify-between items-start mb-2">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white transition-colors duration-300">{project.name}</h3>
               {project.period && (
@@ -37,11 +51,12 @@ export function ProjectsSection({ projects, title }: { projects: Project[]; titl
               )}
             </div>
             
-            <ul className="list-disc list-outside ml-4 space-y-1.5 text-gray-600 dark:text-gray-300 text-sm mt-auto transition-colors duration-300">
+            <ul className="list-disc list-outside ml-4 space-y-1.5 text-gray-600 dark:text-gray-300 text-sm mt-auto transition-colors duration-300 pt-4 border-t border-gray-100 dark:border-gray-800">
               {project.achievements.map((ach, aIdx) => (
                 <li key={aIdx}>{ach}</li>
               ))}
             </ul>
+            </div>
           </Card>
         ))}
       </div>
