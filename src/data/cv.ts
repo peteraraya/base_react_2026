@@ -86,6 +86,18 @@ export const cvData: Record<'es' | 'en', CVData> = {
     ],
     projects: [
       {
+        name: "Training Management App(EvoLift)",
+        period: "2026 - presente",
+        description: "App Full Stack en producción",
+        link: "https://evolift.vercel.app/",
+        image: "/img/projects/evolift.png",
+        achievements: [
+          "Aplicación en producción para gestión de entrenamientos, con backend en NestJS (PostgreSQL, TypeORM) y frontend en React 19 (TypeScript, Vite, Zustand).",
+          "Arquitectura robusta orientada a dominios con seguridad avanzada (OWASP, JWT, Refresh Tokens, Rate Limiting) y aislamiento estricto de datos por usuario.",
+          "Frontend gamificado con 'Workout Tunnel Mode', heatmap de rachas, internacionalización total, TanStack Query y flujos de autenticación OAuth 2.0."
+        ]
+      },
+      {
         name: "Centinela (Mapa de Emergencias)",
         period: "2026",
         description: "Proyecto propio",
@@ -101,7 +113,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         period: "2025 - presente",
         description: "Proyecto propio",
         link: "https://gym-tracker-eta-amber.vercel.app/",
-        image: "/img/projects/gym-tracker.jpg",
+        image: "/img/projects/gymtracker.png",
         achievements: [
           "Aplicación fullstack con Next.js 15, React 19, TypeScript y Supabase: autenticación, dashboard de métricas y RLS para aislamiento seguro de datos por usuario."
         ]
@@ -113,15 +125,6 @@ export const cvData: Record<'es' | 'en', CVData> = {
         image: "/img/projects/tienda.jpg",
         achievements: [
           "Sistema e-commerce fullstack con panel de administración, CRUD de productos y control de stock, sobre arquitectura Supabase (Auth, DB, Storage)."
-        ]
-      },
-      {
-        name: "MVP Ecosistema Atlassian",
-        period: "2025",
-        description: "Proyecto propio",
-        image: "/img/projects/atlassian.jpg",
-        achievements: [
-          "Diseño y desarrollo continuo de un MVP SaaS para el ecosistema Atlassian, explorando oportunidades en el Marketplace."
         ]
       }
     ],
@@ -467,6 +470,18 @@ export const cvData: Record<'es' | 'en', CVData> = {
     ],
     projects: [
       {
+        name: "Training Management App",
+        period: "2026 - present",
+        description: "Full Stack App in production",
+        link: "https://evolift.vercel.app/",
+        image: "/img/projects/training-management.jpg",
+        achievements: [
+          "Production application for training management, with a NestJS backend (PostgreSQL, TypeORM) and React 19 frontend (TypeScript, Vite, Zustand).",
+          "Robust domain-driven architecture with advanced security (OWASP, JWT, Refresh Tokens, Rate Limiting) and strict per-user data isolation.",
+          "Gamified frontend featuring a 'Workout Tunnel Mode', streaks heatmap, full i18n, TanStack Query, and OAuth 2.0 authentication flows."
+        ]
+      },
+      {
         name: "Centinela (Emergencies Map)",
         period: "2026",
         description: "Personal Project",
@@ -494,15 +509,6 @@ export const cvData: Record<'es' | 'en', CVData> = {
         image: "/img/projects/tienda.jpg",
         achievements: [
           "Fullstack e-commerce system with an admin panel, product CRUD, and stock control, built on Supabase architecture (Auth, DB, Storage)."
-        ]
-      },
-      {
-        name: "Atlassian Ecosystem MVP",
-        period: "2025",
-        description: "Personal Project",
-        image: "/img/projects/atlassian.jpg",
-        achievements: [
-          "Continuous design and development of a SaaS MVP for the Atlassian ecosystem, exploring opportunities in the Marketplace."
         ]
       }
     ],
