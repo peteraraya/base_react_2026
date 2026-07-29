@@ -1,4 +1,4 @@
-import { Code, ExternalLink, ArrowRight } from 'lucide-react';
+import { Code, ExternalLink } from 'lucide-react';
 import { Project } from '@/types/cv';
 import { Card } from '@/components/ui/Card';
 import { useTranslation } from 'react-i18next';
