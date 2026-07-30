@@ -122,6 +122,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         name: "Tienda de Confecciones",
         period: "2025",
         description: "Proyecto propio",
+        link:"https://tienda-angus.vercel.app/",
         image: "/img/projects/tienda.jpg",
         achievements: [
           "Sistema e-commerce fullstack con panel de administración, CRUD de productos y control de stock, sobre arquitectura Supabase (Auth, DB, Storage)."
