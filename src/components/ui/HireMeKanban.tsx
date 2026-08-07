@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import confetti from 'canvas-confetti';
-import { Mail, Briefcase, ChevronRight } from 'lucide-react';
+import { Mail, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type ColumnId = 'backlog' | 'interview' | 'offer' | 'hired';
