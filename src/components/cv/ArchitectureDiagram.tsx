@@ -6,10 +6,10 @@ export function ArchitectureDiagram() {
   const { i18n } = useTranslation();
   const lang = i18n.language;
 
-  const title = lang === 'es' ? 'Arquitectura: Plataforma de Teleconsulta' : 'Architecture: Telehealth Platform';
+  const title = lang === 'es' ? 'Arquitectura: Plataforma Inteligente (PostulaTrack)' : 'Architecture: Smart Platform (PostulaTrack)';
   const desc = lang === 'es' 
-    ? 'Diagrama del ecosistema de servicios (Video, WebSockets y Almacenamiento GCP) para consultas médicas en tiempo real.'
-    : 'Ecosystem diagram (Video, WebSockets, and GCP Storage) for real-time medical consultations.';
+    ? 'Diagrama del ecosistema de servicios (IA, Scraping, NestJS y PostgreSQL con pgvector) para la gestión inteligente de empleo.'
+    : 'Ecosystem diagram (AI, Scraping, NestJS, and PostgreSQL with pgvector) for intelligent job management.';
 
   const Node = ({ icon: Icon, label, delay }: { icon: React.ElementType, label: string, delay: number }) => (
     <motion.div 
@@ -64,37 +64,37 @@ export function ArchitectureDiagram() {
         
         {/* Client Layer */}
         <div className="flex flex-col gap-4 p-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl relative">
-          <span className="absolute -top-3 left-4 bg-gray-50 dark:bg-gray-900 px-2 text-xs font-mono text-gray-400">Frontends</span>
-          <Node icon={Globe} label="React: Médicos & Pacientes" delay={0.1} />
-          <Node icon={Globe} label="WP E-Commerce" delay={0.2} />
-          <Node icon={Globe} label="React BackOffice" delay={0.3} />
+          <span className="absolute -top-3 left-4 bg-gray-50 dark:bg-gray-900 px-2 text-xs font-mono text-gray-400">Frontend</span>
+          <Node icon={Smartphone} label="Angular 17+ (Signals)" delay={0.1} />
+          <Node icon={Globe} label="Tailwind CSS UI" delay={0.2} />
         </div>
 
-        <Connection delay={0.4} />
+        <Connection delay={0.3} />
 
-        {/* Node.js / Express Backend Layer */}
+        {/* NestJS Backend Layer */}
         <div className="flex flex-col gap-4 p-4 border border-dashed border-purple-300 dark:border-purple-900/50 rounded-xl relative bg-purple-50/50 dark:bg-purple-900/10">
-          <span className="absolute -top-3 left-4 bg-purple-50 dark:bg-gray-900 px-2 text-xs font-mono text-purple-500">API Gateway</span>
-          <Node icon={Server} label="Node.js / Express" delay={0.5} />
-          <Node icon={Globe} label="Socket.io (WebSockets)" delay={0.6} />
+          <span className="absolute -top-3 left-4 bg-purple-50 dark:bg-gray-900 px-2 text-xs font-mono text-purple-500">Backend Core</span>
+          <Node icon={Server} label="NestJS API" delay={0.4} />
+          <Node icon={Cloud} label="Scraping Engine" delay={0.5} />
+          <Node icon={Server} label="Match Scoring" delay={0.6} />
         </div>
 
         <Connection delay={0.7} />
 
         {/* External Services Layer */}
         <div className="flex flex-col gap-4 p-4 border border-dashed border-blue-300 dark:border-blue-900/50 rounded-xl relative bg-blue-50/50 dark:bg-blue-900/10">
-          <span className="absolute -top-3 left-4 bg-blue-50 dark:bg-gray-900 px-2 text-xs font-mono text-blue-500">Services</span>
-          <Node icon={Smartphone} label="Agora Video (WebRTC)" delay={0.8} />
-          <Node icon={Cloud} label="Google Cloud Storage" delay={0.9} />
-          <Node icon={Server} label="Transbank Webpay" delay={1.0} />
+          <span className="absolute -top-3 left-4 bg-blue-50 dark:bg-gray-900 px-2 text-xs font-mono text-blue-500">Integrations</span>
+          <Node icon={Globe} label="Google OAuth2" delay={0.8} />
+          <Node icon={Cloud} label="AI (ATS Analysis)" delay={0.9} />
         </div>
 
-        <Connection delay={1.1} />
+        <Connection delay={1.0} />
 
         {/* Data Layer */}
         <div className="flex flex-col gap-4 p-4 border border-dashed border-green-300 dark:border-green-900/50 rounded-xl relative bg-green-50/50 dark:bg-green-900/10">
           <span className="absolute -top-3 left-4 bg-green-50 dark:bg-gray-900 px-2 text-xs font-mono text-green-500">Database</span>
-          <Node icon={Database} label="MongoDB" delay={1.2} />
+          <Node icon={Database} label="PostgreSQL + pgvector" delay={1.1} />
+          <Node icon={Database} label="Prisma ORM" delay={1.2} />
         </div>
 
       </div>

@@ -1,6 +1,8 @@
 import { Check, X, Zap } from 'lucide-react';
 import { PageTransition } from '@/components/animations/PageTransition';
 import { useTranslation } from 'react-i18next';
+import { HireMeKanban } from '@/components/ui/HireMeKanban';
+import { ROICalculator } from '@/components/ui/ROICalculator';
 
 export function HireMePage() {
   const { i18n } = useTranslation();
@@ -92,6 +94,13 @@ export function HireMePage() {
             </ul>
           </div>
         </div>
+
+        {/* Simulador Kanban */}
+        <HireMeKanban />
+
+        {/* Calculadora de ROI */}
+        <ROICalculator />
+
       </div>
     </PageTransition>
   );

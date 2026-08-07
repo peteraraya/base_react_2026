@@ -35,6 +35,31 @@ export function AboutMeSection({ data, title }: AboutMeProps) {
                 {paragraph}
               </p>
             ))}
+
+            {/* Passion for Code Snippet */}
+            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700/50">
+              <div className="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-inner border border-gray-800">
+                <div className="flex items-center px-4 py-2 bg-[#2d2d2d] border-b border-gray-800 gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <span className="ml-2 text-xs font-mono text-gray-400">MatchScoreEngine.ts</span>
+                </div>
+                <div className="p-4 overflow-x-auto">
+                  <pre className="text-sm font-mono leading-relaxed">
+                    <span className="text-purple-400">@Injectable</span><span className="text-gray-300">()</span>{'\n'}
+                    <span className="text-purple-400">export class</span> <span className="text-yellow-300">MatchScoreEngine</span> <span className="text-gray-300">{'{'}</span>{'\n'}
+                    <span className="text-gray-300">  </span><span className="text-blue-400">constructor</span><span className="text-gray-300">(</span><span className="text-purple-400">private readonly</span> <span className="text-blue-200">aiService</span><span className="text-gray-300">: </span><span className="text-yellow-300">AiService</span><span className="text-gray-300">) {'{}'}</span>{'\n\n'}
+                    <span className="text-gray-300">  </span><span className="text-purple-400">async</span> <span className="text-blue-300">calculateMatch</span><span className="text-gray-300">(</span><span className="text-blue-200">profile</span><span className="text-gray-300">: </span><span className="text-yellow-300">UserProfile</span><span className="text-gray-300">, </span><span className="text-blue-200">job</span><span className="text-gray-300">: </span><span className="text-yellow-300">JobOffer</span><span className="text-gray-300">): </span><span className="text-yellow-300">Promise</span><span className="text-gray-300"></span><span className="text-yellow-300">number</span><span className="text-gray-300"> {'{'}</span>{'\n'}
+                    <span className="text-gray-300">    </span><span className="text-gray-500">// My passion for coding means I always give 100%</span>{'\n'}
+                    <span className="text-gray-300">    </span><span className="text-purple-400">const</span> <span className="text-blue-200">baseScore</span> <span className="text-gray-300">= </span><span className="text-purple-400">await</span> <span className="text-blue-200">this</span><span className="text-gray-300">.</span><span className="text-blue-200">aiService</span><span className="text-gray-300">.</span><span className="text-blue-300">analyze</span><span className="text-gray-300">(</span><span className="text-blue-200">profile</span><span className="text-gray-300">, </span><span className="text-blue-200">job</span><span className="text-gray-300">);</span>{'\n'}
+                    <span className="text-gray-300">    </span><span className="text-purple-400">return</span> <span className="text-yellow-300">Math</span><span className="text-gray-300">.</span><span className="text-blue-300">max</span><span className="text-gray-300">(</span><span className="text-blue-200">baseScore</span><span className="text-gray-300">, </span><span className="text-green-300">100</span><span className="text-gray-300">);</span>{'\n'}
+                    <span className="text-gray-300">  {'}'}</span>{'\n'}
+                    <span className="text-gray-300">{'}'}</span>
+                  </pre>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
 

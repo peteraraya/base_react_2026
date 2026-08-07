@@ -85,12 +85,12 @@ export function AIChatWidget() {
           ? `Estudió "${edu?.title || 'Informática'}" en ${edu?.institution || 'la universidad'}. Además, es un ávido estudiante autodidacta con más de 20 cursos técnicos completados.`
           : `He studied "${edu?.title || 'Computer Science'}" at ${edu?.institution || 'university'}. He is also an avid self-taught student with over 20 completed technical courses.`;
       }
-      else if (hasWord('proyecto', 'project', 'centinela', 'gym')) {
+      else if (hasWord('proyecto', 'project', 'centinela', 'postulatrack', 'evolift')) {
         const p1 = data.projects?.[0]?.name;
         const p2 = data.projects?.[1]?.name;
         botResponse = isEs
-          ? `Tiene varios proyectos demostrables. Por ejemplo, "${p1}" y "${p2}". Puedes probarlos en la pestaña de Proyectos.`
-          : `He has several demonstrable projects. For example, "${p1}" and "${p2}". You can test them in the Projects tab.`;
+          ? `¡Sí! Ha desarrollado plataformas muy completas como "${p1}" (búsqueda de empleo inteligente con Angular 17+ y NestJS) y "${p2}" (gestión de entrenamientos). Puedes explorarlos en la pestaña de Proyectos.`
+          : `Yes! He has developed comprehensive platforms like "${p1}" (smart job search with Angular 17+ and NestJS) and "${p2}" (workout management). You can explore them in the Projects tab.`;
       }
       else if (hasWord('ingles', 'idioma', 'english', 'language')) {
         botResponse = isEs

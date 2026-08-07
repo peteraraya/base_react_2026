@@ -120,6 +120,197 @@
   color: #000 !important;
 }
 
+/*
+  Minimalist Theme Mode
+*/
+.theme-minimal {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+.theme-minimal body {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+html.dark.theme-minimal body {
+  background-color: #000000 !important;
+  color: #eeeeee !important;
+}
+
+.theme-minimal div, 
+.theme-minimal section, 
+.theme-minimal article, 
+.theme-minimal header, 
+.theme-minimal footer {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.theme-minimal button, 
+.theme-minimal a.rounded-full {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+/*
+  Brutalism Theme
+*/
+.theme-brutalism {
+  font-family: "Courier New", Courier, monospace !important;
+}
+.theme-brutalism body {
+  background-color: #f4f4f0 !important;
+  color: #000000 !important;
+}
+html.dark.theme-brutalism body {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.theme-brutalism div.rounded-2xl, 
+.theme-brutalism section.rounded-3xl, 
+.theme-brutalism article, 
+.theme-brutalism button, 
+.theme-brutalism a.rounded-full {
+  border-radius: 0 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 6px 6px 0px 0px #000000 !important;
+  transition: all 0.1s ease !important;
+  background-color: #ffffff !important;
+}
+
+html.dark.theme-brutalism div.rounded-2xl, 
+html.dark.theme-brutalism section.rounded-3xl, 
+html.dark.theme-brutalism article, 
+html.dark.theme-brutalism button, 
+html.dark.theme-brutalism a.rounded-full {
+  border: 3px solid #ffffff !important;
+  box-shadow: 6px 6px 0px 0px #ffffff !important;
+  background-color: #000000 !important;
+}
+
+.theme-brutalism button:active, 
+.theme-brutalism a.rounded-full:active {
+  box-shadow: 0px 0px 0px 0px #000000 !important;
+  transform: translate(6px, 6px) !important;
+}
+html.dark.theme-brutalism button:active, 
+html.dark.theme-brutalism a.rounded-full:active {
+  box-shadow: 0px 0px 0px 0px #ffffff !important;
+}
+
+/*
+  Cyberpunk Theme
+*/
+.theme-cyberpunk {
+  font-family: 'Consolas', 'Courier New', monospace !important;
+}
+.theme-cyberpunk body {
+  background-color: #0d0221 !important;
+  color: #00ff41 !important;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(0, 255, 65, 0.05) 25%, rgba(0, 255, 65, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 65, 0.05) 75%, rgba(0, 255, 65, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 255, 65, 0.05) 25%, rgba(0, 255, 65, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 65, 0.05) 75%, rgba(0, 255, 65, 0.05) 76%, transparent 77%, transparent) !important;
+  background-size: 50px 50px !important;
+}
+.theme-cyberpunk h1, .theme-cyberpunk h2, .theme-cyberpunk h3 {
+  color: #ff003c !important;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0px #000000, 4px 4px 0px #00ff41 !important;
+}
+.theme-cyberpunk div.bg-white, .theme-cyberpunk div.dark\:bg-gray-800 {
+  background-color: rgba(13, 2, 33, 0.8) !important;
+  border: 1px solid #ff003c !important;
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.5) !important;
+  color: #00ff41 !important;
+}
+.theme-cyberpunk button, .theme-cyberpunk a.rounded-full {
+  background-color: #ff003c !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+  border: none !important;
+  text-shadow: none !important;
+}
+
+/*
+  Glassmorphism Theme
+*/
+.theme-glassmorphism body {
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%) !important;
+  background-attachment: fixed !important;
+}
+html.dark.theme-glassmorphism body {
+  background: linear-gradient(135deg, #1e1e1e 0%, #000000 100%) !important;
+  background-attachment: fixed !important;
+}
+
+.theme-glassmorphism div.bg-white, 
+.theme-glassmorphism div.dark\:bg-gray-800,
+.theme-glassmorphism section.bg-white,
+.theme-glassmorphism article {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07) !important;
+}
+
+html.dark.theme-glassmorphism div.bg-white, 
+html.dark.theme-glassmorphism div.dark\:bg-gray-800,
+html.dark.theme-glassmorphism section.bg-white,
+html.dark.theme-glassmorphism article {
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/*
+  Accessibility (A11y) Overrides
+*/
+.theme-high-contrast {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+}
+.theme-high-contrast body, 
+.theme-high-contrast main,
+.theme-high-contrast div,
+.theme-high-contrast section {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+}
+.theme-high-contrast h1, .theme-high-contrast h2, .theme-high-contrast h3, .theme-high-contrast p, .theme-high-contrast span {
+  color: #ffff00 !important;
+}
+.theme-high-contrast a, .theme-high-contrast button {
+  border: 2px solid #ffff00 !important;
+  color: #ffff00 !important;
+  background-color: #000000 !important;
+}
+
+.a11y-highlight-links a {
+  text-decoration: underline !important;
+  text-decoration-thickness: 3px !important;
+  text-underline-offset: 4px !important;
+  color: #0000ee !important;
+  background-color: #ffff00 !important;
+}
+html.dark .a11y-highlight-links a {
+  color: #ffff00 !important;
+  background-color: #0000ee !important;
+}
+
+.a11y-dyslexic-font * {
+  font-family: 'Comic Sans MS', 'OpenDyslexic', sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+  line-height: 1.6 !important;
+}
+
+.a11y-reduce-motion *,
+.a11y-reduce-motion *::before,
+.a11y-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
 /* 
   ATS-Friendly Print Styles 
 */

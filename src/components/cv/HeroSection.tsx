@@ -1,9 +1,10 @@
-import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy } from 'lucide-react';
+import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy, Globe, FileText } from 'lucide-react';
 import { CVData } from '@/types/cv';
 import { useUIStore } from '@/stores/uiStore';
 import { useTranslation } from 'react-i18next';
 import { generateVCard } from '@/lib/vcard';
-import { Contact as ContactIcon } from 'lucide-react';
+import { Contact as ContactIcon, Command } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 export function HeroSection({ data }: { data: CVData }) {
   const addToast = useUIStore((s) => s.addToast);
@@ -45,6 +46,11 @@ export function HeroSection({ data }: { data: CVData }) {
               <span>{data.availability}</span>
             </div>
           )}
+        </div>
+
+        <div className="hidden md:flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 font-medium mt-2 bg-gray-100 dark:bg-gray-800/50 w-fit px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm print:hidden">
+          <Command className="w-3.5 h-3.5" />
+          <span>{isEs ? 'Presiona Cmd + K para navegar' : 'Press Cmd + K to explore'}</span>
         </div>
 
         <div className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400 px-1 py-1 transition-colors duration-300">
@@ -101,7 +107,12 @@ export function HeroSection({ data }: { data: CVData }) {
             <span>GitHub</span>
           </a>
 
- 
+          {data.contact.portfolio && (
+            <a href={`https://${data.contact.portfolio}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 rounded-full transition-all duration-300 font-medium text-sm focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-500 outline-none">
+              <Globe className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span>Portfolio</span>
+            </a>
+          )}
 
           <button 
             onClick={() => generateVCard(data.name, data.role, data.contact)}
@@ -115,11 +126,33 @@ export function HeroSection({ data }: { data: CVData }) {
           <a 
             href="/CV_Pedro_Araya_2026.pdf" 
             download="CV_Pedro_Araya_2026.pdf" 
+            onClick={() => {
+              confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b']
+              });
+              addToast(
+                isEs ? '¡Gracias por descargar mi CV!' : 'Thanks for downloading my CV!',
+                'success'
+              );
+            }}
             className="flex items-center gap-2 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all duration-300 font-bold text-sm shadow-md hover:shadow-lg active:scale-95 outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
           >
             <Download className="w-4 h-4 shrink-0 animate-bounce" aria-hidden="true" />
             <span>{isEs ? 'Descargar CV (PDF)' : 'Download CV (PDF)'}</span>
           </a>
+
+          {/* <button 
+            onClick={() => window.print()}
+            className="flex items-center gap-2 px-4 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full transition-all duration-300 font-bold text-sm shadow-sm outline-none"
+            title={isEs ? 'Imprimir versión limpia optimizada para sistemas ATS' : 'Print clean text version optimized for ATS systems'}
+          >
+            <FileText className="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span className="hidden sm:inline">{isEs ? 'Versión ATS (Texto)' : 'ATS Version (Text)'}</span>
+            <span className="sm:hidden">ATS</span>
+          </button> */}
         </div>
 
       </div>

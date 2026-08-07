@@ -7,7 +7,7 @@ import {
   siReact, siNextdotjs, siAngular, siTypescript, siTailwindcss, siJavascript, 
   siHtml5, siCss, siNodedotjs, siExpress, siNestjs, siPhp, siWordpress, 
   siPostgresql, siMongodb, siSupabase, siJest, siTestinglibrary, siGit, siJira, 
-  siDocker, siFramer, siNpm, siMui
+  siDocker, siFramer, siNpm, siMui, siVite, siVitest, siAtlassian
 } from 'simple-icons';
 
 export function SkillsSection({ skills, title }: { skills: Record<string, string>; title: string }) {
@@ -17,11 +17,11 @@ export function SkillsSection({ skills, title }: { skills: Record<string, string
   // Hardcoded visual levels for impressive radar/matrix presentation
   const coreSkills = [
     { name: 'React / Next.js', level: 95 },
-    { name: 'Node.js / Express', level: 90 },
+    { name: 'Node.js / NestJS', level: 90 },
     { name: 'TypeScript', level: 90 },
-    { name: 'Serverless / AWS', level: 85 },
-    { name: 'PostgreSQL / SQL', level: 85 },
-    { name: 'Testing (Jest/Playwright)', level: 80 }
+    { name: 'Serverless (Atlassian Forge)', level: 85 },
+    { name: 'PostgreSQL / Supabase', level: 85 },
+    { name: 'Testing (Vitest/Jest)', level: 80 }
   ];
 
   return (
@@ -105,7 +105,7 @@ const icons = [
   siReact, siNextdotjs, siAngular, siTypescript, siTailwindcss, siJavascript, 
   siHtml5, siCss, siNodedotjs, siExpress, siNestjs, siPhp, siWordpress, 
   siPostgresql, siMongodb, siSupabase, siJest, siTestinglibrary, siGit, siJira, 
-  siDocker, siFramer, siNpm, siMui
+  siDocker, siFramer, siNpm, siMui, siVite, siVitest, siAtlassian
 ];
 
 const SkillGlobe = () => {
