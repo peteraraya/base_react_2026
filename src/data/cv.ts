@@ -91,7 +91,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         name: "Postula Track",
         period: "2026 – presente",
         description: "Proyecto propio",
-        link: "https://postula-track.vercel.app",
+        link: "https://postulatrack.vercel.app",
         image: "/img/projects/postulatrack.jpg",
         achievements: [
           "Plataforma inteligente para búsqueda y gestión de empleo con tablero Kanban interactivo (Drag & Drop), construida con Angular 17+ (Signals, Standalone Components) y Tailwind CSS.",
@@ -490,7 +490,7 @@ export const cvData: Record<'es' | 'en', CVData> = {
         name: "Postula Track",
         period: "2026 – present",
         description: "Personal Project",
-        link: "https://postula-track.vercel.app",
+        link: "https://postulatrack.vercel.app",
         image: "/img/projects/postulatrack.jpg",
         achievements: [
           "Smart platform for job search and management featuring an interactive Kanban board (Drag & Drop), built with Angular 17+ (Signals, Standalone Components) and Tailwind CSS.",
