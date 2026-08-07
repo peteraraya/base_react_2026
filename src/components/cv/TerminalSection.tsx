@@ -7,6 +7,7 @@ export function TerminalSection() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<React.ReactNode[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,11 +21,12 @@ export function TerminalSection() {
           <p>{`> Executing npx pedro-araya-cv...`}</p>
           <br/>
           <p className="font-bold text-blue-400">Pedro Araya - Full Stack Developer</p>
-          <p>Location: Chile</p>
-          <p>Stack: React, TypeScript, Node.js, Tailwind</p>
+          <p>Location: Quillota, Chile</p>
+          <p>Stack: React, TypeScript, NestJS, Atlassian Forge</p>
           <br/>
           <p>Contact: piteraraya@gmail.com</p>
           <p>GitHub: github.com/peteraraya</p>
+          <p>Portfolio: pedroaraya.vercel.app</p>
           <br/>
           <p className="text-yellow-400">Ready to build amazing things!</p>
         </div>
@@ -50,6 +52,12 @@ export function TerminalSection() {
 
   const [typedWelcome, setTypedWelcome] = useState('');
   const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [output, isTyping, typedWelcome]);
 
   useEffect(() => {
     if (output.length === 0) {
@@ -102,7 +110,8 @@ export function TerminalSection() {
       
       {/* Terminal Body */}
       <div 
-        className="p-4 h-64 overflow-y-auto text-gray-300 relative group"
+        ref={scrollRef}
+        className="p-4 h-64 overflow-y-auto text-gray-300 relative group scroll-smooth"
         onClick={() => inputRef.current?.focus()}
       >
         {isTyping ? (

@@ -1,4 +1,4 @@
-import { Code, ExternalLink, ArrowRight } from 'lucide-react';
+import { Code, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { Project } from '@/types/cv';
 import { Card } from '@/components/ui/Card';
 import { useTranslation } from 'react-i18next';
@@ -55,8 +55,8 @@ export function ProjectsSection({ projects, title }: { projects: Project[]; titl
               
               <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-xs mt-auto pt-3 border-t border-gray-100 dark:border-gray-700/50">
                 {project.achievements.map((ach, aIdx) => (
-                  <li key={aIdx} className="flex gap-2.5 items-start">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500/80 shrink-0 mt-1.5" />
+                  <li key={aIdx} className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
                     <span className="leading-relaxed opacity-90">{ach}</span>
                   </li>
                 ))}

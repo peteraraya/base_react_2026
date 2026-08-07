@@ -17,6 +17,9 @@ import { CommandPalette } from '@/components/ui/CommandPalette'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { AIChatWidget } from '@/components/ui/AIChatWidget'
 import { VSCodeMode } from '@/components/ui/VSCodeMode'
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher'
+import { AccessibilityWidget } from '@/components/ui/AccessibilityWidget'
+import { CookieConsentBanner } from '@/components/ui/CookieConsentBanner'
 import { cvData } from '@/data/cv'
 import { useUIStore } from '@/stores/uiStore'
 import { motion, useScroll, useAnimationControls, AnimatePresence } from 'framer-motion'
@@ -260,6 +263,9 @@ const RootComponent = () => {
       <CustomCursor />
       <AIChatWidget />
       <VSCodeMode />
+      <ThemeSwitcher />
+      <AccessibilityWidget />
+      <CookieConsentBanner />
     </div>
   );
 };

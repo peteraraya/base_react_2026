@@ -3,6 +3,7 @@ export interface Contact {
   phone: string;
   linkedin: string;
   github: string;
+  portfolio?: string;
 }
 
 export interface Project {
