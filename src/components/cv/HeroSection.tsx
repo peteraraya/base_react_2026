@@ -144,7 +144,7 @@ export function HeroSection({ data }: { data: CVData }) {
             <span>{isEs ? 'Descargar CV (PDF)' : 'Download CV (PDF)'}</span>
           </a>
 
-          {/* <button 
+          <button 
             onClick={() => window.print()}
             className="flex items-center gap-2 px-4 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full transition-all duration-300 font-bold text-sm shadow-sm outline-none"
             title={isEs ? 'Imprimir versión limpia optimizada para sistemas ATS' : 'Print clean text version optimized for ATS systems'}
@@ -152,7 +152,7 @@ export function HeroSection({ data }: { data: CVData }) {
             <FileText className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span className="hidden sm:inline">{isEs ? 'Versión ATS (Texto)' : 'ATS Version (Text)'}</span>
             <span className="sm:hidden">ATS</span>
-          </button> */}
+          </button>
         </div>
 
       </div>
