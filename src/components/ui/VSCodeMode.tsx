@@ -10,7 +10,7 @@ type FileKey = 'about' | 'experience' | 'projects' | 'skills';
 interface FileConfig {
   id: FileKey;
   name: string;
-  icon: React.ElementType;
+  icon: any;
   iconColor: string;
 }
 

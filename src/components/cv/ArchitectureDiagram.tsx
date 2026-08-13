@@ -11,7 +11,7 @@ export function ArchitectureDiagram() {
     ? 'Diagrama del ecosistema de servicios (IA, Scraping, NestJS y PostgreSQL con pgvector) para la gestión inteligente de empleo.'
     : 'Ecosystem diagram (AI, Scraping, NestJS, and PostgreSQL with pgvector) for intelligent job management.';
 
-  const Node = ({ icon: Icon, label, delay }: { icon: React.ElementType, label: string, delay: number }) => (
+  const Node = ({ icon: Icon, label, delay }: { icon: any, label: string, delay: number }) => (
     <motion.div 
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
