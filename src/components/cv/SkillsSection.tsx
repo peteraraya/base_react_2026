@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Cloud, renderSimpleIcon, ICloud } from 'react-icon-cloud';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { 
   siReact, siNextdotjs, siAngular, siTypescript, siTailwindcss, siJavascript, 
   siHtml5, siCss, siNodedotjs, siExpress, siNestjs, siPhp, siWordpress, 
@@ -11,7 +12,7 @@ import {
 } from 'simple-icons';
 
 export function SkillsSection({ skills, title }: { skills: Record<string, string>; title: string }) {
-  const [viewMode, setViewMode] = useState<'matrix' | 'categories' | 'globe'>('matrix');
+  const [viewMode, setViewMode] = useState<'radar' | 'matrix' | 'categories' | 'globe'>('radar');
   const { i18n } = useTranslation();
 
   // Hardcoded visual levels for impressive radar/matrix presentation
@@ -34,6 +35,12 @@ export function SkillsSection({ skills, title }: { skills: Record<string, string
         
         <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg print:hidden overflow-x-auto no-scrollbar">
           <button 
+            onClick={() => setViewMode('radar')}
+            className={`px-3 py-1 text-sm font-medium rounded-md transition-all whitespace-nowrap ${viewMode === 'radar' ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+          >
+            Radar
+          </button>
+          <button 
             onClick={() => setViewMode('matrix')}
             className={`px-3 py-1 text-sm font-medium rounded-md transition-all whitespace-nowrap ${viewMode === 'matrix' ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
           >
@@ -54,7 +61,22 @@ export function SkillsSection({ skills, title }: { skills: Record<string, string
         </div>
       </header>
       
-      {viewMode === 'globe' ? (
+      {viewMode === 'radar' ? (
+        <div className="flex items-center justify-center animate-in fade-in zoom-in-95 duration-700 w-full bg-gray-50 dark:bg-[#111111] rounded-3xl border border-gray-200 dark:border-gray-800 shadow-inner py-8 h-[400px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={coreSkills}>
+              <PolarGrid strokeOpacity={0.2} />
+              <PolarAngleAxis dataKey="name" tick={{ fill: 'currentColor', fontSize: 12 }} className="text-gray-700 dark:text-gray-300" />
+              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', borderRadius: '8px', border: 'none', color: '#fff' }}
+                itemStyle={{ color: '#60A5FA' }}
+              />
+              <Radar name={i18n.language === 'es' ? 'Nivel' : 'Level'} dataKey="level" stroke="#2563EB" fill="#3B82F6" fillOpacity={0.6} />
+            </RadarChart>
+          </ResponsiveContainer>
+        </div>
+      ) : viewMode === 'globe' ? (
         <div className="flex items-center justify-center animate-in fade-in zoom-in-95 duration-700 w-full overflow-hidden bg-gray-50 dark:bg-[#111111] rounded-3xl border border-gray-200 dark:border-gray-800 shadow-inner py-8">
           <SkillGlobe />
         </div>

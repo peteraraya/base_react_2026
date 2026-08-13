@@ -7,7 +7,6 @@ import { HeroSection } from '@/components/cv/HeroSection';
 import { SummarySection } from '@/components/cv/SummarySection';
 import { AboutMeSection } from '@/components/cv/AboutMeSection';
 import { CaseStudiesSection } from '@/components/cv/CaseStudiesSection';
-import { ArchitectureDiagram } from '@/components/cv/ArchitectureDiagram';
 import { ExperienceSection } from '@/components/cv/ExperienceSection';
 import { ProjectsSection } from '@/components/cv/ProjectsSection';
 import { SkillsSection } from '@/components/cv/SkillsSection';
@@ -17,15 +16,24 @@ import { CoursesSection } from '@/components/cv/CoursesSection';
 import { LanguagesSection } from '@/components/cv/LanguagesSection';
 import { ShowcaseSection } from '@/components/cv/ShowcaseSection';
 import { BestPracticesSection } from '@/components/cv/BestPracticesSection';
-import { TerminalSection } from '@/components/cv/TerminalSection';
 import { ImpactMetrics } from '@/components/cv/ImpactMetrics';
 import { LighthouseScore } from '@/components/cv/LighthouseScore';
 import { GitHubStats } from '@/components/cv/GitHubStats';
 import { CodeReviewSection } from '@/components/cv/CodeReviewSection';
-import { useState, useMemo } from 'react';
-import { FileText, Zap } from 'lucide-react';
+import { useState, useMemo, lazy, Suspense } from 'react';
+import { FileText, Zap, Loader2 } from 'lucide-react';
 import { TableOfContents, type Section } from '@/components/navigation/TableOfContents';
-import { GitHubCalendar } from 'react-github-calendar';
+
+// Lazy load heavy components for better initial load performance (Lighthouse/TBT)
+const ArchitectureDiagram = lazy(() => import('@/components/cv/ArchitectureDiagram').then(m => ({ default: m.ArchitectureDiagram })));
+const TerminalSection = lazy(() => import('@/components/cv/TerminalSection').then(m => ({ default: m.TerminalSection })));
+const GitHubCalendar = lazy(() => import('react-github-calendar').then(m => ({ default: m.GitHubCalendar })));
+
+const FallbackLoader = () => (
+  <div className="w-full h-48 flex items-center justify-center bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-800">
+    <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
+  </div>
+);
 
 export function HomePage() {
   const { i18n } = useTranslation();
@@ -167,7 +175,9 @@ export function HomePage() {
 
       {!isRecruiterMode && (
         <FadeIn delay={0.29}>
-          <ArchitectureDiagram />
+          <Suspense fallback={<FallbackLoader />}>
+            <ArchitectureDiagram />
+          </Suspense>
         </FadeIn>
       )}
 
@@ -197,14 +207,16 @@ export function HomePage() {
             <h3 className="text-lg font-bold mb-6 text-gray-900 dark:text-gray-100 w-full text-left">
               {currentLang === 'es' ? 'Historial de Commits' : 'Commit History'}
             </h3>
-            <div className="w-full flex justify-center text-gray-800 dark:text-gray-200">
-              <GitHubCalendar 
-                username="peteraraya" 
-                fontSize={12}
-                blockMargin={4}
-                blockSize={12}
-                labels={calendarLabels}
-              />
+            <div className="w-full flex justify-center text-gray-800 dark:text-gray-200 min-h-[150px]">
+              <Suspense fallback={<FallbackLoader />}>
+                <GitHubCalendar 
+                  username="peteraraya" 
+                  fontSize={12}
+                  blockMargin={4}
+                  blockSize={12}
+                  labels={calendarLabels}
+                />
+              </Suspense>
             </div>
           </div>
         </FadeIn>
@@ -275,7 +287,9 @@ export function HomePage() {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 tracking-tight flex items-center gap-2">
                 {currentLang === 'es' ? 'Terminal Interactiva' : 'Interactive Terminal'}
               </h2>
-              <TerminalSection />
+              <Suspense fallback={<FallbackLoader />}>
+                <TerminalSection />
+              </Suspense>
             </div>
           </FadeIn>
         )}

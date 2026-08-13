@@ -91,6 +91,10 @@ export function CommandPalette() {
               <Mail className="w-4 h-4 mr-3" />
               {t('nav.contact')}
             </Command.Item>
+            <Command.Item onSelect={() => runCommand(() => navigate({ to: '/uses' }))} className="flex items-center px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 aria-selected:bg-gray-100 dark:aria-selected:bg-gray-800 aria-selected:text-blue-600 dark:aria-selected:text-blue-400 transition-colors">
+              <Monitor className="w-4 h-4 mr-3" />
+              /uses (Setup)
+            </Command.Item>
           </Command.Group>
 
           <Command.Group heading={i18n.language === 'es' ? "Acciones" : "Actions"} className="text-xs font-medium text-gray-500 mb-1 px-2 py-2 border-t border-gray-100 dark:border-gray-800 mt-2">

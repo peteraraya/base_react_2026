@@ -13,11 +13,14 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
     "@tanstack/react-form": "^0.39.0",
     "@tanstack/react-query": "^5.0.0",
     "@tanstack/react-router": "^1.0.0",
     "@tanstack/zod-form-adapter": "^0.42.1",
     "@types/canvas-confetti": "^1.9.0",
+    "@types/three": "^0.185.4",
     "axios": "^1.7.0",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
@@ -30,8 +33,10 @@
     "react-github-calendar": "^5.0.6",
     "react-i18next": "^17.0.9",
     "react-icon-cloud": "^4.1.7",
+    "recharts": "^3.10.1",
     "simple-icons": "^16.27.0",
     "tailwind-merge": "^2.6.1",
+    "three": "^0.185.1",
     "zod": "^3.24.1",
     "zustand": "^5.0.0"
   },
@@ -58,6 +63,7 @@
     "typescript": "5.7.2",
     "typescript-eslint": "^8.63.0",
     "vite": "^6.0.0",
+    "vite-plugin-pwa": "^1.3.0",
     "vitest": "^2.1.8"
   }
 }

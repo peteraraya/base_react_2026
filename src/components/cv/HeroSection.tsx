@@ -1,10 +1,10 @@
-import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy, Globe, FileText } from 'lucide-react';
+import { MapPin, Mail, Linkedin, Github, Download, Phone, Copy } from 'lucide-react';
 import { CVData } from '@/types/cv';
 import { useUIStore } from '@/stores/uiStore';
 import { useTranslation } from 'react-i18next';
-import { generateVCard } from '@/lib/vcard';
-import { Contact as ContactIcon, Command } from 'lucide-react';
+import { Command } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { Floating3DElement } from './Floating3DElement';
 
 export function HeroSection({ data }: { data: CVData }) {
   const addToast = useUIStore((s) => s.addToast);
@@ -21,6 +21,7 @@ export function HeroSection({ data }: { data: CVData }) {
 
   return (
     <section className="relative flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 text-left p-4 sm:p-8 rounded-3xl overflow-hidden mb-12">
+      <Floating3DElement />
       {/* Background Animated Orbs for Premium SaaS look */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none print:hidden">
         <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/20 dark:bg-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
@@ -107,21 +108,21 @@ export function HeroSection({ data }: { data: CVData }) {
             <span>GitHub</span>
           </a>
 
-          {data.contact.portfolio && (
+          {/* {data.contact.portfolio && (
             <a href={`https://${data.contact.portfolio}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 rounded-full transition-all duration-300 font-medium text-sm focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-500 outline-none">
               <Globe className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Portfolio</span>
             </a>
-          )}
+          )} */}
 
-          <button 
+          {/* <button 
             onClick={() => generateVCard(data.name, data.role, data.contact)}
             className="flex items-center gap-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-700 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 rounded-full transition-all duration-300 font-bold text-sm outline-none"
             title={isEs ? 'Añadir a mis contactos (vCard)' : 'Add to contacts (vCard)'}
           >
             <ContactIcon className="w-4 h-4 shrink-0 text-purple-500" aria-hidden="true" />
             <span>vCard</span>
-          </button>
+          </button> */}
 
           <a 
             href="/CV_Pedro_Araya_2026.pdf" 
@@ -144,7 +145,7 @@ export function HeroSection({ data }: { data: CVData }) {
             <span>{isEs ? 'Descargar CV (PDF)' : 'Download CV (PDF)'}</span>
           </a>
 
-          <button 
+          {/* <button 
             onClick={() => window.print()}
             className="flex items-center gap-2 px-4 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full transition-all duration-300 font-bold text-sm shadow-sm outline-none"
             title={isEs ? 'Imprimir versión limpia optimizada para sistemas ATS' : 'Print clean text version optimized for ATS systems'}
@@ -152,7 +153,7 @@ export function HeroSection({ data }: { data: CVData }) {
             <FileText className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span className="hidden sm:inline">{isEs ? 'Versión ATS (Texto)' : 'ATS Version (Text)'}</span>
             <span className="sm:hidden">ATS</span>
-          </button>
+          </button> */}
         </div>
 
       </div>
